@@ -1,0 +1,113 @@
+<f:layout name="Default" />
+
+This Template is responsible for creating a table of domain objects.
+
+If you modify this template, do not forget to change the overwrite settings
+in /Configuration/ExtensionBuilder/settings.yaml:
+  Resources:
+    Private:
+      Templates:
+        List.html: keep
+
+Otherwise your changes will be overwritten the next time you save the extension in the extension builder
+
+<f:section name="main">
+
+<style type="text/css">
+
+div.sortingColumns { width: 300px; float: left; margin-right: 20px; }
+ul.connected { list-style-type: none; margin: 0; padding: 0;  }
+ul.target { border-bottom: 2px solid #c0c0c0; margin-bottom: 10px; }
+ul#source li { cursor: pointer; }
+ul li.static { cursor: not-allowed !important; }
+p.preview { border: 1px solid #c0c0c0; padding: 5px; background: white; min-height: 80px; }
+</style>
+
+<p>Ziehen Sie die Spalten der von Ihnen hochgeladenen Tabelle zur zugehörigen Spalte im easyvote-Versand. Es müssen nicht alle Spalten verwendet werden. Sollen zwei Spalten kombiniert werden
+(z.B. Vorname und Name oder PLZ und Ort), legen Sie beide Spalten in der korrekten Reihenfolge ab.</p>
+
+<div id="assignColumns">
+	<div class="sortingColumns">
+		<p><strong>Spalten für den easyvote-Versand:</strong></p>
+		<ul id="target-name" class="target connected">
+			<li id="name" class="category static ui-state-default">Vorname und Name</li>
+		</ul>
+		<ul id="target-address" class="target connected">
+			<li id="address" class="category static ui-state-default">Strasse</li>
+		</ul>
+		<ul id="target-city" class="target connected">
+			<li id="city" class="category static ui-state-default">PLZ und Ort</li>
+		</ul>
+	</div>
+	<div class="sortingColumns">
+		<ul id="source" class="connected">
+			<li class="static">
+				<strong>Spalten der hochgeladenen Tabelle:</strong>
+			</li>
+			<f:for each="{tableData}" as="tableDataItem" iteration="iterator">
+				<li class="ui-state-highlight value" data-column="{iterator.cycle}" data-example="{tableDataItem.firstItem}" id="col-{iterator.cycle}">
+					{tableDataItem.name}<br />
+					<em>Beispiel: {tableDataItem.firstItem}</em>
+				</li>
+			</f:for>
+		</ul>
+		<div class="clearer"></div>
+	</div>
+	<div class="sortingColumns">
+		<p><strong>Vorschau:</strong></p>
+		<p class="preview">
+			<span id="preview-name"></span><br />
+			<span id="preview-address"></span><br />
+			<span id="preview-city"></span>
+		</p>
+
+		<f:form action="approve">
+			<f:form.hidden id="columns-name" name="columns-name" value=""></f:form.hidden>
+			<f:form.hidden id="columns-address" name="columns-address" value=""></f:form.hidden>
+			<f:form.hidden id="columns-city" name="columns-city" value=""></f:form.hidden>
+			<f:form.submit value="Zuweisung bestätigen und freigeben"></f:form.submit>
+		</f:form>
+	</div>
+</div>
+
+
+
+<script>
+	<![CDATA[
+	$(function() {
+		$("#source, .target").sortable({
+			connectWith: ".connected",
+			cancel: ".static",
+			stop: function(event, ui) {
+				reflectChange(event);
+			}
+		}).disableSelection();
+
+	});
+
+	function reflectChange(event) {
+		$('.target').each(function() {
+			// example: target-name
+			targetId = $(this).attr('id');
+			// example: name
+			targetType = targetId.split('-')[1];
+
+			// the container for the preview
+			$('span#preview-' + targetType).empty();
+			// empty the input field containing the column IDs
+			$('input#columns-' + targetType).val('');
+			$('li.value', this).each(function() {
+				// write example data to the corresponding container
+				exampleData = $(this).attr('data-example');
+				column = $(this).attr('data-column');
+				$('span#preview-' + targetType).append(exampleData + '&nbsp;');
+
+				$('input#columns-' + targetType).val($('input#columns-' + targetType).val() + column + ',');
+			});
+
+		});
+	}
+	]]>
+</script>
+
+</f:section>

@@ -1,0 +1,14 @@
+plugin.tx_easyvoteimporter {
+	view {
+		# cat=plugin.tx_easyvoteimporter/file; type=string; label=Path to template root (FE)
+		templateRootPath = EXT:easyvote_importer/Resources/Private/Templates/
+		# cat=plugin.tx_easyvoteimporter/file; type=string; label=Path to template partials (FE)
+		partialRootPath = EXT:easyvote_importer/Resources/Private/Partials/
+		# cat=plugin.tx_easyvoteimporter/file; type=string; label=Path to template layouts (FE)
+		layoutRootPath = EXT:easyvote_importer/Resources/Private/Layouts/
+	}
+	persistence {
+		# cat=plugin.tx_easyvoteimporter//a; type=string; label=Default storage PID
+		storagePid =
+	}
+}
