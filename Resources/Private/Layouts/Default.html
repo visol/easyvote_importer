@@ -1,3 +1,35 @@
+<style type="text/css">
+	.typo3-messages { margin-bottom: 20px; }
+	.typo3-message { padding: 10px; border-radius: 10px; -moz-border-radius: 10px; }
+	.message-error { background: #ff9600; }
+	.message-ok { background: #aaff7a; }
+	.message-header { font-weight: bold; }
+	input[type=submit], input[type=button] { padding: 5px; }
+
+	div.sortingColumns { width: 300px; float: left; margin-right: 40px; }
+	ul.connected { list-style-type: none; margin: 0; padding: 0;  }
+	ul.target { border-bottom: 2px solid #c0c0c0; margin-bottom: 10px; }
+	ul#source li { cursor: pointer; }
+	ul li.static { cursor: not-allowed !important; }
+	p.preview { padding: 10px; background: white; min-height: 70px; border-radius: 10px; -moz-border-radius: 10px;  }
+</style>
+
 <div class="tx-easyvote-importer">
-	<f:render section="main" />
+	<f:security.ifAuthenticated>
+		<f:then>
+			<f:security.ifHasRole role="2">
+				<f:then>
+					<f:flashMessages renderMode="div" />
+					<f:render section="main" />
+				</f:then>
+				<f:else>
+					Keine Berechtigung.
+				</f:else>
+			</f:security.ifHasRole>
+		</f:then>
+		<f:else>
+			Kein Zugriff da nicht angemeldet.
+		</f:else>
+	</f:security.ifAuthenticated>
+	<div class="clear"></div>
 </div>

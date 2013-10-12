@@ -39,7 +39,7 @@
 
 overwriteSettings:
   Classes:
-    Controller: merge
+    Controller: keep
     Domain:
       Model: merge
       Repository: merge
@@ -53,7 +53,8 @@ overwriteSettings:
       Language:
         #locallang.xml: merge
         #locallang.xlf: merge
-      #Templates: keep
+      Templates: keep
+      Layouts: keep
 
   ext_icon.gif: keep
 

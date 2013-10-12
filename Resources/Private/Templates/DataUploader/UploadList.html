@@ -1,0 +1,14 @@
+<f:layout name="Default" />
+
+<f:section name="main">
+	<h2>Dateneingabe Gemeinde {businessUser.city} für <f:format.date date="{votingDay.votingDate}" format="d.m.Y" /></h2>
+	<f:form action="performUpload" enctype="multipart/form-data">
+		<f:form.hidden name="votingDay" value="{votingDay.uid}"></f:form.hidden>
+		<f:form.upload name="easyvoteData"></f:form.upload><br />
+		<f:form.checkbox name="firstLineContainsLabels" id="firstLineContainsLabels" value="1" checked="checked"></f:form.checkbox>
+		<label for="firstLineContainsLabels">Erste Zeile enthält Spaltentitel</label><br />
+		<f:form.submit value="Hochladen"></f:form.submit>
+	</f:form>
+
+
+</f:section>

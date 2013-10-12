@@ -7,12 +7,12 @@ if (!defined('TYPO3_MODE')) {
 	'Visol.' . $_EXTKEY,
 	'Datauploader',
 	array(
-		'DataUploader' => 'index, upload, assign, approve, remove',
+		'DataUploader' => 'index, uploadList, remove, performUpload, assign, approve, remove',
 		
 	),
 	// non-cacheable actions
 	array(
-		'DataUploader' => 'index, upload, assign, approve, remove',
+		'DataUploader' => 'index, uploadList, remove, performUpload, assign, approve, remove',
 		
 	)
 );

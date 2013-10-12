@@ -1,24 +1,35 @@
+{namespace v=Tx_Vhs_ViewHelpers}
 <f:layout name="Default" />
-
-This Template is responsible for creating a table of domain objects.
-
-If you modify this template, do not forget to change the overwrite settings
-in /Configuration/ExtensionBuilder/settings.yaml:
-  Resources:
-    Private:
-      Templates:
-        List.html: keep
-
-Otherwise your changes will be overwritten the next time you save the extension in the extension builder
-
 <f:section name="main">
-
-	<f:form action="upload" enctype="multipart/form-data">
-		<f:form.upload name="easyvoteData"></f:form.upload><br />
-		<f:form.checkbox name="firstLineContainsLabels" id="firstLineContainsLabels" value="1" checked="checked"></f:form.checkbox>
-		<label for="firstLineContainsLabels">Erste Zeile enthält Spaltentitel</label><br />
-		<f:form.submit value="Hochladen"></f:form.submit>
-	</f:form>
-
-
+	<h2>Dateneingabe Gemeinde {businessUser.city}</h2>
+	<f:for each="{votingDays}" as="votingDay" iteration="iterator">
+		<h3><f:format.date date="{votingDay.votingDate}" format="d.m.Y" /></h3>
+		<f:if condition="{v:var.get(name: 'datasets.{iterator.index}.uid')}">
+			<f:then>
+				<f:if condition="{v:var.get(name: 'datasets.{iterator.index}.file')}">
+					<f:then>
+						Daten wurden am <f:format.date date="@{v:var.get(name: 'datasets.{iterator.index}.crdate')}" format="d.m.Y" /> hochgeladen: {v:var.get(name: 'datasets.{iterator.index}.file')}
+						<f:if condition="{v:var.get(name: 'datasets.{iterator.index}.columnConfiguration')}">
+							<f:then></f:then>
+							<f:else>
+								<br />
+								<em>Die Spaltenzuordnung fehlt.</em>
+								<f:form name="assign" arguments="{dataset: '{v:var.get(name: \'datasets.{iterator.index}\')}'}" action="assign">
+									<f:form.submit value="Spalten zuordnen" />
+								</f:form>
+							</f:else>
+						</f:if>
+					</f:then>
+					<f:else>
+						Daten wurden am <f:format.date date="@{v:var.get(name: 'datasets.{iterator.index}.crdate')}" format="d.m.Y" /> hochgeladen, verarbeitet und wieder vom System gelöscht.
+					</f:else>
+				</f:if>
+			</f:then>
+			<f:else>
+				<f:form action="uploadList">
+					<f:form.submit value="Daten hochladen" name="votingDay[{votingDay.uid}]" />
+				</f:form>
+			</f:else>
+		</f:if>
+	</f:for>
 </f:section>

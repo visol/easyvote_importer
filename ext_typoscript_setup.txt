@@ -1,0 +1,20 @@
+config.tx_extbase{
+    persistence{
+        classes{
+
+            TYPO3\CMS\Extbase\Domain\Model\FrontendUser {
+                subclasses {
+                    Tx_EasyvoteImporter_BusinessUser = Visol\EasyvoteImporter\Domain\Model\BusinessUser
+					
+          		}
+            }
+            Visol\EasyvoteImporter\Domain\Model\BusinessUser {
+                mapping {
+                    tableName = fe_users
+                    recordType = Tx_EasyvoteImporter_BusinessUser
+                }
+            }
+            
+    	}
+    }
+}

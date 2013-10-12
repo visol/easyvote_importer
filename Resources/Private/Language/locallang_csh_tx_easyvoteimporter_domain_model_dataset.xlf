@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-10-11T17:02:16Z" product-name="easyvote_importer">
+		<header/>
+		<body>
+
+			<trans-unit id="file.description">
+				<source>Datei</source>
+			</trans-unit>
+			<trans-unit id="voting_day.description">
+				<source>Abstimmungstag</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -1,8 +1,32 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2013-10-11T11:56:21Z" product-name="easyvote_importer">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-10-11T17:02:16Z" product-name="easyvote_importer">
 		<header/>
 		<body>
+
+			<trans-unit id="tx_easyvoteimporter_domain_model_businessuser">
+				<source>Business User</source>
+			</trans-unit>
+			<trans-unit id="tx_easyvoteimporter_domain_model_businessuser.customer_number">
+				<source>Customer Number</source>
+			</trans-unit>
+			<trans-unit id="tx_easyvoteimporter_domain_model_businessuser.datasets">
+				<source>Datasets</source>
+			</trans-unit>
+			
+			<trans-unit id="fe_users.tx_extbase_type.Tx_EasyvoteImporter_BusinessUser">
+				<source>easyvote Importer BusinessUser</source>
+			</trans-unit>
+			
+			<trans-unit id="tx_easyvoteimporter_domain_model_dataset">
+				<source>Dataset</source>
+			</trans-unit>
+			<trans-unit id="tx_easyvoteimporter_domain_model_dataset.file">
+				<source>File</source>
+			</trans-unit>
+			<trans-unit id="tx_easyvoteimporter_domain_model_dataset.voting_day">
+				<source>Voting Day</source>
+			</trans-unit>
 
 		</body>
 	</file>
