@@ -1,26 +1,183 @@
 <style type="text/css">
-	.typo3-messages { margin-bottom: 20px; }
-	.typo3-message { padding: 10px; border-radius: 10px; -moz-border-radius: 10px; }
-	.message-error { background: #ff9600; }
+	#citiesTable {
+		border-collapse: collapse;
+		border: 0;
+		margin: 0;
+		border-spacing: 0;
+		font-size: 12px;
+	}
+
+	#citiesTable th, #citiesTable td {
+		padding: 5px;
+	}
+
+	.tx-easyvote-importer h2 {
+		color: #ED0A71;
+		font-size: 20px;
+		text-transform: uppercase;
+		margin-bottom: 25px;
+	}
+
+	.tx-easyvote-importer h3 {
+		color: #112b4d;
+		font-size: 18px;
+		margin: 0 0 10px 0;
+	}
+
+	input[type=submit], input[type=button]  {
+		border: 0 !important;
+		display: inline-block;
+		height: 40px;
+		line-height: 40px;
+		padding: 0 20px !important;
+		text-transform: uppercase;
+		background-color: #ed0a71;
+		color: #fff;
+		text-decoration: none;
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+		cursor: pointer;
+	}
+
+	.box-dark {
+		-webkit-border-radius: 15px;
+		border-radius: 15px;
+		margin: 0 0 20px 0;
+		background-color: #005476;
+		padding: 15px;
+		cursor: pointer;
+		text-align: center;
+	}
+
+	.box-dark a:link, .box-dark a:visited, .box-dark a:active, .box-dark a:hover {
+		font-family: "Ubuntu", Arial, Helvetica, sans-serif;
+		font-weight: 500;
+		font-size: 18px;
+		color: #fff !important;
+		text-decoration: none !important;
+		display: block;
+		text-transform: uppercase;
+	}
+
+	.box-pink {
+		-webkit-border-radius: 15px;
+		border-radius: 15px;
+		margin: 0 0 20px 0;
+		background: #ed0a71;
+		padding: 30px;
+		text-align: left;
+		font-family: "Ubuntu", Arial, Helvetica, sans-serif;
+		font-weight: 500;
+		font-size: 18px;
+		color: #fff !important;
+		text-decoration: none !important;
+		text-transform: uppercase;
+	}
+
+	.box-blue {
+		-webkit-border-radius: 15px;
+		border-radius: 15px;
+		margin: 0 0 20px 0;
+		background: #97E3F8;
+		padding: 30px;
+	}
+
+	.box-lightblue {
+		-webkit-border-radius: 15px;
+		border-radius: 15px;
+		margin: 0 0 20px 0;
+		background: #AEE9F9;
+		padding: 30px;
+	}
+
+	.typo3-messages { }
+	.typo3-message { margin-bottom: 20px; padding: 30px; border-radius: 10px; -moz-border-radius: 10px; }
+	.message-error { background: #ff0021; }
 	.message-ok { background: #aaff7a; }
 	.message-header { font-weight: bold; }
-	input[type=submit], input[type=button] { padding: 5px; }
 
-	div.sortingColumns { width: 300px; float: left; margin-right: 40px; }
+	div.sortingColumns { width: 220px; float: left; }
+	#assignColumns .left { margin-right: 40px; }
 	ul.connected { list-style-type: none; margin: 0; padding: 0;  }
-	ul.target { border-bottom: 2px solid #c0c0c0; margin-bottom: 10px; }
+	ul.target { border-bottom: 2px solid #112B4D; margin-bottom: 10px; }
 	ul#source li { cursor: pointer; }
 	ul li.static { cursor: not-allowed !important; }
-	p.preview { padding: 10px; background: white; min-height: 70px; border-radius: 10px; -moz-border-radius: 10px;  }
+	li.value {
+		border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border: 2px solid #005476;
+		padding: 5px;
+		color: #112B4D;
+		background: #fff;
+		font-size: 12px;
+	}
+	li.ui-sortable-helper {
+		border-color: #ed0a71;
+	}
+	li.ui-state-default {
+		border-radius: 0px;
+		-webkit-border-radius: 0px;
+		border: 0;
+		padding: 0;
+		color: #112B4D;
+		font-weight: bold;
+		font-size: 12px;
+		background: none;
+	}
+	p.preview { padding: 10px; background: white; min-height: 90px; border: 1px solid #005476; }
+
+	.tx-easyvote-importer form {
+		position: relative;
+	}
+
+	.tx-easyvote-importer .buttonBottomRight {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+	}
+
+	#assignColumns h3 { height: 50px; }
+
+	div.spacer { height: 50px; }
+
+	.sortable-placeholder {
+		display: none;
+		border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border: 0;
+		padding: 5px;
+		color: #112B4D;
+		background: #fff;
+		font-size: 12px;
+	}
+
+	ul.cityStatus { list-style-type: none; margin: 0; padding: 0; }
+	ul.cityStatus li { margin: 0; padding: 0; }
+	.cityVotingDate { display: inline-block; margin: 0; padding: 0; height: 25px; line-height: 25px; }
+	.cityChange { text-align: right; }
+	.color-red { color: #ff0021; }
+	.color-green { color: #09bf37; }
+
+
 </style>
+<link rel="stylesheet" href="/typo3conf/ext/easyvote/Resources/Public/Stylesheets/font-awesome.css" />
+
 
 <div class="tx-easyvote-importer">
 	<f:security.ifAuthenticated>
 		<f:then>
-			<f:security.ifHasRole role="2">
+			<f:security.ifHasRole role="{settings.cityFeUserGroup}">
 				<f:then>
-					<f:flashMessages renderMode="div" />
-					<f:render section="main" />
+					<section class="col-floatLeft col-marginRight col-left col-25">
+						<f:render section="left" />
+					</section>
+					<section class="col-floatLeft col-marginRight col-50 col-middle">
+						<f:flashMessages renderMode="div" />
+						<f:render section="main" />
+					</section>
+					<section class="col-floatLeft col-25 col-right">
+						<f:render section="right" />
+					</section>
 				</f:then>
 				<f:else>
 					Keine Berechtigung.

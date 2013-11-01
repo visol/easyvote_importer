@@ -5,12 +5,6 @@ if (!defined('TYPO3_MODE')) {
 
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
 	$_EXTKEY,
-	'Datauploader',
-	'Data Uploader'
-);
-
-\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
-	$_EXTKEY,
 	'Datamanager',
 	'Data Manager'
 );
@@ -42,6 +36,32 @@ $TCA['tx_easyvoteimporter_domain_model_dataset'] = array(
 		'searchFields' => 'file,voting_day,',
 		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Dataset.php',
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_easyvoteimporter_domain_model_dataset.gif'
+	),
+);
+
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_easyvoteimporter_domain_model_address', 'EXT:easyvote_importer/Resources/Private/Language/locallang_csh_tx_easyvoteimporter_domain_model_address.xlf');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_easyvoteimporter_domain_model_address');
+$TCA['tx_easyvoteimporter_domain_model_address'] = array(
+	'ctrl' => array(
+		'title'	=> 'LLL:EXT:easyvote_importer/Resources/Private/Language/locallang_db.xlf:tx_easyvoteimporter_domain_model_address',
+		'label' => 'name',
+		'label_alt' => 'city, blacklisted',
+		'label_alt_force' => TRUE,
+		'tstamp' => 'tstamp',
+		'crdate' => 'crdate',
+		'cruser_id' => 'cruser_id',
+		'dividers2tabs' => TRUE,
+
+		'origUid' => 't3_origuid',
+		'languageField' => 'sys_language_uid',
+		'transOrigPointerField' => 'l10n_parent',
+		'transOrigDiffSourceField' => 'l10n_diffsource',
+
+		'enablecolumns' => array(
+		),
+		//'searchFields' => '',
+		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Address.php',
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_easyvoteimporter_domain_model_address.gif'
 	),
 );
 

@@ -1,0 +1,10 @@
+<f:if condition="{businessUser.image}">
+	<p>
+		<f:image alt="{businessUser.name}" src="uploads/pics/{businessUser.image}" maxWidth="260" maxHeight="260" />
+	</p>
+</f:if>
+
+<div class="csc-default c-infobox-statisch">
+<h2>{businessUser.name}</h2>
+<p>Kundennummer: {businessUser.customerNumber}</p>
+</div>

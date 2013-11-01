@@ -5,7 +5,10 @@
 		<body>
 
 			<trans-unit id="tx_easyvoteimporter_domain_model_businessuser">
-				<source>Business User</source>
+				<source>Gemeinde</source>
+			</trans-unit>
+			<trans-unit id="tx_easyvoteimporter_domain_model_address">
+				<source>Versandadresse</source>
 			</trans-unit>
 			<trans-unit id="tx_easyvoteimporter_domain_model_businessuser.customer_number">
 				<source>Customer Number</source>

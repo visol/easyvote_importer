@@ -64,6 +64,13 @@ class Dataset extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $crdate;
 
 	/**
+	 * Daten importiert am
+	 *
+	 * @var \integer
+	 */
+	protected $processed;
+
+	/**
 	 * Abstimmungstag
 	 *
 	 * @var \Visol\Easyvote\Domain\Model\VotingDay
@@ -153,6 +160,25 @@ class Dataset extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setCrdate($crdate) {
 		$this->crdate = $crdate;
+	}
+
+	/**
+	 * Returns the processed
+	 *
+	 * @return \string $processed
+	 */
+	public function getProcessed() {
+		return $this->processed;
+	}
+
+	/**
+	 * Sets the processed
+	 *
+	 * @param \string $processed
+	 * @return void
+	 */
+	public function setProcessed($processed) {
+		$this->processed = $processed;
 	}
 
 	/**

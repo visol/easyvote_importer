@@ -31,9 +31,7 @@ namespace Visol\EasyvoteImporter\Domain\Repository;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class BusinessUserRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
-	protected $defaultOrderings = array(
-		'city' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING,
-	);
+class AddressRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
+
 }
 ?>

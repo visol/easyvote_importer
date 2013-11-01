@@ -1,0 +1,66 @@
+{namespace evi=Tx_EasyvoteImporter_ViewHelpers}
+
+<div class="csc-default c-infobox-statisch">
+	<h2>Übersicht Gemeinden</h2>
+	<table id="citiesTable">
+		<thead>
+		<tr>
+			<th>Status</th>
+			<th>Gemeinde</th>
+			<th>Kontaktperson</th>
+			<th>Aktion</th>
+		</tr>
+		</thead>
+		<tbody>
+		<f:for each="{cities}" as="city">
+			<tr>
+				<td>
+					<ul class="cityStatus">
+					<f:for each="{votingDays}" as="votingDay">
+						<li>
+							<div class="cityVotingDate"><f:format.date date="{votingDay.votingDate}" format="d.m.y" />:</div>
+							<evi:votingDayDataset votingDay="{votingDay}" datasets="{city.datasets}" returnDataset="returnDataset">
+								<f:if condition="{returnDataset}">
+									<f:then>
+										<f:if condition="{returnDataset.processed}">
+											<f:then>
+												<i title="Adressen importiert" class="icon-thumbs-up icon-2x"></i>
+											</f:then>
+											<f:else>
+												<f:if condition="{returnDataset.file}">
+													<f:then>
+														<i title="Liste vorhanden" class="color-green icon-check icon-2x"></i>
+														<f:if condition="{returnDataset.columnConfiguration}">
+															<f:then>
+																<i title="Spalten zugewiesen" class="color-green icon-check icon-2x"></i>
+																<f:link.action action="checkImport" arguments="{votingDay:votingDay, dataset: returnDataset}">
+																	<i title="Zuweisung überprüfen und Daten importieren" class="icon-plus-sign icon-2x"></i>
+																</f:link.action>
+															</f:then>
+															<f:else>
+																<i title="Spalten nicht zugewiesen!" class="color-red icon-exclamation-sign icon-2x"></i>
+															</f:else>
+														</f:if>
+													</f:then>
+												</f:if>
+											</f:else>
+										</f:if>
+									</f:then>
+									<f:else>
+										<i title="Daten fehlen!" class="color-red icon-exclamation-sign icon-2x"></i>
+									</f:else>
+								</f:if>
+							</evi:votingDayDataset>
+						</li>
+					</f:for>
+					</ul>
+				</td>
+				<td>{city.name} ({city.city})</td>
+				<td><f:link.email email="{city.email}">{city.firstName} {city.lastName}</f:link.email></td>
+				<td class="cityChange"><f:link.action title="Zu Gemeinde wechseln..." action="cityIndex" arguments="{city:city.uid}"><i class="icon-chevron-sign-right icon-2x"></i></f:link.action></td>
+			</tr>
+		</f:for>
+		</tbody>
+	</table>
+
+</div>

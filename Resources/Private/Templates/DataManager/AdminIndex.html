@@ -1,0 +1,10 @@
+{namespace v=Tx_Vhs_ViewHelpers}
+<f:layout name="Default" />
+<f:section name="left">
+	<f:render partial="DataManager/UserOverview" arguments="{businessUser:businessUser}" />
+</f:section>
+<f:section name="main">
+	<f:render partial="DataManager/CitiesTable" arguments="{cities:cities, votingDays:votingDays}" />
+</f:section>
+<f:section name="right">
+</f:section>

@@ -1,0 +1,49 @@
+<f:layout name="Default" />
+
+<f:section name="left">
+	<div class="csc-default box-pink">
+		Überprüfen
+	</div>
+</f:section>
+<f:section name="main">
+	<div class="csc-default box-blue">
+		<h2>Vorschau</h2>
+		<p>Mit der aktuellen Spaltenzuordnung werden die Adressen wie folgt importiert (es sind nur die ersten 10 Adressen sichtbar):</p>
+		<table id="citiesTable">
+			<thead>
+			<tr>
+				<th>Anrede</th>
+				<th>Vorname und Name</th>
+				<th>Strasse</th>
+				<th>PLZ und Ort</th>
+			</tr>
+			</thead>
+			<tbody>
+			<f:for each="{previewData}" as="row">
+				<tr>
+					<td>{row.salutation}</td>
+					<td>{row.name}</td>
+					<td>{row.address}</td>
+					<td>{row.city}</td>
+				</tr>
+			</f:for>
+			</tbody>
+		</table>
+		<div class="spacer"></div>
+
+		<f:form id="columnAssignment" action="performImport" onsubmit="return confirm('Adressen importieren?');" >
+			<f:form.hidden name="dataset" value="{dataset}" />
+			<f:form.submit class="buttonBottomRight" value="Adressen importieren" />
+		</f:form>
+
+	</div>
+</f:section>
+<f:section name="right">
+	<div class="csc-default box-blue">
+		<h2>Fehler gefunden?</h2>
+		<f:form name="assign" arguments="{city:businessUser.uid, dataset:dataset}" action="assign">
+			<f:form.hidden name="businessUser" value="{businessUser}" />
+			<f:form.submit value="Spalten neu zuordnen" />
+		</f:form>
+	</div>
+</f:section>
