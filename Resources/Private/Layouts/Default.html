@@ -3,7 +3,7 @@
 	table.eviTable {
 		border-collapse: collapse;
 		border: 0;
-		margin: 0;
+		margin: 0 0 20px 0;
 		border-spacing: 0;
 		font-size: 12px;
 	}
@@ -199,7 +199,16 @@
 			</f:security.ifHasRole>
 		</f:then>
 		<f:else>
-			Kein Zugriff da nicht angemeldet.
+			<section class="col-floatLeft col-marginRight col-left col-25">
+			</section>
+			<section class="col-floatLeft col-marginRight col-50 col-middle">
+				<div class="csc-default box-blue">
+					<p>Sie sind nicht angemeldet.</p>
+					<f:link.page class="button" pageUid="{settings.loginPid}">Anmelden</f:link.page>
+				</div>
+			</section>
+			<section class="col-floatLeft col-25 col-right">
+			</section>
 		</f:else>
 	</f:security.ifAuthenticated>
 	<div class="clear"></div>

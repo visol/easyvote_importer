@@ -4,23 +4,23 @@
 	<f:render partial="DataManager/UserOverview" arguments="{businessUser:businessUser}" />
 </f:section>
 <f:section name="main">
-	<div class="csc-default c-infobox-statisch">
+	<div class="csc-default box-blue">
 		<h2>Herzlich willkommen</h2>
 		<p>Hier wird ein bedeutungsvoller Text eingefügt werden.</p>
 	</div>
 	<f:for each="{votingDays}" as="votingDay" iteration="iterator">
-		<div class="csc-default c-infobox-statisch">
+		<div class="csc-default box-blue">
 			<h3>Abstimmung vom <f:format.date date="{votingDay.votingDate}" format="d.m.Y" /></h3>
 			<f:if condition="{v:var.get(name: 'datasets.{iterator.index}.uid')}">
 				<f:then>
 					<f:if condition="{v:var.get(name: 'datasets.{iterator.index}.file')}">
 						<f:then>
-							Vielen Dank. Wir haben Ihre Adressliste zu dieser Abstimmung am <f:format.date date="@{v:var.get(name: 'datasets.{iterator.index}.crdate')}" format="d.m.Y" /> erhalten.<br><em>Dateiname: {v:var.get(name: 'datasets.{iterator.index}.file')}</em>
+							<p>Vielen Dank. Wir haben Ihre Adressliste zu dieser Abstimmung am <f:format.date date="@{v:var.get(name: 'datasets.{iterator.index}.crdate')}" format="d.m.Y" /> erhalten.<br />
+							<em>Dateiname: {v:var.get(name: 'datasets.{iterator.index}.file')}</em></p>
 							<f:if condition="{v:var.get(name: 'datasets.{iterator.index}.columnConfiguration')}">
 								<f:then></f:then>
 								<f:else>
-									<br />
-									<em>Die Spaltenzuordnung fehlt.</em>
+									<p><strong>Die Spaltenzuordnung fehlt.</strong></p>
 									<f:form name="assign" arguments="{city: businessUser.uid, dataset: '{v:var.get(name: \'datasets.{iterator.index}\')}'}" action="assign">
 										<f:form.submit value="Spalten zuordnen" />
 									</f:form>
