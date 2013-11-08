@@ -1,5 +1,4 @@
 {namespace evi=Tx_EasyvoteImporter_ViewHelpers}
-
 <div class="csc-default box-blue">
 	<h2>Übersicht Gemeinden</h2>
 	<table class="eviTable">
@@ -7,8 +6,8 @@
 		<tr>
 			<th>Status</th>
 			<th>Gemeinde</th>
-			<th>Kontaktperson</th>
-			<th>Aktion</th>
+			<th style="width: 100px;">Kontaktperson</th>
+			<th style="width: 60px;">Aktion</th>
 		</tr>
 		</thead>
 		<tbody>
@@ -62,5 +61,6 @@
 		</f:for>
 		</tbody>
 	</table>
-
+	<div class="clear"></div>
 </div>
+<f:render partial="DataManager/UseDatatables" />
