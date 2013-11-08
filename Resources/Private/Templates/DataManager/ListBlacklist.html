@@ -1,0 +1,44 @@
+{namespace v=Tx_Vhs_ViewHelpers}
+<f:layout name="Default" />
+<f:section name="left">
+	<div class="csc-default box-pink">
+		Blacklist
+	</div>
+</f:section>
+<f:section name="main">
+
+	<div class="csc-default box-blue">
+		<h2>Alle Einträge der Blacklist</h2>
+		<table class="eviTable">
+			<thead>
+				<tr>
+					<th>Vorname</th>
+					<th>Name</th>
+					<th>Adresse</th>
+					<th>PLZ</th>
+					<th></th>
+				</tr>
+			</thead>
+			<tbody>
+			<f:for each="{blacklist}" as="item">
+				<tr>
+					<td>{item.firstName}</td>
+					<td>{item.lastName}</td>
+					<td>{item.street}</td>
+					<td>{item.zipCode}</td>
+					<td style="text-align: right">
+						<f:link.action action="editBlacklist" arguments="{blacklist:item}"><i class="icon-edit-sign icon-2x"></i></f:link.action>
+						<f:link.action action="deleteBlacklist" arguments="{blacklist:item}"><i class="icon-remove-sign icon-2x"></i></f:link.action>
+					</td>
+				</tr>
+			</f:for>
+			</tbody>
+		</table>
+		<f:form action="newBlacklist">
+			<button type="submit"><i class="icon-plus-sign"></i> Blacklist</button>
+		</f:form>
+	</div>
+</f:section>
+<f:section name="right">
+	<f:render partial="DataManager/AdminFunctions" />
+</f:section>

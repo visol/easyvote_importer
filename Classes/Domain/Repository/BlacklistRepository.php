@@ -31,38 +31,7 @@ namespace Visol\EasyvoteImporter\Domain\Repository;
  * @license http://www.gnu.org/licenses/gpl.html GNU General Public License, version 3 or later
  *
  */
-class DatasetRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
-
-	/**
-	 * @param \Visol\EasyvoteImporter\Domain\Model\BusinessUser $businessUser
-	 * @param \Visol\Easyvote\Domain\Model\VotingDay $votingDay
-	 * @return object
-	 */
-	public function findDatasetByBusinessUserAndVotingDate(\Visol\EasyvoteImporter\Domain\Model\BusinessUser $businessUser, \Visol\Easyvote\Domain\Model\VotingDay $votingDay) {
-			$query = $this->createQuery();
-			$query->matching(
-				$query->logicalAnd(
-					$query->equals('businessuser', $businessUser),
-					$query->equals('votingDay', $votingDay)
-				)
-			);
-			return $query->execute()->getFirst();
-		}
-
-	/**
-	 * @param \Visol\Easyvote\Domain\Model\VotingDay $votingDay
-	 * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
-	 */
-	public function findApprovedDatasetsByVotingDay(\Visol\Easyvote\Domain\Model\VotingDay $votingDay) {
-			$query = $this->createQuery();
-			$query->matching(
-				$query->logicalAnd(
-					$query->equals('votingDay', $votingDay),
-					$query->greaterThan('processed', 0)
-				)
-			);
-			return $query->execute();
-		}
+class BlacklistRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 }
 ?>

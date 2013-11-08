@@ -26,6 +26,7 @@ namespace Visol\EasyvoteImporter\Controller;
  ***************************************************************/
 use TYPO3\CMS\Core\Utility\DebugUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Visol\EasyvoteImporter\Utility\ExcelUtility;
 
 
 /**
@@ -83,6 +84,14 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 	 * @inject
 	 */
 	protected $addressRepository;
+
+	/**
+	 * blacklistRepository
+	 *
+	 * @var \Visol\EasyvoteImporter\Domain\Repository\BlacklistRepository
+	 * @inject
+	 */
+	protected $blacklistRepository;
 
 	/**
 	 * Determines if the currently logged in user is an admin
@@ -150,8 +159,18 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 	 * @return void
 	 */
 	public function indexAction() {
-		$this->checkUserIsAdmin();
+		if (!$this->isUserLoggedIn()) {
+			// link to current page for redirect_url
+			$currentPage = (int)$GLOBALS['TSFE']->id;
+			$currentPageUri = $this->uriBuilder->setCreateAbsoluteUri(TRUE)->setTargetPageUid($currentPage)->build();
+			// link to login page
+			$loginPage = (int)$this->settings['loginPid'];
+			$loginPageUri = $this->uriBuilder->setCreateAbsoluteUri(TRUE)->setTargetPageUid($loginPage)->setArguments(array('redirect_url' => $currentPageUri))->build();
+			// redirect to login page
+			$this->redirectToUri($loginPageUri, 0, 401);
+		}
 
+		$this->checkUserIsAdmin();
 		if ($this->userIsAdmin) {
 			$this->redirect('adminIndex');
 		} else {
@@ -160,7 +179,18 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 
 	}
 
-
+	/**
+	 * action index
+	 *
+	 * @return void
+	 */
+	public function logoutAction() {
+		// link to login page
+		$loginPage = (int)$this->settings['loginPid'];
+		$loginPageUri = $this->uriBuilder->setCreateAbsoluteUri(TRUE)->setTargetPageUid($loginPage)->setArguments(array('logintype' => 'logout'))->build();
+		// redirect to login page
+		$this->redirectToUri($loginPageUri, 0, 301);
+	}
 
 	/**
 	 * action uploadList
@@ -294,8 +324,6 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 	 */
 	public function assignAction(\Visol\EasyvoteImporter\Domain\Model\Dataset $dataset) {
 
-		$tableData = \Visol\EasyvoteImporter\Utility\ExcelUtility::getLabelsAndFirstRowFromDataset($dataset);
-
 		// get business user
 		$this->checkUserIsAdmin();
 		if ($this->userIsAdmin) {
@@ -305,6 +333,20 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 			/** @var \Visol\EasyvoteImporter\Domain\Model\BusinessUser $businessUser */
 			$businessUser = $this->businessUserRepository->findByUid($GLOBALS['TSFE']->fe_user->user['uid']);
 		}
+
+		$this->checkUserIsAdmin();
+		if (!$this->userIsAdmin) {
+
+			// Check if it's user's dataset and redirect to home on access violation
+			if ($businessUser->getUid() !== $dataset->getBusinessuser()->getUid()) {
+				$message = 'Zugriff verweigert.';
+				$this->flashMessageContainer->add($message, 'Fehler', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+				$this->redirect('cityIndex');
+			}
+		}
+
+		// get labels and first row of datasets file
+		$tableData = \Visol\EasyvoteImporter\Utility\ExcelUtility::getLabelsAndFirstRowFromDataset($dataset);
 
 		$this->view->assignMultiple(array(
 			'businessUser' => $businessUser,
@@ -319,6 +361,20 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 	 * @dontverifyrequesthash
 	 */
 	public function approveAction(\Visol\EasyvoteImporter\Domain\Model\Dataset $dataset) {
+
+		// security check
+		$this->checkUserIsAdmin();
+		if (!$this->userIsAdmin) {
+			/** @var \Visol\EasyvoteImporter\Domain\Model\BusinessUser $businessUser */
+			$businessUser = $this->businessUserRepository->findByUid($GLOBALS['TSFE']->fe_user->user['uid']);
+
+			// Check if it's user's dataset and redirect to home on access violation
+			if ($businessUser->getUid() !== $dataset->getBusinessuser()->getUid()) {
+				$message = 'Zugriff verweigert.';
+				$this->flashMessageContainer->add($message, 'Fehler', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+				$this->redirect('cityIndex');
+			}
+		}
 
 		$arguments = $this->request->getArguments();
 		$columns = array();
@@ -365,6 +421,20 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 	 * @param \Visol\EasyvoteImporter\Domain\Model\Dataset $dataset
 	 */
 	public function removeAction(\Visol\EasyvoteImporter\Domain\Model\Dataset $dataset) {
+
+		// security check
+		$this->checkUserIsAdmin();
+		if (!$this->userIsAdmin) {
+			/** @var \Visol\EasyvoteImporter\Domain\Model\BusinessUser $businessUser */
+			$businessUser = $this->businessUserRepository->findByUid($GLOBALS['TSFE']->fe_user->user['uid']);
+
+			// Check if it's user's dataset and redirect to home on access violation
+			if ($businessUser->getUid() !== $dataset->getBusinessuser()->getUid()) {
+				$message = 'Zugriff verweigert.';
+				$this->flashMessageContainer->add($message, 'Fehler', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+				$this->redirect('cityIndex');
+			}
+		}
 
 		$absoluteFileName = GeneralUtility::getFileAbsFileName('uploads/tx_easyvoteimporter/' . $dataset->getFile());
 		if (unlink($absoluteFileName)) {
@@ -458,6 +528,258 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 	}
 
 	/**
+	 * action new blacklist (item)
+	 *
+	 * @param \Visol\EasyvoteImporter\Domain\Model\Blacklist
+	 * @dontvalidate $newBlacklist
+	 * @return void
+	 */
+	public function newBlacklistAction(\Visol\EasyvoteImporter\Domain\Model\Blacklist $newBlacklist = NULL) {
+		// security check
+		$this->checkUserIsAdmin();
+		if (!$this->userIsAdmin) {
+			$message = 'Zugriff verweigert.';
+			$this->flashMessageContainer->add($message, 'Fehler', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+			$this->redirect('cityIndex');
+		}
+
+		// remove error message from Extbase (background on fields that didn't pass validation is sufficient)
+		$this->flashMessageContainer->flush();
+		$this->view->assign('newBlacklist', $newBlacklist);
+	}
+
+	/**
+	 * action create blacklist (item)
+	 *
+	 * @param \Visol\EasyvoteImporter\Domain\Model\Blacklist $newBlacklist
+	 * @return void
+	 */
+	public function createBlacklistAction(\Visol\EasyvoteImporter\Domain\Model\Blacklist $newBlacklist) {
+		// security check
+		$this->checkUserIsAdmin();
+		if (!$this->userIsAdmin) {
+			$message = 'Zugriff verweigert.';
+			$this->flashMessageContainer->add($message, 'Fehler', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+			$this->redirect('cityIndex');
+		}
+
+		$this->blacklistRepository->add($newBlacklist);
+		$this->flashMessageContainer->add('Die Person wurde zur Blacklist hinzugefügt.');
+		$this->redirect('listBlacklist');
+	}
+
+	/**
+	 * action list blacklist
+	 *
+	 * @return void
+	 */
+	public function listBlacklistAction() {
+		// security check
+		$this->checkUserIsAdmin();
+		if (!$this->userIsAdmin) {
+			$message = 'Zugriff verweigert.';
+			$this->flashMessageContainer->add($message, 'Fehler', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+			$this->redirect('cityIndex');
+		}
+
+		$blacklist = $this->blacklistRepository->findAll();
+		$this->view->assign('blacklist', $blacklist);
+	}
+
+	/**
+	 * action edit blacklist (item)
+	 *
+	 * @param \Visol\EasyvoteImporter\Domain\Model\Blacklist $blacklist
+	 */
+	public function editBlacklistAction(\Visol\EasyvoteImporter\Domain\Model\Blacklist $blacklist) {
+		// security check
+		$this->checkUserIsAdmin();
+		if (!$this->userIsAdmin) {
+			$message = 'Zugriff verweigert.';
+			$this->flashMessageContainer->add($message, 'Fehler', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+			$this->redirect('cityIndex');
+		}
+
+		$this->flashMessageContainer->flush();
+		$blacklist = $this->blacklistRepository->findByUid($blacklist);
+		$this->view->assign('blacklist', $blacklist);
+	}
+
+	/**
+	 * action update blacklist (item)
+	 *
+	 * @param \Visol\EasyvoteImporter\Domain\Model\Blacklist $blacklist
+	 */
+	public function updateBlacklistAction(\Visol\EasyvoteImporter\Domain\Model\Blacklist $blacklist) {
+		// security check
+		$this->checkUserIsAdmin();
+		if (!$this->userIsAdmin) {
+			$message = 'Zugriff verweigert.';
+			$this->flashMessageContainer->add($message, 'Fehler', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+			$this->redirect('cityIndex');
+		}
+
+		$this->blacklistRepository->update($blacklist);
+		$this->flashMessageContainer->add('Der Blacklist-Eintrag wurde aktualisiert.');
+		$this->redirect('listBlacklist');
+	}
+
+	/**
+	 * action delete blacklist (item)
+	 *
+	 * @param \Visol\EasyvoteImporter\Domain\Model\Blacklist $blacklist
+	 * @return void
+	 */
+	public function deleteBlacklistAction(\Visol\EasyvoteImporter\Domain\Model\Blacklist $blacklist) {
+		// security check
+		$this->checkUserIsAdmin();
+		if (!$this->userIsAdmin) {
+			$message = 'Zugriff verweigert.';
+			$this->flashMessageContainer->add($message, 'Fehler', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+			$this->redirect('cityIndex');
+		}
+
+		$this->flashMessageContainer->flush();
+		$this->blacklistRepository->remove($blacklist);
+		$this->flashMessageContainer->add('Person wurde aus der Blacklist entfernt.');
+		$this->redirect('listBlacklist');
+	}
+
+	/**
+	 * list voting days and display export functionality
+	 */
+	public function listExportAction() {
+		/** @var \Visol\Easyvote\Domain\Model\VotingDay $votingDays */
+		$votingDays = $this->votingDayRepository->findUploadAllowedVotingDays();
+
+		$exportInformation = array();
+		$i = 0;
+		foreach ($votingDays as $votingDay) {
+			$exportInformation[$i]['votingDay'] = $votingDay;
+			$exportInformation[$i]['datasetCount'] = $this->datasetRepository->findApprovedDatasetsByVotingDay($votingDay)->count();
+			$exportInformation[$i]['businessUserCount'] = $this->businessUserRepository->findByUsergroup($this->settings['cityFeUserGroup'])->count();
+			$exportInformation[$i]['blacklistCount'] = $this->addressRepository->findByVotingDayAndBlacklist($votingDay)->count();
+			$exportInformation[$i]['importedAddresses'] = $this->addressRepository->findByVotingDay($votingDay)->count();
+			$i++;
+		}
+		$this->view->assign('exportInformation', $exportInformation);
+	}
+
+	/**
+	 * Apply the blacklist to the addresses for a given voting day
+	 *
+	 * @param \Visol\Easyvote\Domain\Model\VotingDay $votingDay
+	 */
+	public function applyBlacklistAction(\Visol\Easyvote\Domain\Model\VotingDay $votingDay) {
+		$blacklist = $this->blacklistRepository->findAll();
+		$blacklistCount = $blacklist->count();
+		$addToBlacklistCount = 0;
+		foreach ($blacklist as $blacklistItem) {
+			// find the corresponding address for a blacklist item
+			$address = $this->addressRepository->findBlacklistMatchByVotingDay($blacklistItem, $votingDay);
+			if ($address instanceof \Visol\EasyvoteImporter\Domain\Model\Address) {
+				// set it to blacklisted, if found and update the address
+				$address->setBlacklisted(TRUE);
+				$this->addressRepository->update($address);
+				$addToBlacklistCount++;
+			}
+		}
+
+		$message = 'Total in der Blacklist: ' . $blacklistCount . ' Adressen.<br />' . $addToBlacklistCount . ' Adresse(n) wurden aufgrund der Blacklist vom Versand ausgeschlossen.';
+		$this->flashMessageContainer->add($message);
+		$this->redirect('listExport');
+
+	}
+
+	/**
+	 * Export all addresses for a voting day
+	 *
+	 * @param \Visol\Easyvote\Domain\Model\VotingDay $votingDay
+	 */
+	public function performExportAction(\Visol\Easyvote\Domain\Model\VotingDay $votingDay) {
+		$addresses = $this->addressRepository->findAllNotBlacklistedByVotingDay($votingDay);
+
+		ExcelUtility::pushExcelExportFromAddresses($addresses, $votingDay);
+		die();
+
+	}
+
+	/**
+	 * Export all addresses for a voting day
+	 *
+	 * @param \Visol\Easyvote\Domain\Model\VotingDay $votingDay
+	 */
+	public function reportExportAction(\Visol\Easyvote\Domain\Model\VotingDay $votingDay) {
+		$addresses = $this->addressRepository->findAllNotBlacklistedByVotingDay($votingDay);
+		$this->view->assignMultiple(array(
+			'addresses' => $addresses,
+			'votingDay' => $votingDay
+		));
+	}
+
+	/**
+	 * Remove all addresses for a voting day
+	 *
+	 * @param \Visol\Easyvote\Domain\Model\VotingDay $votingDay
+	 */
+	public function removeExportAction(\Visol\Easyvote\Domain\Model\VotingDay $votingDay) {
+		$addresses = $this->addressRepository->findByVotingDay($votingDay);
+		$addressCount = $addresses->count();
+		foreach ($addresses as $address) {
+			$this->addressRepository->remove($address);
+		}
+		$message = $addressCount . ' Adressen gelöscht.';
+		$this->flashMessageContainer->add($message);
+		$this->redirect('listExport');
+	}
+
+	/**
+	 * Edit a business user
+	 *
+	 * @param \Visol\EasyvoteImporter\Domain\Model\BusinessUser $businessUser
+	 */
+	public function editBusinessUserAction(\Visol\EasyvoteImporter\Domain\Model\BusinessUser $businessUser) {
+		$this->checkUserIsAdmin();
+		if (!$this->userIsAdmin) {
+			if (!$this->isRequestedUserLoggedInUser($businessUser)) {
+				$message = 'Zugriff verweigert.';
+				$this->flashMessageContainer->add($message, 'Fehler', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+				$this->redirect('cityIndex');
+			}
+		}
+
+		$this->flashMessageContainer->flush();
+		$businessUser = $this->businessUserRepository->findByUid($businessUser);
+		$this->view->assign('businessUser', $businessUser);
+	}
+
+	/**
+	 * Update a business user
+	 *
+	 * @param \Visol\EasyvoteImporter\Domain\Model\BusinessUser $businessUser
+	 */
+	public function updateBusinessUserAction(\Visol\EasyvoteImporter\Domain\Model\BusinessUser $businessUser) {
+		$this->checkUserIsAdmin();
+		if (!$this->userIsAdmin) {
+			if (!$this->isRequestedUserLoggedInUser($businessUser)) {
+				$message = 'Zugriff verweigert.';
+				$this->flashMessageContainer->add($message, 'Fehler', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+				$this->redirect('cityIndex');
+			}
+		}
+
+		$this->businessUserRepository->update($businessUser);
+		$this->flashMessageContainer->add('Ihre Kontaktdaten wurden aktualisiert.');
+		$this->checkUserIsAdmin();
+		if ($this->userIsAdmin) {
+			$this->redirect('cityIndex', NULL, NULL, array('city' => $businessUser->getUid()));
+		} else {
+			$this->redirect('cityIndex');
+		}
+
+	}
+
+	/**
 	 * Checks if the current user is an admin
 	 *
 	 * @return void
@@ -470,5 +792,33 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 
 	}
 
+	/**
+	 * Checks if a user is logged in
+	 *
+	 * @return boolean
+	 */
+	public function isUserLoggedIn() {
+		if ((int)$GLOBALS['TSFE']->fe_user->user['uid'] > 0) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+
+	/**
+	 * Checks if a user that is requested is the user logged in
+	 *
+	 * @param \Visol\EasyvoteImporter\Domain\Model\BusinessUser $businessUser
+	 * @return boolean
+	 */
+	public function isRequestedUserLoggedInUser(\Visol\EasyvoteImporter\Domain\Model\BusinessUser $businessUser) {
+		if ((int)$GLOBALS['TSFE']->fe_user->user['uid'] === $businessUser->getUid()) {
+			return TRUE;
+		} else {
+			return FALSE;
+		}
+	}
+
 }
+
 ?>

@@ -22,16 +22,17 @@
 				<f:form.checkbox name="firstLineContainsLabels" id="firstLineContainsLabels" value="1" checked="checked"/>
 				<label for="firstLineContainsLabels">Erste Zeile enthält Spaltentitel</label><br />
 			</p>
-			<f:form.submit class="buttonBottomRight" value="weiter"/>
+			<button type="submit" class="buttonBottomRight"><i class="icon-chevron-sign-right"></i> Datei hochladen</button>
 		</f:form>
 	</div>
 
 </f:section>
 <f:section name="right">
-	<div class="csc-default box-dark">
-		<a href="#">Muster-Excelliste herunterladen</a>
-	</div>
-	<div class="csc-default box-dark">
-		<a href="#">Video-Anleitung ansehen</a>
+	<div class="csc-default box-blue">
+		<f:form action="cityIndex">
+			<button type="submit"><i class="icon-home"></i> Start</button>
+		</f:form>
+		<a class="button" href="#"><i class="icon-download-alt"></i> Muster-Excelliste</a>
+		<a class="button" href="#"><i class="icon-film"></i> Video-Anleitung</a>
 	</div>
 </f:section>

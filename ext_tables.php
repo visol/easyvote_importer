@@ -65,6 +65,31 @@ $TCA['tx_easyvoteimporter_domain_model_address'] = array(
 	),
 );
 
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_easyvoteimporter_domain_model_blacklist', 'EXT:easyvote_importer/Resources/Private/Language/locallang_csh_tx_easyvoteimporter_domain_model_blacklist.xlf');
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_easyvoteimporter_domain_model_blacklist');
+$TCA['tx_easyvoteimporter_domain_model_blacklist'] = array(
+	'ctrl' => array(
+		'title'	=> 'LLL:EXT:easyvote_importer/Resources/Private/Language/locallang_db.xlf:tx_easyvoteimporter_domain_model_blacklist',
+		'label' => 'last_name',
+		'label_alt' => 'first_name, street, zip',
+		'label_alt_force' => TRUE,
+		'tstamp' => 'tstamp',
+		'crdate' => 'crdate',
+		'cruser_id' => 'cruser_id',
+		'dividers2tabs' => TRUE,
+
+		'origUid' => 't3_origuid',
+		'languageField' => 'sys_language_uid',
+		'transOrigPointerField' => 'l10n_parent',
+		'transOrigDiffSourceField' => 'l10n_diffsource',
+
+		'enablecolumns' => array(
+		),
+		'dynamicConfigFile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extPath($_EXTKEY) . 'Configuration/TCA/Blacklist.php',
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath($_EXTKEY) . 'Resources/Public/Icons/tx_easyvoteimporter_domain_model_blacklist.gif'
+	),
+);
+
 if (!isset($TCA['fe_users']['ctrl']['type'])) {
 	// no type field defined, so we define it here. This will only happen the first time the extension is installed!!
 	$TCA['fe_users']['ctrl']['type'] = 'tx_extbase_type';

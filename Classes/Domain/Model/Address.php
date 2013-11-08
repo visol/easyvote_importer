@@ -122,7 +122,7 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 *
 	 * @return boolean $blacklisted
 	 */
-	public function getBlackListed() {
+	public function getBlacklisted() {
 		return $this->blacklisted;
 	}
 
@@ -229,25 +229,6 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setCity($city) {
 		$this->city = $city;
-	}
-
-	/**
-	 * Returns the lowerCamelCase
-	 *
-	 * @return \string $lowerCamelCase
-	 */
-	public function getUpperCamelCase() {
-		return $this->lowerCamelCase;
-	}
-
-	/**
-	 * Sets the lowerCamelCase
-	 *
-	 * @param \string $lowerCamelCase
-	 * @return void
-	 */
-	public function setUpperCamelCase($lowerCamelCase) {
-		$this->lowerCamelCase = $lowerCamelCase;
 	}
 
 	/**

@@ -3,18 +3,19 @@ if (!defined ('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-$TCA['tx_easyvoteimporter_domain_model_dataset'] = array(
-	'ctrl' => $TCA['tx_easyvoteimporter_domain_model_dataset']['ctrl'],
+$TCA['tx_easyvoteimporter_domain_model_blacklist'] = array(
+	'ctrl' => $TCA['tx_easyvoteimporter_domain_model_blacklist']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, file, voting_day',
+		'showRecordFieldList' => 'first_name, last_name, street, zip_code, crdate',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, crdate, file, processed, firstrow_columnnames, column_configuration, voting_day, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
+		'1' => array('showitem' => 'first_name, last_name, street, zip_code, crdate'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
 	),
 	'columns' => array(
+	
 		'sys_language_uid' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
@@ -57,19 +58,7 @@ $TCA['tx_easyvoteimporter_domain_model_dataset'] = array(
 		'crdate' => array(
 			'exclude' => 1,
 			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => 'Upload-Datum',
-			'config' => array(
-				'type' => 'input',
-				'size' => 13,
-				'max' => 20,
-				'eval' => 'date',
-				'readOnly' => 1
-			),
-		),
-		'processed' => array(
-			'exclude' => 1,
-			'l10n_mode' => 'mergeIfNotBlank',
-			'label' => 'Daten importiert am',
+			'label' => 'Hinzugefügt am',
 			'config' => array(
 				'type' => 'input',
 				'size' => 13,
@@ -110,52 +99,40 @@ $TCA['tx_easyvoteimporter_domain_model_dataset'] = array(
 				),
 			),
 		),
-		'file' => array(
+		'first_name' => array(
 			'exclude' => 1,
-			'label' => 'LLL:EXT:easyvote_importer/Resources/Private/Language/locallang_db.xlf:tx_easyvoteimporter_domain_model_dataset.file',
+			'label' => 'Vorname',
 			'config' => array(
-				'type' => 'group',
-				'internal_type' => 'file',
-				'uploadfolder' => 'uploads/tx_easyvoteimporter',
-				'allowed' => 'xls,xlsx,csv',
-				'disallowed' => 'php',
-				'size' => 1,
-				'readOnly' => 1
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim, required',
 			),
 		),
-		'firstrow_columnnames' => array(
+		'last_name' => array(
 			'exclude' => 1,
-			'label' => 'Erste Zeile hat Spaltennamen',
+			'label' => 'Name',
 			'config' => array(
-				'type' => 'check',
-				'default' => 0,
-				'readOnly' => 1
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim, required',
 			),
 		),
-		'column_configuration' => array(
+		'street' => array(
 			'exclude' => 1,
-			'label' => 'Spaltenzuordnung',
+			'label' => 'Adresse (muss genau übereinstimmen!)',
 			'config' => array(
-				'type' => 'text',
-				'cols' => 40,
-				'rows' => 5,
-				'readOnly' => 1
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim, required',
 			),
 		),
-		'voting_day' => array(
-			'exclude' => 0,
-			'label' => 'Abstimmungstag',
+		'zip_code' => array(
+			'exclude' => 1,
+			'label' => 'PLZ',
 			'config' => array(
-				'type' => 'select',
-				'foreign_table' => 'tx_easyvote_domain_model_votingday',
-				'minitems' => 1,
-				'maxitems' => 1,
-				'readOnly' => 1
-			),
-		),
-		'businessuser' => array(
-			'config' => array(
-				'type' => 'passthrough',
+				'type' => 'input',
+				'size' => 30,
+				'eval' => 'trim, required',
 			),
 		),
 	),

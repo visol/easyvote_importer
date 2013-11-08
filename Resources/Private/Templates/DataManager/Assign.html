@@ -7,9 +7,10 @@
 	<div class="csc-default box-lightblue">
 		<h2>Zuweisung der Spaltentitel</h2>
 		<p>Ein Essay zu einem spannenden Thema</p>
+		<p>Sollten Sie die falsche Liste hochgeladen haben, können Sie diese Liste verwerfen und eine neue Adressliste hochladen.</p>
 		<f:form id="deleteDocument" action="remove">
 			<f:form.hidden name="dataset" value="{dataset}" />
-			<f:form.submit value="Neue Adressliste hochladen" />
+			<button type="submit"><i class="icon-upload-alt"></i> Neue Adressliste</button>
 		</f:form>
 	</div>
 </f:section>
@@ -70,7 +71,7 @@
 				<input class="validate" type="hidden" data-label="Vorname, Nachname" id="columns-name" name="tx_easyvoteimporter_datamanager[columns-name]" value="" />
 				<input class="validate" type="hidden" data-label="Strasse, Nr." id="columns-address" name="tx_easyvoteimporter_datamanager[columns-address]" value="" />
 				<input class="validate" type="hidden" data-label="PLZ, Ort" id="columns-city" name="tx_easyvoteimporter_datamanager[columns-city]" value="" />
-				<f:form.submit class="buttonBottomRight" value="Zuweisung bestätigen und freigeben" />
+				<button type="submit" class="buttonBottomRight"><i class="icon-ok-sign"></i> Zuweisung bestätigen und freigeben</button>
 			</f:form>
 
 		</div>

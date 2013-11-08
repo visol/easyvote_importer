@@ -24,6 +24,7 @@ namespace Visol\EasyvoteImporter\Domain\Repository;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+use TYPO3\CMS\Core\Utility\DebugUtility;
 
 /**
  *
@@ -32,6 +33,61 @@ namespace Visol\EasyvoteImporter\Domain\Repository;
  *
  */
 class AddressRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
+
+	/**
+	 * Find all addresses for a voting day that are blacklisted
+	 *
+	 * @param \Visol\Easyvote\Domain\Model\VotingDay $votingDay
+	 * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+	 */
+	public function findByVotingDayAndBlacklist(\Visol\Easyvote\Domain\Model\VotingDay $votingDay) {
+		$query = $this->createQuery();
+		$query->matching(
+			$query->logicalAnd(
+				$query->like('votingDay', $votingDay),
+				$query->equals('blacklisted', TRUE)
+			)
+		);
+		return $query->execute();
+	}
+
+	/**
+	 * Find an address that matches a given blacklist entry by voting day
+	 *
+	 * @param \Visol\EasyvoteImporter\Domain\Model\Blacklist $blacklistItem
+	 * @param \Visol\Easyvote\Domain\Model\VotingDay $votingDay
+	 * @return object
+	 */
+	public function findBlacklistMatchByVotingDay(\Visol\EasyvoteImporter\Domain\Model\Blacklist $blacklistItem, \Visol\Easyvote\Domain\Model\VotingDay $votingDay) {
+		$query = $this->createQuery();
+		$query->matching(
+			$query->logicalAnd(
+				$query->like('votingDay', $votingDay),
+				$query->like('name', '%' . $blacklistItem->getFirstName() . '%'),
+				$query->like('name', '%' . $blacklistItem->getLastName() . '%'),
+				$query->like('street', $blacklistItem->getStreet()),
+				$query->like('city', '%' . $blacklistItem->getZipCode() . '%')
+			)
+		);
+		return $query->execute()->getFirst();
+	}
+
+	/**
+	 * Find all addresses for a voting day that are *not* blacklisted
+	 *
+	 * @param \Visol\Easyvote\Domain\Model\VotingDay $votingDay
+	 * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+	 */
+	public function findAllNotBlacklistedByVotingDay(\Visol\Easyvote\Domain\Model\VotingDay $votingDay) {
+		$query = $this->createQuery();
+		$query->matching(
+			$query->logicalAnd(
+				$query->like('votingDay', $votingDay),
+				$query->equals('blacklisted', FALSE)
+			)
+		);
+		return $query->execute();
+	}
 
 }
 ?>

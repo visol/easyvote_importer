@@ -14,6 +14,7 @@ plugin.tx_easyvoteimporter {
 	settings {
 		adminFeUserGroup = 3
 		cityFeUserGroup = 2
+		loginPid = 144
 	}
 }
 

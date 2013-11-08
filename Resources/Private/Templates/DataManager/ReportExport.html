@@ -1,0 +1,52 @@
+{namespace v=Tx_Vhs_ViewHelpers}
+<f:layout name="Default" />
+<f:section name="left">
+	<div class="csc-default box-pink">
+		Export
+	</div>
+</f:section>
+<f:section name="main">
+
+	<div class="csc-default box-blue">
+		<h2>Prognose für <f:format.date date="{votingDay.votingDate}" format="d.m.Y" /></h2>
+
+			<table class="eviTable">
+				<thead>
+					<tr>
+						<th>Kundennummer</th>
+						<th>Gemeinde</th>
+						<th>Anzahl Adressen</th>
+					</tr>
+				</thead>
+				<tbody>
+				<f:groupedFor each="{addresses}" as="customerAddresses" groupBy="customerNumber" groupKey="customerNumber">
+					<tr>
+						<td>
+							<v:var.set name="first" value="{customerAddresses -> v:iterator.first()}" />
+							{first.customerNumber}
+						</td>
+						<td>
+							{first.city}
+						</td>
+						<td>
+							<f:count>{customerAddresses}</f:count>
+						</td>
+					</tr>
+				</f:groupedFor>
+			</tbody>
+			<tfoot>
+				<tr>
+					<th></th>
+					<th>Total:</th>
+					<th>
+						<f:count>{addresses}</f:count>
+					</th>
+				</tr>
+			</tfoot>
+			</table>
+
+	</div>
+</f:section>
+<f:section name="right">
+	<f:render partial="DataManager/AdminFunctions" />
+</f:section>

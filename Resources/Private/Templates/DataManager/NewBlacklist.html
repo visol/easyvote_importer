@@ -1,0 +1,18 @@
+{namespace v=Tx_Vhs_ViewHelpers}
+<f:layout name="Default" />
+<f:section name="left">
+	<div class="csc-default box-pink">
+		Blacklist
+	</div>
+</f:section>
+<f:section name="main">
+	<div class="csc-default box-blue">
+		<h2>Adresse zur Blacklist hinzufügen</h2>
+		<f:form class="inputForm" action="createBlacklist" name="newBlacklist" object="{newBlacklist}">
+			<f:render partial="DataManager/BlacklistFormFields" />
+		</f:form>
+	</div>
+</f:section>
+<f:section name="right">
+	<f:render partial="DataManager/AdminFunctions" />
+</f:section>

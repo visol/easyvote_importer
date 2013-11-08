@@ -1,5 +1,6 @@
 <style type="text/css">
-	#citiesTable {
+	<!--
+	table.eviTable {
 		border-collapse: collapse;
 		border: 0;
 		margin: 0;
@@ -7,7 +8,7 @@
 		font-size: 12px;
 	}
 
-	#citiesTable th, #citiesTable td {
+	.eviTable th, .eviTable td {
 		padding: 5px;
 	}
 
@@ -24,12 +25,12 @@
 		margin: 0 0 10px 0;
 	}
 
-	input[type=submit], input[type=button]  {
+	input[type=submit], input[type=button], button, a.button  {
 		border: 0 !important;
 		display: inline-block;
-		height: 40px;
-		line-height: 40px;
-		padding: 0 20px !important;
+		height: 30px;
+		line-height: 30px;
+		padding: 0 10px !important;
 		text-transform: uppercase;
 		background-color: #ed0a71;
 		color: #fff;
@@ -37,6 +38,7 @@
 		-webkit-border-radius: 5px;
 		border-radius: 5px;
 		cursor: pointer;
+		margin-bottom: 5px;
 	}
 
 	.box-dark {
@@ -49,7 +51,7 @@
 		text-align: center;
 	}
 
-	.box-dark a:link, .box-dark a:visited, .box-dark a:active, .box-dark a:hover {
+	/*.box-dark a:link, .box-dark a:visited, .box-dark a:active, .box-dark a:hover {
 		font-family: "Ubuntu", Arial, Helvetica, sans-serif;
 		font-weight: 500;
 		font-size: 18px;
@@ -57,7 +59,7 @@
 		text-decoration: none !important;
 		display: block;
 		text-transform: uppercase;
-	}
+	}*/
 
 	.box-pink {
 		-webkit-border-radius: 15px;
@@ -157,12 +159,24 @@
 	.cityChange { text-align: right; }
 	.color-red { color: #ff0021; }
 	.color-green { color: #09bf37; }
+	.color-grey { color: #c0c0c0; }
 
+	.inputForm input {
+		display: block;
+
+	}
+
+	.inputForm input[type=text] {
+		margin-bottom: 10px;
+		padding: 5px;
+		width: 200px;
+	}
+
+	i[class^="icon-"]:hover { text-decoration: none; }
+	-->
 
 </style>
 <link rel="stylesheet" href="/typo3conf/ext/easyvote/Resources/Public/Stylesheets/font-awesome.css" />
-
-
 <div class="tx-easyvote-importer">
 	<f:security.ifAuthenticated>
 		<f:then>

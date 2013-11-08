@@ -113,4 +113,57 @@ class ExcelUtility {
 
 	}
 
+	/**
+	 * @param \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $addresses
+	 * @param \Visol\Easyvote\Domain\Model\VotingDay $votingDay
+	 * @return void
+	 */
+	public static function pushExcelExportFromAddresses(\TYPO3\CMS\Extbase\Persistence\QueryResultInterface $addresses, \Visol\Easyvote\Domain\Model\VotingDay $votingDay) {
+
+		// Create new PHPExcel object
+		$objPHPExcel = new \PHPExcel();
+
+		// Set document properties
+		$objPHPExcel->getProperties()->setCreator("easyvote")
+			->setLastModifiedBy("easyvote")
+			->setTitle("easyvote Datenexport")
+			->setSubject("easyvote Datenexport");
+
+		$rowIndex = 1;
+
+		// Add headers
+		$objPHPExcel->setActiveSheetIndex(0)
+			->setCellValue('A' . $rowIndex, 'Kundennummer')
+			->setCellValue('B' . $rowIndex, 'Name')
+			->setCellValue('C' . $rowIndex, 'Adresse')
+			->setCellValue('D' . $rowIndex, 'Ort');
+		$rowIndex++;
+
+		// Add content
+		foreach ($addresses as $address) {
+			$objPHPExcel->setActiveSheetIndex(0)
+				->setCellValue('A' . $rowIndex, $address->getCustomerNumber())
+				->setCellValue('B' . $rowIndex, $address->getName())
+				->setCellValue('C' . $rowIndex, $address->getStreet())
+				->setCellValue('D' . $rowIndex, $address->getCity());
+			$rowIndex++;
+		}
+
+		// Rename worksheet
+		$currentDate = strftime('%d.%m.%y', $votingDay->getVotingDate()->getTimestamp());
+		$objPHPExcel->getActiveSheet()->setTitle('easyvote ' . $currentDate);
+
+		// Set active sheet index to the first sheet, so Excel opens this as the first sheet
+		$objPHPExcel->setActiveSheetIndex(0);
+
+		// Redirect output to a client’s web browser (Excel2007)
+		header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-Disposition: attachment;filename="easyvote' . $votingDay->getVotingDate()->getTimestamp() . '.xlsx"');
+		header('Cache-Control: max-age=0');
+
+		$objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+		$objWriter->save('php://output');
+
+	}
+
 }

@@ -35,5 +35,6 @@ class BusinessUserRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	protected $defaultOrderings = array(
 		'city' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_ASCENDING,
 	);
+
 }
 ?>

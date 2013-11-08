@@ -7,13 +7,12 @@ if (!defined('TYPO3_MODE')) {
 	'Visol.' . $_EXTKEY,
 	'Datamanager',
 	array(
-		'DataManager' => 'index, cityIndex, adminIndex, uploadList, remove, performUpload, assign, approve, remove, checkImport, performImport',
+		'DataManager' => 'index, logout, cityIndex, adminIndex, uploadList, remove, performUpload, assign, approve, remove, checkImport, performImport, newBlacklist, createBlacklist, listBlacklist, editBlacklist, updateBlacklist, deleteBlacklist, listExport, applyBlacklist, performExport, removeExport, reportExport, editBusinessUser, updateBusinessUser',
 		
 	),
 	// non-cacheable actions
 	array(
-		'DataManager' => 'index, cityIndex, adminIndex, uploadList, remove, performUpload, assign, approve, remove, checkImport, performImport',
-		
+		'DataManager' => 'index, logout, cityIndex, adminIndex, uploadList, remove, performUpload, assign, approve, remove, checkImport, performImport, newBlacklist, createBlacklist, listBlacklist, editBlacklist, updateBlacklist, deleteBlacklist, listExport, applyBlacklist, performExport, removeExport, reportExport, editBusinessUser, updateBusinessUser',
 	)
 );
 
