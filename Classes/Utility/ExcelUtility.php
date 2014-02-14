@@ -134,18 +134,20 @@ class ExcelUtility {
 		// Add headers
 		$objPHPExcel->setActiveSheetIndex(0)
 			->setCellValue('A' . $rowIndex, 'Kundennummer')
-			->setCellValue('B' . $rowIndex, 'Name')
-			->setCellValue('C' . $rowIndex, 'Adresse')
-			->setCellValue('D' . $rowIndex, 'Ort');
+			->setCellValue('B' . $rowIndex, 'Anrede')
+			->setCellValue('C' . $rowIndex, 'Name')
+			->setCellValue('D' . $rowIndex, 'Adresse')
+			->setCellValue('E' . $rowIndex, 'Ort');
 		$rowIndex++;
 
 		// Add content
 		foreach ($addresses as $address) {
 			$objPHPExcel->setActiveSheetIndex(0)
 				->setCellValue('A' . $rowIndex, $address->getCustomerNumber())
-				->setCellValue('B' . $rowIndex, $address->getName())
-				->setCellValue('C' . $rowIndex, $address->getStreet())
-				->setCellValue('D' . $rowIndex, $address->getCity());
+				->setCellValue('B' . $rowIndex, $address->getSalutation())
+				->setCellValue('C' . $rowIndex, $address->getName())
+				->setCellValue('D' . $rowIndex, $address->getStreet())
+				->setCellValue('E' . $rowIndex, $address->getCity());
 			$rowIndex++;
 		}
 
