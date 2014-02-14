@@ -14,31 +14,31 @@
 				<source>Blacklist</source>
 			</trans-unit>
 			<trans-unit id="tx_easyvoteimporter_domain_model_businessuser.customer_number">
-				<source>Customer Number</source>
+				<source>Kundennummer</source>
 			</trans-unit>
 			<trans-unit id="tx_easyvoteimporter_domain_model_businessuser.user_language">
-				<source>Language of correspondence</source>
+				<source>Korrespondenzsprache</source>
 			</trans-unit>
 			<trans-unit id="tx_easyvoteimporter_domain_model_businessuser.kanton">
-				<source>Canton</source>
+				<source>Kanton</source>
 			</trans-unit>
 			<trans-unit id="tx_easyvoteimporter_domain_model_businessuser.user_language.german">
-				<source>German</source>
+				<source>Deutsch</source>
 			</trans-unit>
 			<trans-unit id="tx_easyvoteimporter_domain_model_businessuser.user_language.french">
-				<source>French</source>
+				<source>Französisch</source>
 			</trans-unit>
 			<trans-unit id="tx_easyvoteimporter_domain_model_businessuser.user_language.italian">
-				<source>Italian</source>
+				<source>Italienisch</source>
 			</trans-unit>
 			<trans-unit id="tx_easyvoteimporter_domain_model_businessuser.target_group_start">
-				<source>Start age</source>
+				<source>Alter Start</source>
 			</trans-unit>
 			<trans-unit id="tx_easyvoteimporter_domain_model_businessuser.target_group_end">
-				<source>End age</source>
+				<source>Alter Ende</source>
 			</trans-unit>
 			<trans-unit id="tx_easyvoteimporter_domain_model_businessuser.datasets">
-				<source>Datasets</source>
+				<source>Datensatz</source>
 			</trans-unit>
 
 			<trans-unit id="fe_users.tx_extbase_type.Tx_EasyvoteImporter_BusinessUser">
@@ -46,13 +46,13 @@
 			</trans-unit>
 			
 			<trans-unit id="tx_easyvoteimporter_domain_model_dataset">
-				<source>Dataset</source>
+				<source>Datensatz</source>
 			</trans-unit>
 			<trans-unit id="tx_easyvoteimporter_domain_model_dataset.file">
-				<source>File</source>
+				<source>Datei</source>
 			</trans-unit>
 			<trans-unit id="tx_easyvoteimporter_domain_model_dataset.voting_day">
-				<source>Voting Day</source>
+				<source>Abstimmungstag</source>
 			</trans-unit>
 
 		</body>

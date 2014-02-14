@@ -42,6 +42,27 @@ class BusinessUser extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser {
 	protected $customerNumber;
 
 	/**
+	 * Korrespondenzsprache
+	 *
+	 * @var \integer
+	 */
+	protected $userLanguage;
+
+	/**
+	 * Zielgruppe Start
+	 *
+	 * @var \string
+	 */
+	protected $targetGroupStart;
+
+	/**
+	 * Zielgruppe Ende
+	 *
+	 * @var \string
+	 */
+	protected $targetGroupEnd;
+
+	/**
 	 * Adressdaten
 	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Visol\EasyvoteImporter\Domain\Model\Dataset>
@@ -129,6 +150,48 @@ class BusinessUser extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser {
 	 */
 	public function setDatasets(\TYPO3\CMS\Extbase\Persistence\ObjectStorage $datasets) {
 		$this->datasets = $datasets;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getUserLanguage() {
+		return $this->userLanguage;
+	}
+
+	/**
+	 * @param mixed $userLanguage
+	 */
+	public function setUserLanguage($userLanguage) {
+		$this->userLanguage = $userLanguage;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getTargetGroupStart() {
+		return $this->targetGroupStart;
+	}
+
+	/**
+	 * @param string $targetGroupStart
+	 */
+	public function setTargetGroupStart($targetGroupStart) {
+		$this->targetGroupStart = $targetGroupStart;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getTargetGroupEnd() {
+		return $this->targetGroupEnd;
+	}
+
+	/**
+	 * @param string $targetGroupEnd
+	 */
+	public function setTargetGroupEnd($targetGroupEnd) {
+		$this->targetGroupEnd = $targetGroupEnd;
 	}
 
 }

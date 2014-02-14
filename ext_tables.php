@@ -125,6 +125,47 @@ $tmp_easyvote_importer_columns = array(
 			'eval' => 'trim,required'
 		),
 	),
+	'user_language' => array(
+		'exclude' => 1,
+		'label' => 'LLL:EXT:easyvote_importer/Resources/Private/Language/locallang_db.xlf:tx_easyvoteimporter_domain_model_businessuser.user_language',
+		'config' => array(
+			'type' => 'select',
+			'items' => array(
+				array('LLL:EXT:easyvote_importer/Resources/Private/Language/locallang_db.xlf:tx_easyvoteimporter_domain_model_businessuser.user_language.german', 1),
+				array('LLL:EXT:easyvote_importer/Resources/Private/Language/locallang_db.xlf:tx_easyvoteimporter_domain_model_businessuser.user_language.french', 2),
+				array('LLL:EXT:easyvote_importer/Resources/Private/Language/locallang_db.xlf:tx_easyvoteimporter_domain_model_businessuser.user_language.italian', 3),
+			),
+		),
+	),
+	'kanton' => array(
+		'exclude' => 1,
+		'label' => 'LLL:EXT:easyvote/Resources/Private/Language/locallang_db.xlf:tx_easyvote_domain_model_metavotingproposal.kanton',
+		'config' => array(
+			'type' => 'select',
+			'foreign_table' => 'tx_easyvote_domain_model_kanton',
+			'foreign_table_where' => 'ORDER BY tx_easyvote_domain_model_kanton.name',
+			'minitems' => 1,
+			'maxitems' => 1,
+		),
+	),
+	'target_group_start' => array(
+		'exclude' => 1,
+		'label' => 'LLL:EXT:easyvote_importer/Resources/Private/Language/locallang_db.xlf:tx_easyvoteimporter_domain_model_businessuser.target_group_start',
+		'config' => array(
+			'type' => 'input',
+			'size' => 30,
+			'eval' => 'trim'
+		),
+	),
+	'target_group_end' => array(
+		'exclude' => 1,
+		'label' => 'LLL:EXT:easyvote_importer/Resources/Private/Language/locallang_db.xlf:tx_easyvoteimporter_domain_model_businessuser.target_group_end',
+		'config' => array(
+			'type' => 'input',
+			'size' => 30,
+			'eval' => 'trim'
+		),
+	),
 	'datasets' => array(
 		'exclude' => 1,
 		'label' => 'LLL:EXT:easyvote_importer/Resources/Private/Language/locallang_db.xlf:tx_easyvoteimporter_domain_model_businessuser.datasets',
@@ -149,6 +190,6 @@ $tmp_easyvote_importer_columns = array(
 
 $TCA['fe_users']['types']['Tx_EasyvoteImporter_BusinessUser']['showitem'] = $TCA['fe_users']['types']['Tx_Extbase_Domain_Model_FrontendUser']['showitem'];
 $TCA['fe_users']['types']['Tx_EasyvoteImporter_BusinessUser']['showitem'] .= ',--div--;LLL:EXT:easyvote_importer/Resources/Private/Language/locallang_db.xlf:tx_easyvoteimporter_domain_model_businessuser,';
-$TCA['fe_users']['types']['Tx_EasyvoteImporter_BusinessUser']['showitem'] .= 'customer_number, datasets';
+$TCA['fe_users']['types']['Tx_EasyvoteImporter_BusinessUser']['showitem'] .= 'customer_number, user_language, kanton, target_group_start, target_group_end, datasets';
 
 ?>

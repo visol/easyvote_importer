@@ -728,6 +728,9 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 		foreach ($addresses as $address) {
 			$this->addressRepository->remove($address);
 		}
+		// upload no longer allowed
+		$votingDay->setUploadAllowed(FALSE);
+		$this->votingDayRepository->update($votingDay);
 		$message = $addressCount . ' Adressen gelöscht.';
 		$this->flashMessageContainer->add($message);
 		$this->redirect('listExport');
