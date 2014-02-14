@@ -30,17 +30,16 @@
 					<td>{item.blacklistCount}</td>
 					<td style="text-align: right; width: 90px;">
 						<f:link.action action="applyBlacklist" title="Blacklist anwenden" arguments="{votingDay:item.votingDay}"><i class="icon-male icon-2x"></i></f:link.action>
-						<f:if condition="{item.datasetCount} == {item.businessUserCount}">
-							<f:then>
-								<f:link.action target="_blank" action="performExport" title="Liste exportieren" arguments="{votingDay:item.votingDay}"><i class="icon-download-alt icon-2x"></i></f:link.action>
-								<f:link.action action="reportExport" title="Prognose" arguments="{votingDay:item.votingDay}"><i class="icon-list-alt icon-2x"></i></f:link.action>
-								<f:link.action action="removeExport" title="Alle Daten löschen" onclick="return confirm('Sicher?');" arguments="{votingDay:item.votingDay}"><i class="icon-remove-sign icon-2x"></i></f:link.action>
-							</f:then>
-							<f:else>
-								<f:link.action action="reportExport" title="Prognose" arguments="{votingDay:item.votingDay}"><i class="icon-list-alt icon-2x"></i></f:link.action>
-								<i title="Download nicht möglich, da nicht alle Gemeinden bereit sein." class="icon-download-alt icon-2x color-grey"></i>
-							</f:else>
-						</f:if>
+						<f:comment><f:if condition="{item.datasetCount} == {item.businessUserCount}"></f:if></f:comment>
+						<f:link.action target="_blank" action="performExport" title="Liste exportieren" arguments="{votingDay:item.votingDay}"><i class="icon-download-alt icon-2x"></i></f:link.action>
+						<f:link.action action="reportExport" title="Prognose" arguments="{votingDay:item.votingDay}"><i class="icon-list-alt icon-2x"></i></f:link.action>
+						<f:link.action action="removeExport" title="Alle Daten löschen" onclick="return confirm('Sicher?');" arguments="{votingDay:item.votingDay}"><i class="icon-remove-sign icon-2x"></i></f:link.action>
+						<f:comment>
+						<f:else>
+							<f:link.action action="reportExport" title="Prognose" arguments="{votingDay:item.votingDay}"><i class="icon-list-alt icon-2x"></i></f:link.action>
+							<i title="Download nicht möglich, da nicht alle Gemeinden bereit sein." class="icon-download-alt icon-2x color-grey"></i>
+						</f:else>
+						</f:comment>
 					</td>
 				</tr>
 			</f:for>
