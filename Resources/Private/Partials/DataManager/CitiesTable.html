@@ -54,7 +54,10 @@
 					</f:for>
 					</ul>
 				</td>
-				<td>{city.company}</td>
+				<td>
+					{city.company}<br />
+					{city.customerNumber}
+				</td>
 				<td><f:link.email email="{city.email}">{city.firstName} {city.lastName}</f:link.email></td>
 				<td class="cityChange"><f:link.action title="Zu Gemeinde wechseln..." action="cityIndex" arguments="{city:city.uid}"><i class="icon-chevron-sign-right icon-2x"></i></f:link.action></td>
 			</tr>
