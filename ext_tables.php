@@ -142,6 +142,9 @@ $tmp_easyvote_importer_columns = array(
 		'label' => 'LLL:EXT:easyvote/Resources/Private/Language/locallang_db.xlf:tx_easyvote_domain_model_metavotingproposal.kanton',
 		'config' => array(
 			'type' => 'select',
+			'items' => array(
+				array('Kanton wählen...', 0)
+			),
 			'foreign_table' => 'tx_easyvote_domain_model_kanton',
 			'foreign_table_where' => 'ORDER BY tx_easyvote_domain_model_kanton.name',
 			'minitems' => 1,
