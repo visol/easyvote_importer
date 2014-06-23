@@ -201,7 +201,7 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 		$arguments = $this->request->getArguments();
 		if (is_array($arguments['votingDay'])) {
 			$votingDayUid = (int)key($arguments['votingDay']);
-			$votingDay = $this->votingDayRepository->findByUid($votingDayUid);
+			$votingDay = $this->votingDayRepository->findVisibleAndHiddenByUid($votingDayUid);
 
 			$this->checkUserIsAdmin();
 			if ($this->userIsAdmin) {
@@ -256,7 +256,7 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 
 			// get voting day object
 			/** @var \Visol\Easyvote\Domain\Model\VotingDay $votingDay */
-			$votingDay = $this->votingDayRepository->findByUid((int)$request['votingDay']);
+			$votingDay = $this->votingDayRepository->findVisibleAndHiddenByUid((int)$request['votingDay']);
 
 			// get business user
 			$this->checkUserIsAdmin();

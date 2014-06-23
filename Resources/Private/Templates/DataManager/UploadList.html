@@ -5,7 +5,16 @@
 	</div>
 	<div class="csc-default box-lightblue">
 		<h2>Wie erstelle ich eine Adressliste?</h2>
-		<p>Das geht ungefähr so...</p>
+		<p>
+			Laden Sie die Muster-Excelliste herunter und benutzen Sie am besten gleich diese. Wenn sie bereits eine eigene Adressliste erstellt haben, können Sie auch diese verwenden. Ihre Adressliste muss aber die gleichen Informationen erhalten wie die Muster-Excelliste:
+		</p>
+		<ul>
+			<li>Anrede</li>
+			<li>Name (Vorname+Name)</li>
+			<li>Adresszeile 1</li>
+			<li>Adresszeile 2 (wenn vorhanden)</li>
+			<li>PLZ und Ort</li>
+		</ul>
 	</div>
 </f:section>
 <f:section name="main">
@@ -30,9 +39,10 @@
 <f:section name="right">
 	<div class="csc-default box-blue">
 		<f:form action="cityIndex">
+			<f:form.hidden name="city" value="{businessUser.uid}"/>
 			<button type="submit"><i class="icon-home"></i> Start</button>
 		</f:form>
-		<a class="button" href="#"><i class="icon-download-alt"></i> Muster-Excelliste</a>
+		<a class="button" href="{f:uri.resource(path: 'Documents/Gemeinde_XX_YY_20ZZ.xls')}"><i class="icon-download-alt"></i> Muster-Excelliste</a>
 		<a class="button" href="#"><i class="icon-film"></i> Video-Anleitung</a>
 	</div>
 </f:section>

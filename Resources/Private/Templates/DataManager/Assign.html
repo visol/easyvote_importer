@@ -6,7 +6,7 @@
 	</div>
 	<div class="csc-default box-lightblue">
 		<h2>Zuweisung der Spaltentitel</h2>
-		<p>Ein Essay zu einem spannenden Thema</p>
+		<p>Ziehen Sie die Spalten Ihrer Tabelle nach rechts in die vier vorgesehenen Kästchen. Die Reihenfolge der Spalten Ihrer Tabelle wird automatisch angepasst.</p>
 		<p>Sollten Sie die falsche Liste hochgeladen haben, können Sie diese Liste verwerfen und eine neue Adressliste hochladen.</p>
 		<f:form id="deleteDocument" action="remove">
 			<f:form.hidden name="dataset" value="{dataset}" />
@@ -135,6 +135,17 @@
 </f:section>
 <f:section name="right">
 	<div class="csc-default box-lightblue">
+		<f:form action="cityIndex">
+			<f:if condition="{businessUser.uid}">
+				<f:then>
+					<f:form.hidden name="city" value="{businessUser.uid}" />
+				</f:then>
+				<f:else>
+					<f:form.hidden name="city" value="{businessUser}" />
+				</f:else>
+			</f:if>
+			<button type="submit"><i class="icon-home"></i> Start</button><br />&nbsp;<br />
+		</f:form>
 		<h2>Vorschau</h2>
 		<p class="preview">
 			<span id="preview-salutation"></span><br />
