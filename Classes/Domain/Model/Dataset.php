@@ -34,6 +34,14 @@ namespace Visol\EasyvoteImporter\Domain\Model;
 class Dataset extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 
 	/**
+	 * votingDayRepository
+	 *
+	 * @var \Visol\Easyvote\Domain\Repository\VotingDayRepository
+	 * @inject
+	 */
+	protected $votingDayRepository;
+
+	/**
 	 * Datei
 	 *
 	 * @var \string
@@ -73,8 +81,7 @@ class Dataset extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Abstimmungstag
 	 *
-	 * @var \Visol\Easyvote\Domain\Model\VotingDay
-	 * @lazy
+	 * @var int
 	 */
 	protected $votingDay;
 
@@ -187,16 +194,16 @@ class Dataset extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @return \Visol\Easyvote\Domain\Model\VotingDay $votingDay
 	 */
 	public function getVotingDay() {
-		return $this->votingDay;
+		return $this->votingDayRepository->findVisibleAndHiddenByUid($this->votingDay);
 	}
 
 	/**
 	 * Sets the votingDay
 	 *
-	 * @param \Visol\Easyvote\Domain\Model\VotingDay $votingDay
+	 * @param int
 	 * @return void
 	 */
-	public function setVotingDay(\Visol\Easyvote\Domain\Model\VotingDay $votingDay) {
+	public function setVotingDay($votingDay) {
 		$this->votingDay = $votingDay;
 	}
 
