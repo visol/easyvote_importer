@@ -15,6 +15,14 @@
 			<li>Adresszeile 2 (wenn vorhanden)</li>
 			<li>PLZ und Ort</li>
 		</ul>
+		<f:if condition="{businessUser.targetGroupStart}">
+			<f:then>
+				<p>Sie beliefern alle Jugendlichen im Alter von {businessUser.targetGroupStart}-{businessUser.targetGroupEnd} Jahren. Für die Abstimmung vom <f:format.date date="{votingDay.votingDate}" format="d.m.Y" /> sind dies alle Jugendlichen, welche zwischen dem <f:format.date date="{firstAllowedBirthdate}" format="d.m.Y" /> und dem <f:format.date date="{lastAllowedBirthdate}" format="d.m.Y" /> geboren sind. Möchten Sie die Altersgruppe ändern? Gerne können Sie uns unter <a href="mailto:info@easyvote.ch">info@easyvote.ch</a> kontaktieren.</p>
+			</f:then>
+			<f:else>
+				<p>Sie haben keine bestimmte Altersgruppe oder aber mehrere Altersgruppen. Sie finden die detaillierten Angaben im Mail, das wir Ihnen für die Adresseinforderung geschickt haben. Sollten Sie nicht mehr wissen welche Altersgruppen beliefert werden, können Sie sich gerne an <a href="mailto:info@easyvote.ch">info@easyvote.ch</a> wenden.</p>
+			</f:else>
+		</f:if>
 	</div>
 </f:section>
 <f:section name="main">

@@ -201,19 +201,30 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 		$arguments = $this->request->getArguments();
 		if (is_array($arguments['votingDay'])) {
 			$votingDayUid = (int)key($arguments['votingDay']);
+
 			$votingDay = $this->votingDayRepository->findVisibleAndHiddenByUid($votingDayUid);
 
 			$this->checkUserIsAdmin();
 			if ($this->userIsAdmin) {
 				$cityUid = $this->request->getArgument('city');
+				/** @var \Visol\EasyvoteImporter\Domain\Model\BusinessUser $businessUser */
 				$businessUser = $this->businessUserRepository->findByUid($cityUid);
 			} else {
+				/** @var \Visol\EasyvoteImporter\Domain\Model\BusinessUser $businessUser */
 				$businessUser = $this->businessUserRepository->findByUid($GLOBALS['TSFE']->fe_user->user['uid']);
 			}
 
+			$votingDateAgeStart = clone $votingDay->getVotingDate();
+			$lastAllowedBirthdate = $votingDateAgeStart->modify('-' . $businessUser->getTargetGroupStart() . ' years -1 day');
+
+			$votingDateAgeEnd = clone $votingDay->getVotingDate();
+			$firstAllowedBirthdate = $votingDateAgeEnd->modify('-' . $businessUser->getTargetGroupEnd() . ' years');
+
 			$this->view->assignMultiple(array(
 				'businessUser' => $businessUser,
-				'votingDay' => $votingDay
+				'votingDay' => $votingDay,
+				'lastAllowedBirthdate' => $lastAllowedBirthdate,
+				'firstAllowedBirthdate' => $firstAllowedBirthdate
 			));
 
 		}
