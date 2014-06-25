@@ -452,14 +452,13 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 	}
 
 	/**
-	 * @param \Visol\Easyvote\Domain\Model\VotingDay $votingDay
 	 * @param \Visol\EasyvoteImporter\Domain\Model\Dataset $dataset
 	 */
-	public function checkImportAction(\Visol\Easyvote\Domain\Model\VotingDay $votingDay, \Visol\EasyvoteImporter\Domain\Model\Dataset $dataset) {
+	public function checkImportAction(\Visol\EasyvoteImporter\Domain\Model\Dataset $dataset) {
 
 		// get business user
 		/** @var \Visol\EasyvoteImporter\Domain\Model\BusinessUser $businessUser */
-		$businessUser = $this->businessUserRepository->findByUid($dataset->getBusinessuser());
+		$businessUser = $this->businessUserRepository->findByUid($dataset->getBusinessuser()->getUid());
 
 		// get 10 rows for preview
 		$previewData = \Visol\EasyvoteImporter\Utility\ExcelUtility::getAddressDataFromDataset($dataset, 10);
