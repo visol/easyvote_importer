@@ -214,11 +214,11 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 				$businessUser = $this->businessUserRepository->findByUid($GLOBALS['TSFE']->fe_user->user['uid']);
 			}
 
-			$votingDateAgeStart = clone $votingDay->getVotingDate();
-			$lastAllowedBirthdate = $votingDateAgeStart->modify('-' . $businessUser->getTargetGroupStart() . ' years -1 day');
-
 			$votingDateAgeEnd = clone $votingDay->getVotingDate();
-			$firstAllowedBirthdate = $votingDateAgeEnd->modify('-' . $businessUser->getTargetGroupEnd() . ' years');
+			$firstAllowedBirthdate = $votingDateAgeEnd->modify('-' . $businessUser->getTargetGroupEnd() . ' years -1 year -1 day');
+
+			$votingDateAgeStart = clone $votingDay->getVotingDate();
+			$lastAllowedBirthdate = $votingDateAgeStart->modify('-' . $businessUser->getTargetGroupStart() . ' years');
 
 			$this->view->assignMultiple(array(
 				'businessUser' => $businessUser,

@@ -1,12 +1,23 @@
 {namespace v=Tx_Vhs_ViewHelpers}
 <f:layout name="Default" />
+<f:section name="subnavigation">
+	<li>
+		<f:link.action action="editBusinessUser" arguments="{businessUser:businessUser}">Kontakt bearbeiten</f:link.action>
+	</li>
+	<f:security.ifHasRole role="{settings.adminFeUserGroup}">
+		<li>
+			<f:link.action action="adminIndex">Admin-Startseite</f:link.action>
+		</li>
+	</f:security.ifHasRole>
+</f:section>
 <f:section name="left">
+	<f:render partial="DataManager/Icon" arguments="{icon: 'produktion'}" />
 	<f:render partial="DataManager/UserOverview" arguments="{businessUser:businessUser}" />
 </f:section>
 <f:section name="main">
 	<div class="csc-default box-blue">
 		<h2>Herzlich willkommen</h2>
-		<p>Hier können Sie Ihre Adressliste hochladen.</p>
+		<p>Hier können Sie Ihre Adressliste hochladen. Da dem DSJ (<strong>easyvote</strong>) der Datenschutz sehr wichtig ist, haben wir uns dazu entschlossen ein neues Uploadsystem einzuführen, welches mehr Sicherheit im Umgang mit den Adresslisten garantiert. Die Adressen werden dabei neu verschlüsselt übermittelt. Das Uploadsystem wurde auch aufgrund des laufenden SQS-Zertifizierungsverfahren eingeführt. Zudem vermindert das neue System den Arbeitsaufwand auf Seite der Gemeinden zum Erstellen der Adresslisten.</p>
 	</div>
 	<f:for each="{votingDays}" as="votingDay" iteration="iterator">
 		<div class="csc-default box-blue">
@@ -45,13 +56,11 @@
 </f:section>
 <f:section name="right">
 	<div class="csc-default box-blue">
-		<f:form action="editBusinessUser" arguments="{businessUser:businessUser}">
-			<button type="submit"><i class="icon-edit-sign"></i> Kontakt bearbeiten</button>
-		</f:form>
-		<f:security.ifHasRole role="{settings.adminFeUserGroup}">
-			<f:form action="adminIndex">
-				<button type="submit"><i class="icon-home"></i> Admin-Startseite</button>
-			</f:form>
-		</f:security.ifHasRole>
+		<h2>Frist</h2>
+		<p>Wir bitten Sie, uns die Adresslisten bis xx.yy.2014 zu übermitteln.</p>
+	</div>
+	<div class="csc-default box-blue">
+		<h2>Anleitung</h2>
+		<p><a href="#">Hier</a> können Sie die Anleitung herunterladen. In dieser wird das Hochladen der Adressliste Schritt für Schritt erklärt.</p>
 	</div>
 </f:section>

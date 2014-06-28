@@ -1,5 +1,18 @@
 <style type="text/css">
 	<!--
+	/* subheader of page layout */
+	#default-subheader {
+		display: none;
+	}
+
+	div#contentWrap {
+		margin-top: 0;
+	}
+
+	header.subheader {
+		margin-bottom: 70px;
+	}
+
 	table.eviTable {
 		border-collapse: collapse;
 		border: 0;
@@ -68,12 +81,16 @@
 		background: #ed0a71;
 		padding: 30px;
 		text-align: left;
-		font-family: "Ubuntu", Arial, Helvetica, sans-serif;
-		font-weight: 500;
-		font-size: 18px;
 		color: #fff !important;
 		text-decoration: none !important;
+	}
+
+	.box-pink h2 {
+		font-family: "Ubuntu", Arial, Helvetica, sans-serif;
 		text-transform: uppercase;
+		font-weight: 500;
+		font-size: 18px;
+		color: #fff;
 	}
 
 	.box-blue {
@@ -126,7 +143,7 @@
 		font-size: 12px;
 		background: none;
 	}
-	p.preview { padding: 10px; background: white; min-height: 90px; border: 1px solid #005476; }
+	p.preview { padding: 10px; background: white; min-height: 90px; border: 1px solid #005476; color: #005476; }
 
 	.tx-easyvote-importer form {
 		position: relative;
@@ -161,22 +178,25 @@
 	.color-green { color: #09bf37; }
 	.color-grey { color: #c0c0c0; }
 
-	.inputForm input {
-		display: block;
-
-	}
-
-	.inputForm input[type=text] {
-		margin-bottom: 10px;
-		padding: 5px;
-		width: 200px;
-	}
-
 	i[class^="icon-"]:hover { text-decoration: none; }
 	-->
 
 </style>
 <link rel="stylesheet" href="/typo3conf/ext/easyvote/Resources/Public/Stylesheets/font-awesome.css" />
+<header class="subheader ym-clearfix">
+	<nav class="navi-2">
+		<ul class="navi">
+			<f:render section="subnavigation" />
+		</ul>
+	</nav>
+	<div class="socialmedia-links">
+		<a title="easyvote auf Facebook" target="_blank" class="facebook" href="http://www.facebook.com/easyvote.ch"><span></span></a>
+		<a title="easyvote auf YouTube" target="_blank" class="youtube" href="http://www.youtube.com/channel/UCvsG65a4iGTmSA9V4GDC8sA"><span></span></a>
+		<a title="easyvote auf Twitter" target="_blank" class="twitter" href="http://www.twitter.com/easyvote_ch"><span></span></a>
+		<a title="easyvote auf Google+" target="_blank" class="googleplus" href="http://www.google.com/+easyvote"><span></span></a>
+		<a title="Mail schreiben" class="mail" href="mailto:info@easyvote.ch"><span></span></a>
+	</div>
+</header>
 <div class="tx-easyvote-importer">
 	<f:security.ifAuthenticated>
 		<f:then>

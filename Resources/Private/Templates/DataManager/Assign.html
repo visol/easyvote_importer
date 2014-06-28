@@ -1,18 +1,16 @@
 <f:layout name="Default" />
-
+<f:section name="subnavigation">
+	<f:if condition="{businessUser.uid}">
+		<f:then>
+			<f:link.action action="cityIndex" arguments="{city:businessUser.uid}">Start</f:link.action>
+		</f:then>
+		<f:else>
+			<f:link.action action="cityIndex" arguments="{city:businessUser}">Start</f:link.action>
+		</f:else>
+	</f:if>
+</f:section>
 <f:section name="left">
-	<div class="csc-default box-pink">
-		Schritt 2/3
-	</div>
-	<div class="csc-default box-lightblue">
-		<h2>Zuweisung der Spaltentitel</h2>
-		<p>Ziehen Sie die Spalten Ihrer Tabelle nach rechts in die vier vorgesehenen Kästchen. Die Reihenfolge der Spalten Ihrer Tabelle wird automatisch angepasst.</p>
-		<p>Sollten Sie die falsche Liste hochgeladen haben, können Sie diese Liste verwerfen und eine neue Adressliste hochladen.</p>
-		<f:form id="deleteDocument" action="remove">
-			<f:form.hidden name="dataset" value="{dataset}" />
-			<button type="submit"><i class="icon-upload-alt"></i> Neue Adressliste</button>
-		</f:form>
-	</div>
+	<f:render partial="DataManager/Icon" arguments="{icon: 'step2'}" />
 </f:section>
 <f:section name="main">
 	<div class="csc-default box-blue">
@@ -134,18 +132,7 @@
 	</script>
 </f:section>
 <f:section name="right">
-	<div class="csc-default box-lightblue">
-		<f:form action="cityIndex">
-			<f:if condition="{businessUser.uid}">
-				<f:then>
-					<f:form.hidden name="city" value="{businessUser.uid}" />
-				</f:then>
-				<f:else>
-					<f:form.hidden name="city" value="{businessUser}" />
-				</f:else>
-			</f:if>
-			<button type="submit"><i class="icon-home"></i> Start</button><br />&nbsp;<br />
-		</f:form>
+	<div class="csc-default box-pink">
 		<h2>Vorschau</h2>
 		<p class="preview">
 			<span id="preview-salutation"></span><br />
@@ -153,5 +140,14 @@
 			<span id="preview-address"></span><br />
 			<span id="preview-city"></span>
 		</p>
+	</div>
+	<div class="csc-default box-lightblue">
+		<h2>Zuweisung der Spaltentitel</h2>
+		<p>Ziehen Sie die Spalten Ihrer Tabelle nach rechts in die vier vorgesehenen Kästchen. Die Reihenfolge der Spalten Ihrer Tabelle wird automatisch angepasst.</p>
+		<p>Sollten Sie die falsche Liste hochgeladen haben, können Sie diese Liste verwerfen und eine neue Adressliste hochladen.</p>
+		<f:form id="deleteDocument" action="remove">
+			<f:form.hidden name="dataset" value="{dataset}" />
+			<button type="submit"><i class="icon-upload-alt"></i> Neue Adressliste</button>
+		</f:form>
 	</div>
 </f:section>

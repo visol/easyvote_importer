@@ -1,9 +1,19 @@
 {namespace v=Tx_Vhs_ViewHelpers}
 <f:layout name="Default" />
+<f:section name="subnavigation">
+	<li>
+		<f:if condition="{businessUser.uid}">
+			<f:then>
+				<f:link.action action="cityIndex" arguments="{city:businessUser.uid}">Start</f:link.action>
+			</f:then>
+			<f:else>
+				<f:link.action action="cityIndex" arguments="{city:businessUser}">Start</f:link.action>
+			</f:else>
+		</f:if>
+	</li>
+</f:section>
 <f:section name="left">
-	<div class="csc-default box-pink">
-		Kontaktdaten
-	</div>
+	<f:render partial="DataManager/Icon" arguments="{icon: 'produktion'}" />
 </f:section>
 <f:section name="main">
 	<div class="csc-default box-blue">
@@ -14,5 +24,8 @@
 	</div>
 </f:section>
 <f:section name="right">
-	<f:render partial="DataManager/CityFunctions" />
+	<div class="csc-default box-blue">
+		<h2>Hinweis</h2>
+		<p>Hier werden nur Ihre Kontaktdaten bezüglich Data Manager (Adresseinforderung) erfasst. Ihre übrigen Kontaktdaten z.B. für die Rechnungsstellung bleiben bestehen oder können mit einem Mail an <a href="mailto:info@easyvote.ch">info@easyvote.ch</a> geändert werden.</p>
+	</div>
 </f:section>

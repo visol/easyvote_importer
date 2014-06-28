@@ -1,56 +1,59 @@
 <f:layout name="Default" />
+<f:section name="subnavigation">
+	<li>
+		<f:link.action action="cityIndex" arguments="{city:businessUser.uid}">Start</f:link.action>
+	</li>
+</f:section>
 <f:section name="left">
-	<div class="csc-default box-pink">
-		Schritt 1/3
-	</div>
-	<div class="csc-default box-lightblue">
-		<h2>Wie erstelle ich eine Adressliste?</h2>
-		<p>
-			Laden Sie die Muster-Excelliste herunter und benutzen Sie am besten gleich diese. Wenn sie bereits eine eigene Adressliste erstellt haben, können Sie auch diese verwenden. Ihre Adressliste muss aber die gleichen Informationen erhalten wie die Muster-Excelliste:
-		</p>
-		<ul>
-			<li>Anrede</li>
-			<li>Name (Vorname+Name)</li>
-			<li>Adresszeile 1</li>
-			<li>Adresszeile 2 (wenn vorhanden)</li>
-			<li>PLZ und Ort</li>
-		</ul>
-		<f:if condition="{businessUser.targetGroupStart}">
-			<f:then>
-				<p>Sie beliefern alle Jugendlichen im Alter von {businessUser.targetGroupStart}-{businessUser.targetGroupEnd} Jahren. Für die Abstimmung vom <f:format.date date="{votingDay.votingDate}" format="d.m.Y" /> sind dies alle Jugendlichen, welche zwischen dem <f:format.date date="{firstAllowedBirthdate}" format="d.m.Y" /> und dem <f:format.date date="{lastAllowedBirthdate}" format="d.m.Y" /> geboren sind. Möchten Sie die Altersgruppe ändern? Gerne können Sie uns unter <a href="mailto:info@easyvote.ch">info@easyvote.ch</a> kontaktieren.</p>
-			</f:then>
-			<f:else>
-				<p>Sie haben keine bestimmte Altersgruppe oder aber mehrere Altersgruppen. Sie finden die detaillierten Angaben im Mail, das wir Ihnen für die Adresseinforderung geschickt haben. Sollten Sie nicht mehr wissen welche Altersgruppen beliefert werden, können Sie sich gerne an <a href="mailto:info@easyvote.ch">info@easyvote.ch</a> wenden.</p>
-			</f:else>
-		</f:if>
-	</div>
+	<f:render partial="DataManager/Icon" arguments="{icon: 'step1'}" />
 </f:section>
 <f:section name="main">
 	<div class="csc-default box-blue">
 		<h2>Adressliste {businessUser.name} für <f:format.date date="{votingDay.votingDate}" format="d.m.Y" /></h2>
-		<p>Bitte drücken Sie auf den untenstehenden Button und wählen Sie die gewünschte Datei aus.</p>
+		<p>Klicken Sie auf "Datei auswählen" und wählen Sie Ihre gewünschte Adressliste aus.</p>
 		<p>Wenn die erste Zeile Ihrer Adressliste keine Spaltentitel (Name, Vorname, Adresse etc.) enthält, deaktivieren Sie die Option "Erste Zeile enthält Spaltentitel".</p>
-		<p>Klicken Sie auf "weiter", sobald Sie die Datei ausgewählt haben.</p>
+		<p>Anschliessend klicken Sie auf "Datei hochladen".</p>
 		<f:form action="performUpload" enctype="multipart/form-data">
 			<f:form.hidden name="city" value="{businessUser.uid}"/>
 			<f:form.hidden name="votingDay" value="{votingDay.uid}"/>
-			<f:form.upload name="easyvoteData"/>
-			<p>
+			<div class="form-row">
+				<f:form.upload name="easyvoteData"/>
+			</div>
+			<div class="form-row">
 				<f:form.checkbox name="firstLineContainsLabels" id="firstLineContainsLabels" value="1" checked="checked"/>
 				<label for="firstLineContainsLabels">Erste Zeile enthält Spaltentitel</label><br />
-			</p>
-			<button type="submit" class="buttonBottomRight"><i class="icon-chevron-sign-right"></i> Datei hochladen</button>
+			</div>
+			<div class="form-row">
+				<button type="submit" class="buttonBottomRight"><i class="icon-chevron-sign-right"></i> Datei hochladen</button>
+			</div>
 		</f:form>
 	</div>
 
 </f:section>
 <f:section name="right">
 	<div class="csc-default box-blue">
-		<f:form action="cityIndex">
-			<f:form.hidden name="city" value="{businessUser.uid}"/>
-			<button type="submit"><i class="icon-home"></i> Start</button>
-		</f:form>
-		<a class="button" href="{f:uri.resource(path: 'Documents/Gemeinde_XX_YY_20ZZ.xls')}"><i class="icon-download-alt"></i> Muster-Excelliste</a>
-		<a class="button" href="#"><i class="icon-film"></i> Video-Anleitung</a>
+		<h2>Wie erstelle ich eine Adressliste?</h2>
+		<p>
+			Laden Sie die <a href="{f:uri.resource(path: 'Documents/Gemeinde_XX_YY_20ZZ.xls')}">Muster-Excelliste</a> herunter und benutzen Sie am besten gleich diese. Wenn sie bereits eine eigene Adressliste erstellt haben, können Sie auch diese verwenden. Ihre Adressliste muss aber die gleichen Informationen erhalten wie die Muster-Excelliste:
+		</p>
+		<ul>
+			<li>Anrede</li>
+			<li>Name</li>
+			<li>Vorname</li>
+			<li>Adresszeile 1</li>
+			<li>Adresszeile 2 (wenn vorhanden)</li>
+			<li>PLZ und Ort</li>
+		</ul>
+	</div>
+	<div class="csc-default box-blue">
+		<h2>Alterskategorie?</h2>
+		<f:if condition="{businessUser.targetGroupStart}">
+			<f:then>
+				<p>Sie beliefern alle Jugendlichen im Alter von <strong>{businessUser.targetGroupStart}-{businessUser.targetGroupEnd} Jahren</strong>. Für die Abstimmung vom <strong><f:format.date date="{votingDay.votingDate}" format="d.m.Y" /></strong> sind dies alle Jugendlichen, welche zwischen dem <strong><f:format.date date="{firstAllowedBirthdate}" format="d.m.Y" /></strong> und dem <strong><f:format.date date="{lastAllowedBirthdate}" format="d.m.Y" /></strong> geboren sind. Möchten Sie die Altersgruppe ändern? Gerne können Sie uns unter <a href="mailto:info@easyvote.ch">info@easyvote.ch</a> kontaktieren.</p>
+			</f:then>
+			<f:else>
+				<p>Sie haben keine bestimmte Altersgruppe oder aber mehrere Altersgruppen. Sie finden die detaillierten Angaben im Mail, das wir Ihnen für die Adresseinforderung geschickt haben. Sollten Sie nicht mehr wissen welche Altersgruppen beliefert werden, können Sie sich gerne an <a href="mailto:info@easyvote.ch">info@easyvote.ch</a> wenden.</p>
+			</f:else>
+		</f:if>
 	</div>
 </f:section>
