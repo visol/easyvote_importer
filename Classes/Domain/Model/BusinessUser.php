@@ -63,6 +63,11 @@ class BusinessUser extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser {
 	protected $targetGroupEnd;
 
 	/**
+	 * @var \integer
+	 */
+	protected $gender;
+
+	/**
 	 * Adressdaten
 	 *
 	 * @var \TYPO3\CMS\Extbase\Persistence\ObjectStorage<\Visol\EasyvoteImporter\Domain\Model\Dataset>
@@ -192,6 +197,20 @@ class BusinessUser extends \TYPO3\CMS\Extbase\Domain\Model\FrontendUser {
 	 */
 	public function setTargetGroupEnd($targetGroupEnd) {
 		$this->targetGroupEnd = $targetGroupEnd;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getGender() {
+		return $this->gender;
+	}
+
+	/**
+	 * @param int $gender
+	 */
+	public function setGender($gender) {
+		$this->gender = $gender;
 	}
 
 }

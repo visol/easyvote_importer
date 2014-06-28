@@ -114,8 +114,20 @@ $TCA['fe_users']['types']['Tx_EasyvoteImporter_BusinessUser']['showitem'] = $TCA
 $TCA['fe_users']['columns'][$TCA['fe_users']['ctrl']['type']]['config']['items'][] = array('LLL:EXT:easyvote_importer/Resources/Private/Language/locallang_db.xlf:tx_easyvoteimporter_domain_model_businessuser','Tx_EasyvoteImporter_BusinessUser');
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addToAllTCAtypes('fe_users', $TCA['fe_users']['ctrl']['type'],'','after:hidden');
 
-$tmp_easyvote_importer_columns = array(
 
+$tmp_easyvote_importer_columns = array(
+	'gender' => array (
+		'exclude' => 1,
+		'label'  => 'LLL:EXT:easyvote/Resources/Private/Language/locallang_db.xlf:tx_easyvote_domain_model_communityuser.gender',
+		'config' => array (
+			'type'    => 'radio',
+			'default' => 2,
+			'items'   => array(
+				array('LLL:EXT:easyvote/Resources/Private/Language/locallang_db.xlf:tx_easyvote_domain_model_communityuser.gender.m', 1),
+				array('LLL:EXT:easyvote/Resources/Private/Language/locallang_db.xlf:tx_easyvote_domain_model_communityuser.gender.f', 2)
+			)
+		)
+	),
 	'customer_number' => array(
 		'exclude' => 1,
 		'label' => 'LLL:EXT:easyvote_importer/Resources/Private/Language/locallang_db.xlf:tx_easyvoteimporter_domain_model_businessuser.customer_number',
