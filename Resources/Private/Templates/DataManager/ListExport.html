@@ -1,8 +1,11 @@
 {namespace v=Tx_Vhs_ViewHelpers}
 <f:layout name="Default" />
+<f:section name="subnavigation">
+	<f:render partial="DataManager/AdminFunctions" />
+</f:section>
 <f:section name="left">
 	<div class="csc-default box-pink">
-		Export
+		<h2>Export</h2>
 	</div>
 </f:section>
 <f:section name="main">
@@ -48,5 +51,4 @@
 	</div>
 </f:section>
 <f:section name="right">
-	<f:render partial="DataManager/AdminFunctions" />
 </f:section>
