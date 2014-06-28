@@ -405,7 +405,7 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 			$this->persistenceManager->persistAll();
 
 			// report success and go back to index
-			$error = 'Ihre Daten und die Spaltenzuweisung wurden gespeichert. Besten Dank.';
+			$error = 'Ihre Daten und die Spaltenzuweisung wurden gespeichert. Besten Dank. Wir werden Ihre Daten überprüfen und anschliessend ihre Adressliste vom Server entfernen.';
 			$this->flashMessageContainer->add($error, 'Daten-Upload erfolgreich', \TYPO3\CMS\Core\Messaging\FlashMessage::OK);
 			$this->checkUserIsAdmin();
 			if ($this->userIsAdmin) {
@@ -415,8 +415,8 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 				$this->redirect('cityIndex');
 			}
 		} else {
-			$error = 'Es wurden nicht alle benötigten Felder zugewiesen. Die Dateneingabe wurde abgebrochen.';
-			$this->flashMessageContainer->add($error, 'Fehler', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+			$error = 'Ihre Daten konnten nicht übermittelt werden. Bitte versuchen Sie es noch einmal. Falls es immer noch nicht funktionieren sollte. Kontaktieren Sie <a href="mailto:info@easyvote.ch">info@easyvote.ch</a>.';
+			$this->flashMessageContainer->add($error, 'Daten-Upload fehlgeschlagen', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 			$this->checkUserIsAdmin();
 			if ($this->userIsAdmin) {
 				$cityUid = $this->request->getArgument('city');
