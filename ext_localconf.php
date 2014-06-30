@@ -16,4 +16,17 @@ if (!defined('TYPO3_MODE')) {
 	)
 );
 
+/* Login-Panel */
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+	'Visol.' . $_EXTKEY,
+	'Businessuser',
+	array(
+		'BusinessUser' => 'loginPanel',
+	),
+	// non-cacheable actions
+	array(
+		'BusinessUser' => 'loginPanel',
+	)
+);
+
 ?>

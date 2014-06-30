@@ -24,6 +24,7 @@ namespace Visol\EasyvoteImporter\Controller;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+use Visol\EasyvoteImporter\Domain\Model\BusinessUser;
 
 /**
  *
@@ -40,6 +41,35 @@ class BusinessUserController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCon
 	 * @inject
 	 */
 	protected $businessUserRepository;
+
+	/**
+	 * action loginPanel
+	 *
+	 * @return void
+	 */
+	public function loginPanelAction() {
+		$businessUser = $this->getLoggedInUser();
+		if ($businessUser instanceof BusinessUser) {
+			$this->view->assign('user', $businessUser);
+		}
+	}
+
+
+	/**
+	 * @return \Visol\EasyvoteImporter\Domain\Model\BusinessUser|bool
+	 */
+	protected function getLoggedInUser() {
+		if ((int)$GLOBALS['TSFE']->fe_user->user['uid'] > 0) {
+			$businessUser = $this->businessUserRepository->findByUid($GLOBALS['TSFE']->fe_user->user['uid']);
+			if ($businessUser instanceof BusinessUser) {
+				return $businessUser;
+			} else {
+				return FALSE;
+			}
+		} else {
+			return FALSE;
+		}
+	}
 
 }
 ?>

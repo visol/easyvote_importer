@@ -1,0 +1,27 @@
+<div class="pull-left login-status">
+	<f:security.ifAuthenticated>
+		<f:then>
+			<f:link.page pageUid="{settings.communityHomePid}">
+				<f:if condition="{user.image}">
+					<f:then>
+						<f:image class="user-image" alt="{user.community}" src="uploads/pics/{user.image}" width="50" height="50c"/>
+					</f:then>
+					<f:else>
+						<div class="flag-voting flag-ch"></div>
+					</f:else>
+				</f:if>
+			</f:link.page>
+			Angemeldet als
+				<div class="user-name">{user.company}</div>
+		</f:then>
+	</f:security.ifAuthenticated>
+</div>
+<div class="pull-right">
+	<f:security.ifAuthenticated>
+		<f:then>
+			<f:link.page class="ui-button muted" pageUid="{settings.siteHomePid}" additionalParams="{logintype:'logout'}">Abmelden</f:link.page>
+		</f:then>
+		<f:else>
+		</f:else>
+	</f:security.ifAuthenticated>
+</div>

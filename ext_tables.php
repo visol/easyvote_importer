@@ -9,6 +9,14 @@ if (!defined('TYPO3_MODE')) {
 	'Data Manager'
 );
 
+/* Login-Panel */
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+	$_EXTKEY,
+	'Businessuser',
+	'Login-Panel',
+	'EXT:easyvote_importer/ext_icon.gif'
+);
+
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'easyvote Importer');
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addLLrefForTCAdescr('tx_easyvoteimporter_domain_model_dataset', 'EXT:easyvote_importer/Resources/Private/Language/locallang_csh_tx_easyvoteimporter_domain_model_dataset.xlf');
