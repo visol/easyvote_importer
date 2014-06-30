@@ -2,10 +2,10 @@
 <f:section name="subnavigation">
 	<f:if condition="{businessUser.uid}">
 		<f:then>
-			<f:link.action action="cityIndex" arguments="{city:businessUser.uid}">Start</f:link.action>
+			<f:link.action action="cityIndex" arguments="{city:businessUser.uid}"><f:translate key="subnavigation.start" /></f:link.action>
 		</f:then>
 		<f:else>
-			<f:link.action action="cityIndex" arguments="{city:businessUser}">Start</f:link.action>
+			<f:link.action action="cityIndex" arguments="{city:businessUser}"><f:translate key="subnavigation.start" /></f:link.action>
 		</f:else>
 	</f:if>
 </f:section>
@@ -18,40 +18,40 @@
 	<div class="csc-default box-blue">
 		<div id="assignColumns">
 			<div class="sortingColumns left">
-				<h3>Spalten Ihrer Tabelle:</h3>
+				<h3><f:translate key="assign.customerColumns" /></h3>
 				<ul id="source" class="connected">
 					<f:for each="{tableData}" as="tableDataItem" iteration="iterator">
 						<li class="value" data-column="{iterator.index}" data-example="{tableDataItem.firstItem}" id="col-{iterator.index}">
 							{tableDataItem.name}<br />
-							<em>Beispiel: {tableDataItem.firstItem}</em>
+							<em><f:translate key="assign.example" /> {tableDataItem.firstItem}</em>
 						</li>
 					</f:for>
 				</ul>
 			</div>
 			<div class="sortingColumns right">
-				<h3>Spalten der easyvote-Tabelle:</h3>
+				<h3><f:translate key="assign.easyvoteColumns" /></h3>
 				<ul id="target-salutation" class="target connected">
-					<li id="name" class="category static ui-state-default">
-						Anrede
-						<div class="sortable-placeholder static">Hier ablegen...</div>
+					<li id="salutation" class="category static ui-state-default">
+						<f:translate key="assign.salutation" />
+						<div class="sortable-placeholder static"><f:translate key="assign.dropHere" /></div>
 					</li>
 				</ul>
 				<ul id="target-name" class="target connected">
 					<li id="name" class="category static ui-state-default line-top">
-						Vorname, Nachname
-						<div class="sortable-placeholder static">Hier ablegen...</div>
+						<f:translate key="assign.firstNameLastName" />
+						<div class="sortable-placeholder static"><f:translate key="assign.dropHere" /></div>
 					</li>
 				</ul>
 				<ul id="target-address" class="target connected">
 					<li id="address" class="category static ui-state-default line-top">
-						Strasse, Nr.
-						<div class="sortable-placeholder static">Hier ablegen...</div>
+						<f:translate key="assign.streetNumber" />.
+						<div class="sortable-placeholder static"><f:translate key="assign.dropHere" /></div>
 					</li>
 				</ul>
 				<ul id="target-city" class="target connected">
 					<li id="city" class="category static ui-state-default line-top">
-						PLZ, Ort
-						<div class="sortable-placeholder static">Hier ablegen...</div>
+						<f:translate key="assign.zipCity" />
+						<div class="sortable-placeholder static"><f:translate key="assign.dropHere" /></div>
 					</li>
 				</ul>
 			</div>
@@ -71,12 +71,15 @@
 				<input class="validate" type="hidden" data-label="Vorname, Nachname" id="columns-name" name="tx_easyvoteimporter_datamanager[columns-name]" value="" />
 				<input class="validate" type="hidden" data-label="Strasse, Nr." id="columns-address" name="tx_easyvoteimporter_datamanager[columns-address]" value="" />
 				<input class="validate" type="hidden" data-label="PLZ, Ort" id="columns-city" name="tx_easyvoteimporter_datamanager[columns-city]" value="" />
-				<button type="submit" class="buttonBottomRight"><i class="icon-ok-sign"></i> Zuweisung bestätigen und freigeben</button>
+				<button type="submit" class="buttonBottomRight"><i class="icon-ok-sign"></i> <f:translate key="assign.confirmAssignment" /></button>
 			</f:form>
 
 		</div>
 	</div>
 	<script>
+		var errorTextBegin = "{f:translate(key:'assign.errorTextBegin')}";
+		var errorTextEnd = "{f:translate(key:'assign.errorTextEnd')}";
+
 		<![CDATA[
 		$(function() {
 			$("#source, .target").sortable({
@@ -122,7 +125,7 @@
 			var errorMessages = '';
 			$('input.validate', 'form#columnAssignment').each(function() {
 				if (!$(this).val()) {
-					errorMessages += 'Dem Adressfeld "'+ $(this).attr('data-label') + '" muss mindestens eine Spalte zugewiesen sein.\n';
+					errorMessages += errorTextBegin + ' "'+ $(this).attr('data-label') + '" ' + errorTextEnd + '\n';
 				}
 			});
 			if (errorMessages) {
@@ -135,7 +138,7 @@
 </f:section>
 <f:section name="right">
 	<div class="csc-default box-pink">
-		<h2>Vorschau</h2>
+		<h2><f:translate key="assign.previewHeader" /></h2>
 		<p class="preview">
 			<span id="preview-salutation"></span><br />
 			<span id="preview-name"></span><br />
@@ -144,12 +147,11 @@
 		</p>
 	</div>
 	<div class="csc-default box-lightblue">
-		<h2>Zuweisung der Spaltentitel</h2>
-		<p>Ziehen Sie die Spalten Ihrer Tabelle nach rechts in die vier vorgesehenen Kästchen. Die Reihenfolge der Spalten Ihrer Tabelle wird automatisch angepasst.</p>
-		<p>Sollten Sie die falsche Liste hochgeladen haben, können Sie diese Liste verwerfen und eine neue Adressliste hochladen.</p>
+		<h2><f:translate key="assign.assignmentHelpHeader" /></h2>
+		<f:translate key="assign.assignmentHelpContent" />
 		<f:form id="deleteDocument" action="remove">
 			<f:form.hidden name="dataset" value="{dataset}" />
-			<button type="submit"><i class="icon-upload-alt"></i> Neue Adressliste</button>
+			<button type="submit"><i class="icon-upload-alt"></i> <f:translate key="assign.newAddressList" /></button>
 		</f:form>
 	</div>
 </f:section>

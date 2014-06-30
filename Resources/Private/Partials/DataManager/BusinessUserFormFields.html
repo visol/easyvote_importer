@@ -1,19 +1,19 @@
 <div class="form-row form-row-radio">
-	<f:form.radio id="gender-1" name="businessUser[gender]" value="1" checked="{businessUser.gender} == 1" /> <label for="gender-1">Herr</label>
-	<f:form.radio id="gender-2" name="businessUser[gender]" value="2" checked="{businessUser.gender} == 2" /> <label for="gender-2">Frau</label>
+	<f:form.radio id="gender-1" name="businessUser[gender]" value="1" checked="{businessUser.gender} == 1" /> <label for="gender-1">{f:translate(key:'businessUser.gender.male')}</label>
+	<f:form.radio id="gender-2" name="businessUser[gender]" value="2" checked="{businessUser.gender} == 2" /> <label for="gender-2">{f:translate(key:'businessUser.gender.female')}</label>
 </div>
 <div class="form-row">
-	<f:form.textfield property="firstName" additionalAttributes="{required: required, placeholder:'Vorname'}" />
+	<f:form.textfield property="firstName" additionalAttributes="{required: required, placeholder:'{f:translate(key:\'businessUser.firstName\')}'}" />
 </div>
 <div class="form-row">
-	<f:form.textfield property="lastName" additionalAttributes="{required: required, placeholder:'Name'}" />
+	<f:form.textfield property="lastName" additionalAttributes="{required: required, placeholder:'{f:translate(key:\'businessUser.lastName\')}'}" />
 </div>
 <div class="form-row">
-	<f:form.textfield property="email" additionalAttributes="{required: required, placeholder:'E-Mail'}" />
+	<f:form.textfield property="email" additionalAttributes="{required: required, placeholder:'{f:translate(key:\'businessUser.email\')}'}" />
 </div>
 <div class="form-row">
-	<f:form.textfield property="telephone" additionalAttributes="{required: required, placeholder:'Telefon'}" />
+	<f:form.textfield property="telephone" additionalAttributes="{required: required, placeholder:'{f:translate(key:\'businessUser.telephone\')}'}" />
 </div>
 <div class="form-row">
-	<f:form.submit value="speichern" />
+	<f:form.submit value="{f:translate(key:'editBusinessUser.save')}" />
 </div>

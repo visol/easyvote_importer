@@ -26,6 +26,7 @@ namespace Visol\EasyvoteImporter\Controller;
  ***************************************************************/
 use TYPO3\CMS\Core\Utility\DebugUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 use Visol\EasyvoteImporter\Utility\ExcelUtility;
 
 
@@ -249,8 +250,9 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 			$allowedFileExtensions =  array('xls','xlsx' ,'csv');
 			$fileExtension = pathinfo($cleanFileName, PATHINFO_EXTENSION);
 			if (!in_array($fileExtension, $allowedFileExtensions) ) {
-				$error = 'Es können nur folgende Dateiformate hochgeladen werden: Excel 2003 (.xls), Excel 2007 und neuer (.xlsx), CSV (.csv).';
-				$this->flashMessageContainer->add($error, 'Fehler', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+
+				$error = LocalizationUtility::translate('performUploadAction.fileFormatError', $this->request->getControllerExtensionName());
+				$this->flashMessageContainer->add($error, LocalizationUtility::translate('flashMessage.errorHeader', $this->request->getControllerExtensionName()), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 
 				$this->checkUserIsAdmin();
 				if ($this->userIsAdmin) {
@@ -283,8 +285,8 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 			$existingMatchingDataset = $this->datasetRepository->findDatasetByBusinessUserAndVotingDate($businessUser, $votingDay);
 			if (count($existingMatchingDataset)) {
 				// a dataset exists for the current voting day and user, therefore we cannot add another one
-				$error = 'Für diesen Abstimmungstag wurde bereits eine Liste hochgeladen.';
-				$this->flashMessageContainer->add($error, 'Fehler', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+				$error = LocalizationUtility::translate('performUploadAction.existingMatchingDataset', $this->request->getControllerExtensionName());
+				$this->flashMessageContainer->add($error, LocalizationUtility::translate('flashMessage.errorHeader', $this->request->getControllerExtensionName()), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 
 				$this->checkUserIsAdmin();
 				if ($this->userIsAdmin) {
@@ -314,8 +316,8 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 			$this->redirect('assign', NULL, NULL, array('dataset' => $dataset, 'city' => $businessUser));
 
 		} else {
-			$error = 'Es wurde kein Dokument ausgewählt. Die Dateneingabe war nicht erfolgreich.';
-			$this->flashMessageContainer->add($error, 'Fehler', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+			$error = LocalizationUtility::translate('performUploadAction.noDocumentUploadedError', $this->request->getControllerExtensionName());
+			$this->flashMessageContainer->add($error, LocalizationUtility::translate('flashMessage.errorHeader', $this->request->getControllerExtensionName()), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 
 			$this->checkUserIsAdmin();
 			if ($this->userIsAdmin) {
@@ -350,8 +352,8 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 
 			// Check if it's user's dataset and redirect to home on access violation
 			if ($businessUser->getUid() !== $dataset->getBusinessuser()->getUid()) {
-				$message = 'Zugriff verweigert.';
-				$this->flashMessageContainer->add($message, 'Fehler', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+				$message = LocalizationUtility::translate('flashMessage.accessDenied', $this->request->getControllerExtensionName());
+				$this->flashMessageContainer->add($message, LocalizationUtility::translate('flashMessage.errorHeader', $this->request->getControllerExtensionName()), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 				$this->redirect('cityIndex');
 			}
 		}
@@ -381,8 +383,8 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 
 			// Check if it's user's dataset and redirect to home on access violation
 			if ($businessUser->getUid() !== $dataset->getBusinessuser()->getUid()) {
-				$message = 'Zugriff verweigert.';
-				$this->flashMessageContainer->add($message, 'Fehler', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+				$message = LocalizationUtility::translate('flashMessage.accessDenied', $this->request->getControllerExtensionName());
+				$this->flashMessageContainer->add($message, LocalizationUtility::translate('flashMessage.errorHeader', $this->request->getControllerExtensionName()), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 				$this->redirect('cityIndex');
 			}
 		}
@@ -405,8 +407,9 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 			$this->persistenceManager->persistAll();
 
 			// report success and go back to index
-			$error = 'Ihre Daten und die Spaltenzuweisung wurden gespeichert. Besten Dank. Wir werden Ihre Daten überprüfen und anschliessend ihre Adressliste vom Server entfernen.';
-			$this->flashMessageContainer->add($error, 'Daten-Upload erfolgreich', \TYPO3\CMS\Core\Messaging\FlashMessage::OK);
+			$header = LocalizationUtility::translate('approveAction.successHeader', $this->request->getControllerExtensionName());
+			$message = LocalizationUtility::translate('approveAction.successMessage', $this->request->getControllerExtensionName());
+			$this->flashMessageContainer->add($message, $header, \TYPO3\CMS\Core\Messaging\FlashMessage::OK);
 			$this->checkUserIsAdmin();
 			if ($this->userIsAdmin) {
 				$cityUid = $this->request->getArgument('city');
@@ -415,8 +418,9 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 				$this->redirect('cityIndex');
 			}
 		} else {
-			$error = 'Ihre Daten konnten nicht übermittelt werden. Bitte versuchen Sie es noch einmal. Falls es immer noch nicht funktionieren sollte. Kontaktieren Sie <a href="mailto:info@easyvote.ch">info@easyvote.ch</a>.';
-			$this->flashMessageContainer->add($error, 'Daten-Upload fehlgeschlagen', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+			$header = LocalizationUtility::translate('approveAction.failHeader', $this->request->getControllerExtensionName());
+			$message = LocalizationUtility::translate('approveAction.failMessage', $this->request->getControllerExtensionName());
+			$this->flashMessageContainer->add($message, $header, \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 			$this->checkUserIsAdmin();
 			if ($this->userIsAdmin) {
 				$cityUid = $this->request->getArgument('city');
@@ -441,8 +445,8 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 
 			// Check if it's user's dataset and redirect to home on access violation
 			if ($businessUser->getUid() !== $dataset->getBusinessuser()->getUid()) {
-				$message = 'Zugriff verweigert.';
-				$this->flashMessageContainer->add($message, 'Fehler', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+				$message = LocalizationUtility::translate('flashMessage.accessDenied', $this->request->getControllerExtensionName());
+				$this->flashMessageContainer->add($message, LocalizationUtility::translate('flashMessage.errorHeader', $this->request->getControllerExtensionName()), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 				$this->redirect('cityIndex');
 			}
 		}
@@ -452,12 +456,13 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 			$this->datasetRepository->remove($dataset);
 			$this->persistenceManager->persistAll();
 			// report success and go back to index
-			$error = 'Ihr Dokument wurde gelöscht.';
-			$this->flashMessageContainer->add($error, 'Daten gelöscht', \TYPO3\CMS\Core\Messaging\FlashMessage::OK);
+			$header = LocalizationUtility::translate('removeAction.successHeader', $this->request->getControllerExtensionName());
+			$message = LocalizationUtility::translate('removeAction.successMessage', $this->request->getControllerExtensionName());
+			$this->flashMessageContainer->add($message, $header, \TYPO3\CMS\Core\Messaging\FlashMessage::OK);
 			$this->redirect('index');
 		} else {
-			$error = 'Ihr Dokument konnte nicht gelöscht werden. Bitte wenden Sie sich an unser Team.';
-			$this->flashMessageContainer->add($error, 'Fehler', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+			$message = LocalizationUtility::translate('removeAction.failMessage', $this->request->getControllerExtensionName());
+			$this->flashMessageContainer->add($message, LocalizationUtility::translate('flashMessage.errorHeader', $this->request->getControllerExtensionName()), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 			$this->redirect('index');
 		}
 	}
@@ -529,7 +534,7 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 			$this->flashMessageContainer->add($error, 'Datenschutz-Info', \TYPO3\CMS\Core\Messaging\FlashMessage::OK);
 		} else {
 			$error = 'Die Originaldatei konnte nicht gelöscht werden.';
-			$this->flashMessageContainer->add($error, 'Fehler', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+			$this->flashMessageContainer->add($error, LocalizationUtility::translate('flashMessage.errorHeader', $this->request->getControllerExtensionName()), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 
 		}
 
@@ -548,8 +553,8 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 		// security check
 		$this->checkUserIsAdmin();
 		if (!$this->userIsAdmin) {
-			$message = 'Zugriff verweigert.';
-			$this->flashMessageContainer->add($message, 'Fehler', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+			$message = LocalizationUtility::translate('flashMessage.accessDenied', $this->request->getControllerExtensionName());
+			$this->flashMessageContainer->add($message, LocalizationUtility::translate('flashMessage.errorHeader', $this->request->getControllerExtensionName()), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 			$this->redirect('cityIndex');
 		}
 
@@ -568,8 +573,8 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 		// security check
 		$this->checkUserIsAdmin();
 		if (!$this->userIsAdmin) {
-			$message = 'Zugriff verweigert.';
-			$this->flashMessageContainer->add($message, 'Fehler', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+			$message = LocalizationUtility::translate('flashMessage.accessDenied', $this->request->getControllerExtensionName());
+			$this->flashMessageContainer->add($message, LocalizationUtility::translate('flashMessage.errorHeader', $this->request->getControllerExtensionName()), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 			$this->redirect('cityIndex');
 		}
 
@@ -587,8 +592,8 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 		// security check
 		$this->checkUserIsAdmin();
 		if (!$this->userIsAdmin) {
-			$message = 'Zugriff verweigert.';
-			$this->flashMessageContainer->add($message, 'Fehler', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+			$message = LocalizationUtility::translate('flashMessage.accessDenied', $this->request->getControllerExtensionName());
+			$this->flashMessageContainer->add($message, LocalizationUtility::translate('flashMessage.errorHeader', $this->request->getControllerExtensionName()), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 			$this->redirect('cityIndex');
 		}
 
@@ -605,8 +610,8 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 		// security check
 		$this->checkUserIsAdmin();
 		if (!$this->userIsAdmin) {
-			$message = 'Zugriff verweigert.';
-			$this->flashMessageContainer->add($message, 'Fehler', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+			$message = LocalizationUtility::translate('flashMessage.accessDenied', $this->request->getControllerExtensionName());
+			$this->flashMessageContainer->add($message, LocalizationUtility::translate('flashMessage.errorHeader', $this->request->getControllerExtensionName()), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 			$this->redirect('cityIndex');
 		}
 
@@ -624,8 +629,8 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 		// security check
 		$this->checkUserIsAdmin();
 		if (!$this->userIsAdmin) {
-			$message = 'Zugriff verweigert.';
-			$this->flashMessageContainer->add($message, 'Fehler', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+			$message = LocalizationUtility::translate('flashMessage.accessDenied', $this->request->getControllerExtensionName());
+			$this->flashMessageContainer->add($message, LocalizationUtility::translate('flashMessage.errorHeader', $this->request->getControllerExtensionName()), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 			$this->redirect('cityIndex');
 		}
 
@@ -644,8 +649,8 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 		// security check
 		$this->checkUserIsAdmin();
 		if (!$this->userIsAdmin) {
-			$message = 'Zugriff verweigert.';
-			$this->flashMessageContainer->add($message, 'Fehler', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+			$message = LocalizationUtility::translate('flashMessage.accessDenied', $this->request->getControllerExtensionName());
+			$this->flashMessageContainer->add($message, LocalizationUtility::translate('flashMessage.errorHeader', $this->request->getControllerExtensionName()), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 			$this->redirect('cityIndex');
 		}
 
@@ -755,8 +760,8 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 		$this->checkUserIsAdmin();
 		if (!$this->userIsAdmin) {
 			if (!$this->isRequestedUserLoggedInUser($businessUser)) {
-				$message = 'Zugriff verweigert.';
-				$this->flashMessageContainer->add($message, 'Fehler', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+				$message = LocalizationUtility::translate('flashMessage.accessDenied', $this->request->getControllerExtensionName());
+				$this->flashMessageContainer->add($message, LocalizationUtility::translate('flashMessage.errorHeader', $this->request->getControllerExtensionName()), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 				$this->redirect('cityIndex');
 			}
 		}
@@ -775,14 +780,15 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 		$this->checkUserIsAdmin();
 		if (!$this->userIsAdmin) {
 			if (!$this->isRequestedUserLoggedInUser($businessUser)) {
-				$message = 'Zugriff verweigert.';
-				$this->flashMessageContainer->add($message, 'Fehler', \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+				$message = LocalizationUtility::translate('flashMessage.accessDenied', $this->request->getControllerExtensionName());
+				$this->flashMessageContainer->add($message, LocalizationUtility::translate('flashMessage.errorHeader', $this->request->getControllerExtensionName()), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 				$this->redirect('cityIndex');
 			}
 		}
 
 		$this->businessUserRepository->update($businessUser);
-		$this->flashMessageContainer->add('Ihre Kontaktdaten wurden aktualisiert.');
+		$message = LocalizationUtility::translate('updateBusinessUserAction.successMessage', $this->request->getControllerExtensionName());
+		$this->flashMessageContainer->add($message);
 		$this->checkUserIsAdmin();
 		if ($this->userIsAdmin) {
 			$this->redirect('cityIndex', NULL, NULL, array('city' => $businessUser->getUid()));

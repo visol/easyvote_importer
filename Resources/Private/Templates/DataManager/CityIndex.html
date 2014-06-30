@@ -16,38 +16,37 @@
 </f:section>
 <f:section name="main">
 	<div class="csc-default box-blue">
-		<h2>Herzlich willkommen</h2>
-		<p>Hier können Sie Ihre Adressliste hochladen. Da dem DSJ (<strong>easyvote</strong>) der Datenschutz sehr wichtig ist, haben wir uns dazu entschlossen ein neues Uploadsystem einzuführen, welches mehr Sicherheit im Umgang mit den Adresslisten garantiert. Die Adressen werden dabei neu verschlüsselt übermittelt. Das Uploadsystem wurde auch aufgrund des laufenden SQS-Zertifizierungsverfahren eingeführt. Zudem vermindert das neue System den Arbeitsaufwand auf Seite der Gemeinden zum Erstellen der Adresslisten.</p>
+		<h2><f:translate key="cityIndex.header" /></h2>
+		<p><f:translate key="cityIndex.introduction" /></p>
 	</div>
 	<f:for each="{votingDays}" as="votingDay" iteration="iterator">
 		<div class="csc-default box-blue">
-			<h3>Abstimmung vom <f:format.date date="{votingDay.votingDate}" format="d.m.Y" /></h3>
+			<h3><f:translate key="cityIndex.votingDateOf" /> <f:format.date date="{votingDay.votingDate}" format="d.m.Y" /></h3>
 			<f:if condition="{v:var.get(name: 'datasets.{iterator.index}.uid')}">
 				<f:then>
 					<f:if condition="{v:var.get(name: 'datasets.{iterator.index}.file')}">
 						<f:then>
-							<p>Vielen Dank. Wir haben Ihre Adressliste zu dieser Abstimmung am <f:format.date date="@{v:var.get(name: 'datasets.{iterator.index}.crdate')}" format="d.m.Y" /> erhalten.<br />
-							<em>Dateiname: {v:var.get(name: 'datasets.{iterator.index}.file')}</em></p>
+							<p><f:translate key="cityIndex.dataUploadedBegin" /> <f:format.date date="@{v:var.get(name: 'datasets.{iterator.index}.crdate')}" format="d.m.Y" /> <f:translate key="cityIndex.dataUploadedEnd" /><br />
+							<em><f:translate key="cityIndex.fileName" /> {v:var.get(name: 'datasets.{iterator.index}.file')}</em></p>
 							<f:if condition="{v:var.get(name: 'datasets.{iterator.index}.columnConfiguration')}">
-								<f:then></f:then>
 								<f:else>
-									<p><strong>Die Spaltenzuordnung fehlt.</strong></p>
+									<p><strong><f:translate key="cityIndex.assignmentMissing" /></strong></p>
 									<f:form name="assign" arguments="{city: businessUser.uid, dataset: '{v:var.get(name: \'datasets.{iterator.index}\')}'}" action="assign">
-										<f:form.submit value="Spalten zuordnen" />
+										<f:form.submit value="{f:translate(key:'cityIndex.assignColumns')}" />
 									</f:form>
 								</f:else>
 							</f:if>
 						</f:then>
 						<f:else>
-							Daten wurden am <f:format.date date="@{v:var.get(name: 'datasets.{iterator.index}.crdate')}" format="d.m.Y" /> hochgeladen, verarbeitet und wieder vom System gelöscht.
+							<f:translate key="cityIndex.dataProcessedBegin" /> <f:format.date date="@{v:var.get(name: 'datasets.{iterator.index}.crdate')}" format="d.m.Y" /> <f:translate key="cityIndex.dataProcessedEnd" />
 						</f:else>
 					</f:if>
 				</f:then>
 				<f:else>
-					<p>Wir benötigen von Ihnen eine Excel-Liste mit den Empfängern der easyvote-Broschüre.</p>
+					<p><f:translate key="cityIndex.uploadRequest" /></p>
 					<f:form action="uploadList">
 						<f:form.hidden name="city" value="{businessUser.uid}" />
-						<f:form.submit value="Adressliste hochladen" name="votingDay[{votingDay.uid}]" />
+						<f:form.submit value="{f:translate(key:'cityIndex.uploadButton')}" name="votingDay[{votingDay.uid}]" />
 					</f:form>
 				</f:else>
 			</f:if>
@@ -56,11 +55,11 @@
 </f:section>
 <f:section name="right">
 	<div class="csc-default box-blue">
-		<h2>Frist</h2>
-		<p>Wir bitten Sie, uns die Adresslisten bis xx.yy.2014 zu übermitteln.</p>
+		<h2><f:translate key="cityIndex.deadlineHeader" /></h2>
+		<p><f:translate key="cityIndex.deadlineContent" arguments="{1: '14.7.2014'}" /></p>
 	</div>
 	<div class="csc-default box-blue">
-		<h2>Anleitung</h2>
-		<p><a href="#">Hier</a> können Sie die Anleitung herunterladen. In dieser wird das Hochladen der Adressliste Schritt für Schritt erklärt.</p>
+		<h2><f:translate key="cityIndex.manualHeader" /></h2>
+		<p><f:translate key="cityIndex.manualContent" /></p>
 	</div>
 </f:section>

@@ -11,7 +11,7 @@
 					</f:else>
 				</f:if>
 			</f:link.page>
-			eingeloggt als
+			<f:translate key="businessUser.loggedInAs" />
 				<div class="user-name">{user.company}</div>
 		</f:then>
 	</f:security.ifAuthenticated>
@@ -19,7 +19,9 @@
 <div class="pull-right">
 	<f:security.ifAuthenticated>
 		<f:then>
-			<f:link.page class="ui-button muted" pageUid="{settings.siteHomePid}" additionalParams="{logintype:'logout'}">Abmelden</f:link.page>
+			<f:link.page class="ui-button muted" pageUid="{settings.siteHomePid}" additionalParams="{logintype:'logout'}">
+				<f:translate key="businessUser.logout" />
+			</f:link.page>
 		</f:then>
 		<f:else>
 		</f:else>
