@@ -87,7 +87,7 @@
 			</trans-unit>
 			<trans-unit id="cityIndex.manualContent">
 				<source><![CDATA[
-					<a href="https://www.easyvote.ch/fileadmin/files/Data-Manager/Anleitung/Anleitung_V1.0.pdf">Hier</a> können Sie die Anleitung herunterladen. In dieser wird das Hochladen der Adressliste Schritt für Schritt erklärt.
+					<a target="_blank" href="https://www.easyvote.ch/fileadmin/files/Data-Manager/Anleitung/Anleitung_V1.0.pdf">Hier</a> können Sie die Anleitung herunterladen. In dieser wird das Hochladen der Adressliste Schritt für Schritt erklärt.
 				]]></source>
 			</trans-unit>
 
