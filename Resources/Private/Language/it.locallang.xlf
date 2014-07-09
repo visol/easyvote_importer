@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-10-11T17:02:16Z" product-name="easyvote_importer">
+		<header/>
+		<body>
+
+			<trans-unit id="tx_easyvoteimporter_domain_model_businessuser">
+				<source>easyvote-Kunde</source>
+				<target>Cliente easyvote</target>
+			</trans-unit>
+			<trans-unit id="tx_easyvoteimporter_domain_model_businessuser.customer_number">
+				<source>Kundennummer</source>
+				<target>Numero cliente</target>
+			</trans-unit>
+			<trans-unit id="tx_easyvoteimporter_domain_model_businessuser.datasets">
+				<source>Adressdaten</source>
+				<target>Dati indirizzo</target>
+			</trans-unit>
+			
+			<trans-unit id="tx_easyvoteimporter_domain_model_dataset">
+				<source>Adressdaten</source>
+				<target>Dati indirizzo</target>
+			</trans-unit>
+			<trans-unit id="tx_easyvoteimporter_domain_model_dataset.file">
+				<source>Datei</source>
+				<target>File</target>
+			</trans-unit>
+			<trans-unit id="tx_easyvoteimporter_domain_model_dataset.voting_day">
+				<source>Abstimmungstag</source>
+				<target>Giorno della votazione</target>
+			</trans-unit>
+
+			<trans-unit id="businessUser.loggedInAs">
+				<source>eingeloggt als</source>
+				<target>Login come</target>
+			</trans-unit>
+			<trans-unit id="businessUser.logout">
+				<source>Abmelden</source>
+				<target>Disconnettere</target>
+			</trans-unit>
+			<trans-unit id="businessUser.customerNumber">
+				<source>Kundennummer:</source>
+				<target>Numero cliente</target>
+			</trans-unit>
+
+			<trans-unit id="subnavigation.start">
+				<source>Start</source>
+				<target>Start</target>
+			</trans-unit>
+
+			<trans-unit id="cityIndex.header">
+				<source>Herzlich willkommen</source>
+				<target>Benvenuti!</target>
+			</trans-unit>
+			<trans-unit id="cityIndex.introduction">
+				<source><![CDATA[
+					Hier können Sie Ihre Adressliste hochladen. Da dem DSJ (<strong>easyvote</strong>) der Datenschutz sehr wichtig ist, haben wir uns dazu entschlossen ein neues Uploadsystem einzuführen, welches mehr Sicherheit im Umgang mit den Adresslisten garantiert. Die Adressen werden dabei neu verschlüsselt übermittelt. Das Uploadsystem wurde auch aufgrund des laufenden SQS-Zertifizierungsverfahren eingeführt. Zudem vermindert das neue System den Arbeitsaufwand auf Seite der Gemeinden zum Erstellen der Adresslisten.
+				]]></source>
+				<target><![CDATA[
+					Qui potete caricare la vostra lista indirizzi. Per la FSPG (<strong>easyvote</strong>) la protezione dati è molto importante, per questo abbiamo deciso di introdurre un nuovo sistema di caricamento dati, che garantisce una maggiore sicurezza nella trasmissione della lista indirizzi. Gli indirizzi ora vengono trasmessi in modo più riservato. Il nuovo sistema di caricamento dati è stato introdotto nell’ambito della procedura di ottenimento della certificazione SQS in corso. Inoltre il nuovo sistema alleggerisce notevolmente il carico di lavoro nella redazione delle liste indirizzi.
+				]]></target>
+			</trans-unit>
+			<trans-unit id="cityIndex.votingDateOf">
+				<source>Abstimmung vom</source>
+				<target>Votazioni del</target>
+			</trans-unit>
+			<trans-unit id="cityIndex.dataUploadedBegin">
+				<source>Vielen Dank. Wir haben Ihre Adressliste zu dieser Abstimmung am</source>
+				<target>Molte grazie. Abbiamo ricevuto la lista indirizzi per la votazione del</target>
+			</trans-unit>
+			<trans-unit id="cityIndex.dataUploadedBeginEnd">
+				<source>erhalten.</source>
+				<target>.</target>
+			</trans-unit>
+			<trans-unit id="cityIndex.fileName">
+				<source>Dateiname:</source>
+				<target>Nome file:</target>
+			</trans-unit>
+			<trans-unit id="cityIndex.assignmentMissing">
+				<source>Die Spaltenzuordnung fehlt.</source>
+				<target>Ordine colonne mancante.</target>
+			</trans-unit>
+			<trans-unit id="cityIndex.assignColumns">
+				<source>Spalten zuordnen</source>
+				<target>Ordinare colonne</target>
+			</trans-unit>
+			<trans-unit id="cityIndex.dataProcessedBegin">
+				<source>Daten wurden am</source>
+				<target>I dati sono stati caricati, modificati, e cancellati dal sistema il </target>
+			</trans-unit>
+			<trans-unit id="cityIndex.dataProcessedEnd">
+				<source>hochgeladen, verarbeitet und wieder vom System gelöscht.</source>
+				<target>.</target>
+			</trans-unit>
+			<trans-unit id="cityIndex.uploadRequest">
+				<source>Wir benötigen von Ihnen eine Excel-Liste mit den Empfängern der easyvote-Broschüre.</source>
+				<target>Abbiamo bisogno da lei della lista Excel con destinatari del libretto easyvote.</target>
+			</trans-unit>
+			<trans-unit id="cityIndex.uploadButton">
+				<source>Adressliste hochladen</source>
+				<target>Caricare la lista indirizzi</target>
+			</trans-unit>
+			<trans-unit id="cityIndex.deadlineHeader">
+				<source>Frist</source>
+				<target>Termine</target>
+			</trans-unit>
+			<trans-unit id="cityIndex.deadlineContent">
+				<source>Wir bitten Sie, uns die Adresslisten bis %1$s zu übermitteln.</source>
+				<target>Vi preghiamo di fornirci le liste con gli indirizzi entro il %1$s.</target>
+			</trans-unit>
+			<trans-unit id="cityIndex.manualHeader">
+				<source>Anleitung</source>
+				<target>Istruzioni</target>
+			</trans-unit>
+			<trans-unit id="cityIndex.manualContent">
+				<source><![CDATA[
+					<a target="_blank" href="https://www.easyvote.ch/fileadmin/files/Data-Manager/Anleitung/Anleitung_V1.0.pdf">Hier</a> können Sie die Anleitung herunterladen. In dieser wird das Hochladen der Adressliste Schritt für Schritt erklärt.
+				]]></source>
+				<target><![CDATA[
+					Qui potete scaricare le istruzioni, nelle quali è descritto passo passo come procedere per caricare le liste indirizzi.
+				]]></target>
+			</trans-unit>
+
+			<trans-unit id="assign.customerColumns">
+				<source>Spalten Ihrer Tabelle:</source>
+				<target>Colonne della sua tabella:</target>
+			</trans-unit>
+			<trans-unit id="assign.example">
+				<source>Beispiel:</source>
+				<target>Esempio:</target>
+			</trans-unit>
+			<trans-unit id="assign.easyvoteColumns">
+				<source>Spalten der easyvote-Tabelle:</source>
+				<target>Colonne della tabella easyvote:</target>
+			</trans-unit>
+			<trans-unit id="assign.salutation">
+				<source>Anrede</source>
+				<target>Titolo</target>
+			</trans-unit>
+			<trans-unit id="assign.dropHere">
+				<source>Hier ablegen...</source>
+				<target>Trascinare qui</target>
+			</trans-unit>
+			<trans-unit id="assign.firstNameLastName">
+				<source>Vorname, Nachname</source>
+				<target>Nome, Cognome</target>
+			</trans-unit>
+			<trans-unit id="assign.streetNumber">
+				<source>Strasse, Nr</source>
+				<target>Via, numero</target>
+			</trans-unit>
+			<trans-unit id="assign.zipCity">
+				<source>PLZ, Ort</source>
+				<target>CAP, Luogo</target>
+			</trans-unit>
+			<trans-unit id="assign.confirmAssignment">
+				<source>Zuweisung bestätigen und freigeben</source>
+				<target> confermare versione e inviare </target>
+			</trans-unit>
+			<trans-unit id="assign.errorTextBegin">
+				<source>Dem Adressfeld</source>
+				<target>Campo indirizzo</target>
+			</trans-unit>
+			<trans-unit id="assign.errorTextEnd">
+				<source>muss mindestens eine Spalte zugewiesen sein.</source>
+				<target>deve essere confermata almeno una colonna.</target>
+			</trans-unit>
+			<trans-unit id="assign.previewHeader">
+				<source>Vorschau</source>
+				<target>Anteprima</target>
+			</trans-unit>
+			<trans-unit id="assign.assignmentHelpHeader">
+				<source>Zuweisung der Spaltentitel</source>
+				<target>Conferma dei titoli di colonna</target>
+			</trans-unit>
+			<trans-unit id="assign.assignmentHelpContent">
+				<source><![CDATA[
+					<p>Ziehen Sie die Spalten Ihrer Tabelle nach rechts in die vier vorgesehenen Kästchen. Die Reihenfolge der Spalten Ihrer Tabelle wird automatisch angepasst.</p>
+					<p>Sollten Sie die falsche Liste hochgeladen haben, können Sie diese Liste verwerfen und eine neue Adressliste hochladen.</p>
+				]]></source>
+				<target><![CDATA[
+					<p>Trascinate verso destra la vostra tabella verso le 4 caselle previste. L’ordine della vostra tabella verrà adattato automaticamente</p>
+					<p>Nel caso abbiate caricato la lista indirizzi sbagliata potete eliminare questa lista e caricarne una nuova.</p>
+				]]></target>
+			</trans-unit>
+			<trans-unit id="assign.newAddressList">
+				<source>Neue Adressliste</source>
+				<target>Nuova lista indirizzi</target>
+			</trans-unit>
+
+			<trans-unit id="editBusinessUser.header">
+				<source>Kontaktdaten bearbeiten</source>
+				<target>Modificare dati di contatto</target>
+			</trans-unit>
+			<trans-unit id="editBusinessUser.hintHeader">
+				<source>Hinweis</source>
+				<target>Attenzione</target>
+			</trans-unit>
+			<trans-unit id="editBusinessUser.hintContent">
+				<source><![CDATA[
+					Hier werden nur Ihre Kontaktdaten bezüglich Data Manager (Adresseinforderung) erfasst. Ihre übrigen Kontaktdaten z.B. für die Rechnungsstellung bleiben bestehen oder können mit einem Mail an <a href="mailto:info@easyvote.ch">info@easyvote.ch</a> geändert werden.
+				]]></source>
+				<target><![CDATA[
+					Qui vengono raccolti i vostri dati di contatto riguardanti esclusivamente Data Manager (raccolta degli indirizzi). Gli altri vostri dati di contatto, per esempio per la fatturazione, rimangono immutati o possono essere modificati scrivendo a <a href="mailto:info@easyvote.ch">info@easyvote.ch</a>.
+				]]></target>
+			</trans-unit>
+			<trans-unit id="editBusinessUser.save">
+				<source>speichern</source>
+				<target>Salvare</target>
+			</trans-unit>
+
+			<trans-unit id="businessUser.gender.male">
+				<source>Herr</source>
+				<target>Signor</target>
+			</trans-unit>
+			<trans-unit id="businessUser.gender.female">
+				<source>Frau</source>
+				<target>Signora</target>
+			</trans-unit>
+			<trans-unit id="businessUser.firstName">
+				<source>Vorname</source>
+				<target>Nome</target>
+			</trans-unit>
+			<trans-unit id="businessUser.lastName">
+				<source>Name</source>
+				<target>Cognome</target>
+			</trans-unit>
+			<trans-unit id="businessUser.email">
+				<source>E-Mail</source>
+				<target>e-mail </target>
+			</trans-unit>
+			<trans-unit id="businessUser.telephone">
+				<source>Telefon</source>
+				<target>Telefono</target>
+			</trans-unit>
+
+			<trans-unit id="uploadList.header">
+				<source>Adressliste %1$s für</source>
+				<target>Lista indirizzi per il %1$s</target>
+			</trans-unit>
+			<trans-unit id="uploadList.introduction">
+				<source><![CDATA[
+					<p>Klicken Sie auf "Datei auswählen" und wählen Sie Ihre gewünschte Adressliste aus.</p>
+					<p>Wenn die erste Zeile Ihrer Adressliste keine Spaltentitel (Name, Vorname, Adresse etc.) enthält, deaktivieren Sie die Option "Erste Zeile enthält Spaltentitel".</p>
+					<p>Anschliessend klicken Sie auf "Datei hochladen".</p>
+				]]></source>
+				<target><![CDATA[
+					<p>Ciccate su „scegli file “e scegliete la lista indirizzi desiderata.</p>
+					<p>Se la prima riga della vostra lista indirizzi non contiene i titoli delle colonne (nome, cognome,indirizzo, ecc.) vi preghiamo di disattivare l’opzione “prima riga contiene titoli”.</p>
+					<p>In seguito cliccare su “caricare file”.</p>
+				]]></target>
+			</trans-unit>
+			<trans-unit id="uploadList.firstLineContainsLabels">
+				<source>Erste Zeile enthält Spaltentitel</source>
+				<target>Prima riga contiene titoli</target>
+			</trans-unit>
+			<trans-unit id="uploadList.upload">
+				<source>Datei hochladen</source>
+				<target>Caricare file</target>
+			</trans-unit>
+			<trans-unit id="uploadList.helpHeader">
+				<source>Wie erstelle ich eine Adressliste?</source>
+				<target>Come creo una lista indirizzi?</target>
+			</trans-unit>
+			<trans-unit id="uploadList.helpContent">
+				<source><![CDATA[
+					<p>
+						Laden Sie die <a href="%1$s">Muster-Excelliste</a> herunter und benutzen Sie am besten gleich diese. Wenn sie bereits eine eigene Adressliste erstellt haben, können Sie auch diese verwenden. Ihre Adressliste muss aber die gleichen Informationen erhalten wie die Muster-Excelliste:
+					</p>
+					<ul>
+						<li>Anrede</li>
+						<li>Name</li>
+						<li>Vorname</li>
+						<li>Adresszeile 1</li>
+						<li>Adresszeile 2 (wenn vorhanden)</li>
+						<li>PLZ und Ort</li>
+					</ul>
+				]]></source>
+				<target><![CDATA[
+					<p>
+						Scaricare la lista excel modello e compilarlo è il metodo migliore. Se avete già una lista indirizzi, potete utilizzare quella che già avete. La lista deve però contenere le stesse informazioni richieste nella lista modello:
+					</p>
+					<ul>
+						<li>Titolo</li>
+						<li>Cognome</li>
+						<li>Nome</li>
+						<li>Riga indirizzo 1</li>
+						<li>Riga indirizzo 2 (se necessario)</li>
+						<li>CAP e luogo</li>
+					</ul>
+				]]></target>
+			</trans-unit>
+			<trans-unit id="uploadList.ageRangeHeader">
+				<source>Alterskategorie?</source>
+				<target>Fascia d’età</target>
+			</trans-unit>
+			<trans-unit id="uploadList.ageRange1">
+				<source><![CDATA[
+					<p>Sie beliefern alle Jugendlichen im Alter von <strong>%1$s-%2$s Jahren</strong>. Für die Abstimmung vom
+				]]></source>
+				<target><![CDATA[
+					<p>Il libretto è consegnato a tutti i giovani tra i <strong>%1$s-%2$s anni</strong>. Per le votazioni del
+				]]></target>
+			</trans-unit>
+			<trans-unit id="uploadList.ageRange2">
+				<source>sind dies alle Jugendlichen, welche zwischen dem</source>
+				<target>sono intesi tutti i giovani che sono nati tra il</target>
+			</trans-unit>
+			<trans-unit id="uploadList.ageRange3">
+				<source>und dem</source>
+				<target>e il</target>
+			</trans-unit>
+			<trans-unit id="uploadList.ageRange4">
+				<source><![CDATA[
+					geboren sind. Möchten Sie die Altersgruppe ändern? Gerne können Sie uns unter <a href="mailto:info@easyvote.ch">info@easyvote.ch</a> kontaktieren.</p>
+				]]></source>
+				<target><![CDATA[
+					. Volete modificare la fascia d’età? Con piacere potete contattarci all’indirizzo <a href="mailto:info@easyvote.ch">info@easyvote.ch</a>.</p>
+				]]></target>
+			</trans-unit>
+			<trans-unit id="uploadList.ageRangeNotSet">
+				<source><![CDATA[
+					<p>Sie haben keine bestimmte Altersgruppe oder aber mehrere Altersgruppen. Sie finden die detaillierten Angaben im Mail, das wir Ihnen für die Adresseinforderung geschickt haben. Sollten Sie nicht mehr wissen welche Altersgruppen beliefert werden, können Sie sich gerne an <a href="mailto:info@easyvote.ch">info@easyvote.ch</a> wenden.</p>
+				]]></source>
+				<target><![CDATA[
+					<p>Non avete una fascia d’età definita o ne avete diverse. Trovate i dettagli nell’e-mail che vi è stata spedita per la raccolta degli indirizzi. Nel caso non sappiate più a quale fascia d’età desiderate mandare i libretti, potete contattare senza problemi <a href="mailto:info@easyvote.ch">info@easyvote.ch</a>.</p>
+				]]></target>
+			</trans-unit>
+
+			<trans-unit id="flashMessage.errorHeader">
+				<source>Fehler</source>
+				<target>Errore</target>
+			</trans-unit>
+			<trans-unit id="flashMessage.accessDenied">
+				<source>Zugriff verweigert.</source>
+				<target>Accesso negato </target>
+			</trans-unit>
+
+			<trans-unit id="performUploadAction.fileFormatError">
+				<source>Es können nur folgende Dateiformate hochgeladen werden: Excel 2003 (.xls), Excel 2007 und neuer (.xlsx), CSV (.csv).</source>
+				<target>Possono essere caricati solo i file nei seguenti formati: Excel 2003 (.xls), Excel 2007 e più recenti (.xlsx), CSV (.csv).</target>
+			</trans-unit>
+			<trans-unit id="performUploadAction.existingMatchingDataset">
+				<source>Für diesen Abstimmungstag wurde bereits eine Liste hochgeladen.</source>
+				<target>Per questa giornata di votazioni è già stata caricata una lista indirizzi.</target>
+			</trans-unit>
+			<trans-unit id="performUploadAction.noDocumentUploadedError">
+				<source></source>
+				<target></target>
+			</trans-unit>
+
+			<trans-unit id="approveAction.successHeader">
+				<source>Daten-Upload erfolgreich</source>
+				<target>Caricamento dati eseguito con successo</target>
+			</trans-unit>
+			<trans-unit id="approveAction.successMessage">
+				<source>Ihre Daten und die Spaltenzuweisung wurden gespeichert. Besten Dank. Wir werden Ihre Daten überprüfen und anschliessend ihre Adressliste vom Server entfernen.</source>
+				<target>I vostri dati sono stati salvati. Mille grazie per la collaborazione. Verificheremo i vostri dati e in seguito elimineremo la vostra lista indirizzi dai server.</target>
+			</trans-unit>
+			<trans-unit id="approveAction.failHeader">
+				<source>Daten-Upload fehlgeschlagen</source>
+				<target>Errore nel caricamento dati</target>
+			</trans-unit>
+			<trans-unit id="approveAction.failMessage">
+				<source><![CDATA[
+					Ihre Daten konnten nicht übermittelt werden. Bitte versuchen Sie es noch einmal. Falls es immer noch nicht funktionieren sollte. Kontaktieren Sie <a href="mailto:info@easyvote.ch">info@easyvote.ch</a>.
+				]]></source>
+				<target><![CDATA[
+					Non è stato possibile caricare i vostri dati. Vi preghiamo di riprovare. Nel caso in cui il problema dovesse ripresentarsi, vi preghiamo di contattare <a href="mailto:info@easyvote.ch">info@easyvote.ch</a>.
+				]]></target>
+			</trans-unit>
+
+			<trans-unit id="removeAction.successHeader">
+				<source>Daten gelöscht</source>
+				<target>Dati eliminati</target>
+			</trans-unit>
+			<trans-unit id="removeAction.successMessage">
+				<source>Ihr Dokument wurde gelöscht.</source>
+				<target>Il suo documento è stato eliminato</target>
+			</trans-unit>
+			<trans-unit id="removeAction.failMessage">
+				<source>Ihr Dokument konnte nicht gelöscht werden. Bitte wenden Sie sich an unser Team.</source>
+				<target>Non è possibile eliminare il suo documento. Vi preghiamo di rivolgervi al nostro team</target>
+			</trans-unit>
+
+			<trans-unit id="updateBusinessUserAction.successMessage">
+				<source>Ihre Kontaktdaten wurden aktualisiert.</source>
+				<target>I suoi dati di contatto sono stati attualizzati </target>
+			</trans-unit>
+
+		</body>
+	</file>
+</xliff>
