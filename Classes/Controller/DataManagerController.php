@@ -683,12 +683,13 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 	/**
 	 * Apply the blacklist to the addresses for a given voting day
 	 *
-	 * @param \Visol\Easyvote\Domain\Model\VotingDay $votingDay
+	 * @param int $votingDay
 	 */
-	public function applyBlacklistAction(\Visol\Easyvote\Domain\Model\VotingDay $votingDay) {
+	public function applyBlacklistAction($votingDay) {
 		$blacklist = $this->blacklistRepository->findAll();
 		$blacklistCount = $blacklist->count();
 		$addToBlacklistCount = 0;
+		$votingDay = $this->votingDayRepository->findVisibleAndHiddenByUid($votingDay);
 		foreach ($blacklist as $blacklistItem) {
 			// find the corresponding address for a blacklist item
 			$address = $this->addressRepository->findBlacklistMatchByVotingDay($blacklistItem, $votingDay);
@@ -709,9 +710,10 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 	/**
 	 * Export all addresses for a voting day
 	 *
-	 * @param \Visol\Easyvote\Domain\Model\VotingDay $votingDay
+	 * @param int $votingDay
 	 */
-	public function performExportAction(\Visol\Easyvote\Domain\Model\VotingDay $votingDay) {
+	public function performExportAction($votingDay) {
+		$votingDay = $this->votingDayRepository->findVisibleAndHiddenByUid($votingDay);
 		$addresses = $this->addressRepository->findAllNotBlacklistedByVotingDay($votingDay);
 
 		ExcelUtility::pushExcelExportFromAddresses($addresses, $votingDay);
@@ -722,9 +724,10 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 	/**
 	 * Export all addresses for a voting day
 	 *
-	 * @param \Visol\Easyvote\Domain\Model\VotingDay $votingDay
+	 * @param int $votingDay
 	 */
-	public function reportExportAction(\Visol\Easyvote\Domain\Model\VotingDay $votingDay) {
+	public function reportExportAction($votingDay) {
+		$votingDay = $this->votingDayRepository->findVisibleAndHiddenByUid($votingDay);
 		$addresses = $this->addressRepository->findAllNotBlacklistedByVotingDay($votingDay);
 		$this->view->assignMultiple(array(
 			'addresses' => $addresses,
@@ -735,9 +738,10 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 	/**
 	 * Remove all addresses for a voting day
 	 *
-	 * @param \Visol\Easyvote\Domain\Model\VotingDay $votingDay
+	 * @param int $votingDay
 	 */
-	public function removeExportAction(\Visol\Easyvote\Domain\Model\VotingDay $votingDay) {
+	public function removeExportAction($votingDay) {
+		$votingDay = $this->votingDayRepository->findVisibleAndHiddenByUid($votingDay);
 		$addresses = $this->addressRepository->findByVotingDay($votingDay);
 		$addressCount = $addresses->count();
 		foreach ($addresses as $address) {
