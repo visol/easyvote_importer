@@ -35,23 +35,6 @@ use TYPO3\CMS\Core\Utility\DebugUtility;
 class AddressRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 
 	/**
-	 * Find all addresses for a voting day that are blacklisted
-	 *
-	 * @param \Visol\Easyvote\Domain\Model\VotingDay $votingDay
-	 * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
-	 */
-	public function findByVotingDayAndBlacklist(\Visol\Easyvote\Domain\Model\VotingDay $votingDay) {
-		$query = $this->createQuery();
-		$query->matching(
-			$query->logicalAnd(
-				$query->like('votingDay', $votingDay),
-				$query->equals('blacklisted', TRUE)
-			)
-		);
-		return $query->execute();
-	}
-
-	/**
 	 * Find an address that matches a given blacklist entry by voting day
 	 *
 	 * @param \Visol\EasyvoteImporter\Domain\Model\Blacklist $blacklistItem
@@ -84,6 +67,23 @@ class AddressRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 			$query->logicalAnd(
 				$query->like('votingDay', $votingDay),
 				$query->equals('blacklisted', FALSE)
+			)
+		);
+		return $query->execute();
+	}
+
+	/**
+	 * Find all addresses for a voting day that are *not* blacklisted
+	 *
+	 * @param \Visol\Easyvote\Domain\Model\VotingDay $votingDay
+	 * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+	 */
+	public function findByVotingDayAndBlacklist(\Visol\Easyvote\Domain\Model\VotingDay $votingDay) {
+		$query = $this->createQuery();
+		$query->matching(
+			$query->logicalAnd(
+				$query->like('votingDay', $votingDay),
+				$query->equals('blacklisted', TRUE)
 			)
 		);
 		return $query->execute();
