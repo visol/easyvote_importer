@@ -31,9 +31,9 @@ $TCA['tx_easyvoteimporter_domain_model_dataset'] = array(
 		'dividers2tabs' => TRUE,
 
 		'origUid' => 't3_origuid',
-		'languageField' => 'sys_language_uid',
-		'transOrigPointerField' => 'l10n_parent',
-		'transOrigDiffSourceField' => 'l10n_diffsource',
+		//'languageField' => 'sys_language_uid',
+		//'transOrigPointerField' => 'l10n_parent',
+		//'transOrigDiffSourceField' => 'l10n_diffsource',
 
 		'delete' => 'deleted',
 		'enablecolumns' => array(
@@ -61,9 +61,9 @@ $TCA['tx_easyvoteimporter_domain_model_address'] = array(
 		'dividers2tabs' => TRUE,
 
 		'origUid' => 't3_origuid',
-		'languageField' => 'sys_language_uid',
-		'transOrigPointerField' => 'l10n_parent',
-		'transOrigDiffSourceField' => 'l10n_diffsource',
+		//'languageField' => 'sys_language_uid',
+		//'transOrigPointerField' => 'l10n_parent',
+		//'transOrigDiffSourceField' => 'l10n_diffsource',
 
 		'enablecolumns' => array(
 		),
@@ -87,9 +87,9 @@ $TCA['tx_easyvoteimporter_domain_model_blacklist'] = array(
 		'dividers2tabs' => TRUE,
 
 		'origUid' => 't3_origuid',
-		'languageField' => 'sys_language_uid',
-		'transOrigPointerField' => 'l10n_parent',
-		'transOrigDiffSourceField' => 'l10n_diffsource',
+		//'languageField' => 'sys_language_uid',
+		//'transOrigPointerField' => 'l10n_parent',
+		//'transOrigDiffSourceField' => 'l10n_diffsource',
 
 		'enablecolumns' => array(
 		),
