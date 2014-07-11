@@ -140,6 +140,9 @@
 				<source>Neue Adressliste</source>
 			</trans-unit>
 
+			<trans-unit id="editBusinessUser">
+				<source>Kontakt bearbeiten</source>
+			</trans-unit>
 			<trans-unit id="editBusinessUser.header">
 				<source>Kontaktdaten bearbeiten</source>
 			</trans-unit>

@@ -188,6 +188,10 @@
 				<target>Nuova lista indirizzi</target>
 			</trans-unit>
 
+			<trans-unit id="editBusinessUser">
+				<source>Kontakt bearbeiten</source>
+				<target>Modificare contatto</target>
+			</trans-unit>
 			<trans-unit id="editBusinessUser.header">
 				<source>Kontaktdaten bearbeiten</source>
 				<target>Modificare dati di contatto</target>

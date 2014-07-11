@@ -2,7 +2,7 @@
 <f:layout name="Default" />
 <f:section name="subnavigation">
 	<li>
-		<f:link.action action="editBusinessUser" arguments="{businessUser:businessUser}">Kontakt bearbeiten</f:link.action>
+		<f:link.action action="editBusinessUser" arguments="{businessUser:businessUser}"><f:translate key="editBusinessUser" /></f:link.action>
 	</li>
 	<f:security.ifHasRole role="{settings.adminFeUserGroup}">
 		<li>

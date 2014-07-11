@@ -187,6 +187,10 @@
 				<target>Nouvelle liste d’adresses</target>
 			</trans-unit>
 
+			<trans-unit id="editBusinessUser">
+				<source>Kontakt bearbeiten</source>
+				<target>Modifier contact</target>
+			</trans-unit>
 			<trans-unit id="editBusinessUser.header">
 				<source>Kontaktdaten bearbeiten</source>
 				<target>Modifier les données de contact</target>
