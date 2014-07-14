@@ -281,7 +281,7 @@
 				]]></source>
 				<target><![CDATA[
 					<p>
-						Le plus pratique est de télécharger le modèle de liste Excel et d’utiliser directement celui-ci. Si vous avez déjà établi votre propre liste d’adresses, vous pouvez également l’utiliser. Elle doit cependant comporter les mêmes informations que le modèle de liste Excel :
+						Le plus pratique est de télécharger le <a href="https://www.easyvote.ch/typo3conf/ext/easyvote_importer/Resources/Public/Documents/Communes_XX_YY_20ZZ.xls">modèle de liste Excel</a> et d’utiliser directement celui-ci. Si vous avez déjà établi votre propre liste d’adresses, vous pouvez également l’utiliser. Elle doit cependant comporter les mêmes informations que le modèle de liste Excel :
 					</p>
 					<ul>
 						<li>Titre</li>

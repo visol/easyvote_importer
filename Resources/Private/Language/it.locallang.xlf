@@ -282,7 +282,7 @@
 				]]></source>
 				<target><![CDATA[
 					<p>
-						Scaricare la lista excel modello e compilarlo è il metodo migliore. Se avete già una lista indirizzi, potete utilizzare quella che già avete. La lista deve però contenere le stesse informazioni richieste nella lista modello:
+						Scaricare la <a href="https://www.easyvote.ch/typo3conf/ext/easyvote_importer/Resources/Public/Documents/Comune_XX_YY_20ZZ.xls">lista excel modello</a> e compilarlo è il metodo migliore. Se avete già una lista indirizzi, potete utilizzare quella che già avete. La lista deve però contenere le stesse informazioni richieste nella lista modello:
 					</p>
 					<ul>
 						<li>Titolo</li>
