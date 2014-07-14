@@ -117,7 +117,7 @@
 					<a target="_blank" href="https://www.easyvote.ch/fileadmin/files/Data-Manager/Anleitung/Anleitung_V1.0.pdf">Hier</a> können Sie die Anleitung herunterladen. In dieser wird das Hochladen der Adressliste Schritt für Schritt erklärt.
 				]]></source>
 				<target><![CDATA[
-					Vous pouvez télécharger ici une marche à suivre vous indiquant pas à pas comment procéder pour le chargement de la liste d’adresses.
+					Vous pouvez télécharger <a target="_blank" href="https://www.easyvote.ch/fileadmin/files/Data-Manager/Anleitung/Marche_a_suivre_V1.0.pdf">ici</a> une marche à suivre vous indiquant pas à pas comment procéder pour le chargement de la liste d’adresses.
 				]]></target>
 			</trans-unit>
 			<trans-unit id="assign.customerColumns">
