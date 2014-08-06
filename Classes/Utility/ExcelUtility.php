@@ -98,19 +98,26 @@ class ExcelUtility {
 			$highestRow = $sheet->getHighestRow();
 		}
 
+		$requiredNumberOfNotEmptyCells = 1;
 		$assignedData = array();
 		for ($i = $firstRowNumber; $i <= $highestRow; $i++) {
+			$notEmptyCells = 0;
 			foreach ($columnAssignment as $columnName => $columnArray) {
 				$assignedData[$i][$columnName] = '';
 				foreach ($columnArray as $column) {
 					$assignedData[$i][$columnName] .= $sheet->getCell($column . $i) . ' ';
 				}
 				$assignedData[$i][$columnName] = trim($assignedData[$i][$columnName]);
+				if (!empty($assignedData[$i][$columnName])) {
+					$notEmptyCells++;
+				}
+			}
+			// if there are less cells filled than required, don't import the address
+			if ($notEmptyCells < $requiredNumberOfNotEmptyCells) {
+				unset($assignedData[$i]);
 			}
 		}
-
 		return $assignedData;
-
 	}
 
 	/**
