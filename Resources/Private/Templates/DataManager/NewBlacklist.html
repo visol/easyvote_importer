@@ -11,7 +11,7 @@
 <f:section name="main">
 	<div class="csc-default box-blue">
 		<h2>Adresse zur Blacklist hinzufügen</h2>
-		<f:form class="inputForm" action="createBlacklist" name="newBlacklist" object="{newBlacklist}">
+		<f:form noCacheHash="true" class="inputForm" action="createBlacklist" name="newBlacklist" object="{newBlacklist}">
 			<f:render partial="DataManager/BlacklistFormFields" />
 		</f:form>
 	</div>

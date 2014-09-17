@@ -11,7 +11,7 @@
 <f:section name="main">
 	<div class="csc-default box-blue">
 		<h2>Blacklist-Eintrag bearbeiten</h2>
-		<f:form class="inputForm" action="updateBlacklist" name="blacklist" object="{blacklist}">
+		<f:form noCacheHash="true" class="inputForm" action="updateBlacklist" name="blacklist" object="{blacklist}">
 			<f:render partial="DataManager/BlacklistFormFields" arguments="{blacklist:blacklist}" />
 		</f:form>
 	</div>

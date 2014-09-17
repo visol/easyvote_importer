@@ -33,7 +33,7 @@
 		</table>
 		<div class="spacer"></div>
 
-		<f:form id="columnAssignment" action="performImport" onsubmit="return confirm('Adressen importieren?');" >
+		<f:form noCacheHash="true" id="columnAssignment" action="performImport" onsubmit="return confirm('Adressen importieren?');" >
 			<f:form.hidden name="dataset" value="{dataset}" />
 			<f:form.submit class="buttonBottomRight" value="Adressen importieren" />
 		</f:form>
@@ -43,7 +43,7 @@
 <f:section name="right">
 	<div class="csc-default box-blue">
 		<h2>Fehler gefunden?</h2>
-		<f:form name="assign" arguments="{city:businessUser.uid, dataset:dataset}" action="assign">
+		<f:form noCacheHash="true" name="assign" arguments="{city:businessUser.uid, dataset:dataset}" action="assign">
 			<f:form.hidden name="businessUser" value="{businessUser}" />
 			<f:form.submit value="Spalten neu zuordnen" />
 		</f:form>

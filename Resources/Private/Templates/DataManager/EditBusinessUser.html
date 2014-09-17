@@ -18,7 +18,7 @@
 <f:section name="main">
 	<div class="csc-default box-blue">
 		<h2><f:translate key="editBusinessUser.header" /></h2>
-		<f:form class="inputForm" action="updateBusinessUser" name="businessUser" object="{businessUser}">
+		<f:form noCacheHash="true" class="inputForm" action="updateBusinessUser" name="businessUser" object="{businessUser}">
 			<f:render partial="DataManager/BusinessUserFormFields" arguments="{businessUser:businessUser}" />
 		</f:form>
 	</div>

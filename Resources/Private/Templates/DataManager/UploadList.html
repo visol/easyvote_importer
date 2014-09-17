@@ -13,7 +13,7 @@
 	<div class="csc-default box-blue">
 		<h2><f:translate key="uploadList.header" arguments="{1: '{businessUser.name}'}" /> <f:format.date date="{votingDay.votingDate}" format="d.m.Y" /></h2>
 		<f:translate key="uploadList.introduction" />
-		<f:form action="performUpload" enctype="multipart/form-data">
+		<f:form noCacheHash="true" action="performUpload" enctype="multipart/form-data">
 			<f:form.hidden name="city" value="{businessUser.uid}"/>
 			<f:form.hidden name="votingDay" value="{votingDay.uid}"/>
 			<div class="form-row">

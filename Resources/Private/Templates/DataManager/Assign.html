@@ -57,7 +57,7 @@
 			</div>
 			<div class="clear"></div>
 			<div class="spacer"></div>
-			<f:form id="columnAssignment" action="approve" onsubmit="return validateForm();" >
+			<f:form noCacheHash="true" id="columnAssignment" action="approve" onsubmit="return validateForm();" >
 				<f:form.hidden name="dataset" value="{dataset}" />
 				<f:if condition="{businessUser.uid}">
 					<f:then>
@@ -149,7 +149,7 @@
 	<div class="csc-default box-lightblue">
 		<h2><f:translate key="assign.assignmentHelpHeader" /></h2>
 		<f:translate key="assign.assignmentHelpContent" />
-		<f:form id="deleteDocument" action="remove">
+		<f:form noCacheHash="true" id="deleteDocument" action="remove">
 			<f:form.hidden name="dataset" value="{dataset}" />
 			<button type="submit"><i class="icon-upload-alt"></i> <f:translate key="assign.newAddressList" /></button>
 		</f:form>
