@@ -240,7 +240,6 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 
 		$pluginNamespace = 'tx_easyvoteimporter_datamanager';
 		if ($_FILES[$pluginNamespace] && !empty($_FILES[$pluginNamespace]['tmp_name']['easyvoteData'])) {
-
 			/** @var \TYPO3\CMS\Core\Utility\File\BasicFileUtility $basicFileUtility */
 			$basicFileUtility = GeneralUtility::makeInstance('t3lib_basicFileFunctions');
 
@@ -255,6 +254,7 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 				$this->flashMessageContainer->add($error, LocalizationUtility::translate('flashMessage.errorHeader', $this->request->getControllerExtensionName()), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 
 				$this->checkUserIsAdmin();
+
 				if ($this->userIsAdmin) {
 					$cityUid = $this->request->getArgument('city');
 					$this->redirect('cityIndex', NULL, NULL, array('city' => $cityUid));
@@ -264,7 +264,7 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 
 			}
 
-			// get other requests
+			// get other arguments
 			$request = $this->request->getArguments();
 
 			// get voting day object
@@ -305,13 +305,14 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 			GeneralUtility::upload_copy_move($_FILES[$pluginNamespace]['tmp_name']['easyvoteData'], $fileName);
 
 			/** @var \Visol\EasyvoteImporter\Domain\Model\Dataset $dataset */
-			$dataset = $this->objectManager->create('Visol\EasyvoteImporter\Domain\Model\Dataset');
+			$dataset = $this->objectManager->get('Visol\EasyvoteImporter\Domain\Model\Dataset');
 			$dataset->setVotingDay($votingDay);
 			$dataset->setFile(basename($fileName));
 			$dataset->setFirstrowColumnnames((boolean)$request['firstLineContainsLabels']);
 
+			$this->datasetRepository->add($dataset);
 			$businessUser->addDataset($dataset);
-
+			$this->businessUserRepository->update($businessUser);
 			$this->persistenceManager->persistAll();
 			$this->redirect('assign', NULL, NULL, array('dataset' => $dataset, 'city' => $businessUser));
 
@@ -502,7 +503,7 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 		$i = 1;
 		foreach ($importData as $record) {
 			/** @var \Visol\EasyvoteImporter\Domain\Model\Address $address */
-			$address = $this->objectManager->create('Visol\EasyvoteImporter\Domain\Model\Address');
+			$address = $this->objectManager->get('Visol\EasyvoteImporter\Domain\Model\Address');
 			$address->setVotingDay($dataset->getVotingDay()->getUid());
 			$address->setImportFileName($dataset->getFile());
 			$address->setSalutation($record['salutation']);

@@ -7,10 +7,6 @@ plugin.tx_easyvoteimporter {
 	persistence {
 		storagePid = {$plugin.tx_easyvoteimporter.persistence.storagePid}
 	}
-	features {
-		# uncomment the following line to enable the new Property Mapper.
-		# rewrittenPropertyMapper = 1
-	}
 	settings {
 		adminFeUserGroup = 3
 		cityFeUserGroup = 2
