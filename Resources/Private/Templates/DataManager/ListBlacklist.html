@@ -30,8 +30,8 @@
 					<td>{item.street}</td>
 					<td>{item.zipCode}</td>
 					<td style="text-align: right">
-						<f:link.action action="editBlacklist" arguments="{blacklist:item}"><i class="icon-edit-sign icon-2x"></i></f:link.action>
-						<f:link.action action="deleteBlacklist" arguments="{blacklist:item}"><i class="icon-remove-sign icon-2x"></i></f:link.action>
+						<f:link.action action="editBlacklist" arguments="{blacklist:item}"><i class="evicon-pencil-squared icon-2x"></i></f:link.action>
+						<f:link.action action="deleteBlacklist" arguments="{blacklist:item}"><i class="evicon-cancel-circled icon-2x"></i></f:link.action>
 					</td>
 				</tr>
 			</f:for>
@@ -39,7 +39,7 @@
 		</table>
 		<div class="clear"></div>
 		<f:form noCacheHash="true" action="newBlacklist">
-			<button type="submit"><i class="icon-plus-sign"></i> Blacklist</button>
+			<button type="submit"><i class="evicon-plus-circled"></i> Blacklist</button>
 		</f:form>
 		<f:render partial="DataManager/UseDatatables" />
 	</div>

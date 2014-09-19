@@ -23,21 +23,21 @@
 									<f:then>
 										<f:if condition="{returnDataset.processed}">
 											<f:then>
-												<i title="Adressen importiert" class="icon-thumbs-up icon-2x"></i>
+												<i title="Adressen importiert" class="evicon-thumbs-up icon-2x"></i>
 											</f:then>
 											<f:else>
 												<f:if condition="{returnDataset.file}">
 													<f:then>
-														<i title="Liste vorhanden" class="color-green icon-check icon-2x"></i>
+														<i title="Liste vorhanden" class="color-green evicon-check icon-2x"></i>
 														<f:if condition="{returnDataset.columnConfiguration}">
 															<f:then>
-																<i title="Spalten zugewiesen" class="color-green icon-check icon-2x"></i>
+																<i title="Spalten zugewiesen" class="color-green evicon-check icon-2x"></i>
 																<f:link.action action="checkImport" arguments="{dataset: returnDataset}">
-																	<i title="Zuweisung überprüfen und Daten importieren" class="icon-plus-sign icon-2x"></i>
+																	<i title="Zuweisung überprüfen und Daten importieren" class="evicon-plus-circled icon-2x"></i>
 																</f:link.action>
 															</f:then>
 															<f:else>
-																<i title="Spalten nicht zugewiesen!" class="color-red icon-exclamation-sign icon-2x"></i>
+																<i title="Spalten nicht zugewiesen!" class="color-red evicon-attention-circled icon-2x"></i>
 															</f:else>
 														</f:if>
 													</f:then>
@@ -46,7 +46,7 @@
 										</f:if>
 									</f:then>
 									<f:else>
-										<i title="Daten fehlen!" class="color-red icon-exclamation-sign icon-2x"></i>
+										<i title="Daten fehlen!" class="color-red evicon-attention-circled icon-2x"></i>
 									</f:else>
 								</f:if>
 							</evi:votingDayDataset>
@@ -59,7 +59,7 @@
 					{city.customerNumber}
 				</td>
 				<td><f:link.email email="{city.email}">{city.firstName} {city.lastName}</f:link.email></td>
-				<td class="cityChange"><f:link.action title="Zu Gemeinde wechseln..." action="cityIndex" arguments="{city:city.uid}"><i class="icon-chevron-sign-right icon-2x"></i></f:link.action></td>
+				<td class="cityChange"><f:link.action title="Zu Gemeinde wechseln..." action="cityIndex" arguments="{city:city.uid}"><i class="evicon-angle-circled-right icon-2x"></i></f:link.action></td>
 			</tr>
 		</f:for>
 		</tbody>
