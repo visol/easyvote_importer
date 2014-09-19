@@ -39,3 +39,9 @@ plugin.tx_easyvoteimporter._CSS_DEFAULT_STYLE (
 		vertical-align:top;
 	}
 )
+
+page.includeJSFooterlibs {
+	jqueryUi = EXT:easyvote_importer/Resources/Public/JavaScripts/jquery-ui.min.js
+	jqueryDatatables = EXT:easyvote_importer/Resources/Public/JavaScripts/jquery.dataTables.min.js
+	easyvoteImporter = EXT:easyvote_importer/Resources/Public/JavaScripts/easyvote_importer.js
+}
