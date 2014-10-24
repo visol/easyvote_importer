@@ -6,14 +6,14 @@ if (!defined('TYPO3_MODE')) {
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
 	$_EXTKEY,
 	'Datamanager',
-	'Data Manager'
+	'easyvote Data Manager'
 );
 
 /* Login-Panel */
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
 	$_EXTKEY,
 	'Businessuser',
-	'Login-Panel',
+	'easyvote Data Manager: Login-Panel',
 	'EXT:easyvote_importer/ext_icon.gif'
 );
 
