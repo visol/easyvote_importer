@@ -1,179 +1,183 @@
-/* subheader of page layout */
-#default-subheader {
-	display: none;
+body.datamanager {
+
+	/* subheader of page layout */
+	#default-subheader {
+		display: none;
+	}
+
+	#navi-3 {
+		display: none;
+	}
+
+	header.subheader {
+		margin-bottom: 70px;
+	}
+
+	.user-image-small {
+		float: left;
+		margin-right: 15px;
+	}
+
+	table.eviTable {
+		border-collapse: collapse;
+		border: 0;
+		margin: 0 0 20px 0;
+		border-spacing: 0;
+		font-size: 12px;
+	}
+
+	.eviTable th, .eviTable td {
+		padding: 5px;
+	}
+
+	.tx-easyvote-importer h2 {
+		color: #ED0A71;
+		font-size: 20px;
+		text-transform: uppercase;
+		margin-bottom: 25px;
+	}
+
+	.tx-easyvote-importer h3 {
+		color: #112b4d;
+		font-size: 18px;
+		margin: 0 0 10px 0;
+	}
+
+	input[type=submit], input[type=button], button, a.button  {
+		border: 0 !important;
+		display: inline-block;
+		height: 30px;
+		line-height: 30px;
+		padding: 0 10px !important;
+		text-transform: uppercase;
+		background-color: #ED0A71;
+		color: #fff;
+		text-decoration: none;
+		-webkit-border-radius: 5px;
+		border-radius: 5px;
+		cursor: pointer;
+		margin-bottom: 5px;
+	}
+
+	.box-pink {
+		-webkit-border-radius: 15px;
+		border-radius: 15px;
+		margin: 0 0 20px 0;
+		background-color: #ED0A71;
+		padding: 30px;
+		text-align: left;
+		color: #fff !important;
+		text-decoration: none !important;
+	}
+
+	.box-pink h2 {
+		font-family: "Ubuntu", Arial, Helvetica, sans-serif;
+		text-transform: uppercase;
+		font-weight: 500;
+		font-size: 18px;
+		color: #fff;
+	}
+
+	.box-blue {
+		-webkit-border-radius: 15px;
+		border-radius: 15px;
+		margin: 0 0 20px 0;
+		background: #97E3F8;
+		padding: 30px;
+	}
+
+	.box-lightblue {
+		-webkit-border-radius: 15px;
+		border-radius: 15px;
+		margin: 0 0 20px 0;
+		background: #AEE9F9;
+		padding: 30px;
+	}
+
+	.box-steps {
+		position: relative;
+		height: 185px; /* 260 - 75 */
+		width: 260px;
+		padding-top: 75px;
+		background-color: #ED0A71;
+		margin: 0 0 20px 0;
+		text-align: center;
+		color: #fff;
+		font-family: "Ubuntu", Arial, Helvetica, sans-serif;
+		font-size: 110px;
+		line-height: 110px;
+		border-radius: 15px;
+	}
+
+	.typo3-messages { }
+	.typo3-message { margin-bottom: 20px; padding: 30px; border-radius: 10px; -moz-border-radius: 10px; }
+	.message-error { background: #ff0021; }
+	.message-ok { background: #aaff7a; }
+	.message-header { font-weight: bold; }
+
+	div.sortingColumns { width: 220px; float: left; }
+	#assignColumns .left { margin-right: 40px; }
+	ul.connected { list-style-type: none; margin: 0; padding: 0;  }
+	ul.target { border-bottom: 2px solid #112B4D; margin-bottom: 10px; }
+	ul#source li { cursor: pointer; }
+	ul li.static { cursor: not-allowed !important; }
+	li.value {
+		border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border: 2px solid #005476;
+		padding: 5px;
+		color: #112B4D;
+		background: #fff;
+		font-size: 12px;
+	}
+	li.ui-sortable-helper {
+		border-color: #ED0A71;
+	}
+	li.ui-state-default {
+		border-radius: 0px;
+		-webkit-border-radius: 0px;
+		border: 0;
+		padding: 0;
+		color: #112B4D;
+		font-weight: bold;
+		font-size: 12px;
+		background: none;
+	}
+	p.preview { padding: 10px; background: white; min-height: 90px; border: 1px solid #005476; color: #005476; }
+
+	.tx-easyvote-importer form {
+		position: relative;
+	}
+
+	.tx-easyvote-importer .buttonBottomRight {
+		position: absolute;
+		bottom: 0;
+		right: 0;
+	}
+
+	#assignColumns h3 { height: 50px; }
+
+	div.spacer { height: 50px; }
+
+	.sortable-placeholder {
+		display: none;
+		border-radius: 5px;
+		-webkit-border-radius: 5px;
+		border: 0;
+		padding: 5px;
+		color: #112B4D;
+		background: #fff;
+		font-size: 12px;
+	}
+
+	ul.cityStatus { list-style-type: none; margin: 0; padding: 0; }
+	ul.cityStatus li { margin: 0; padding: 0; }
+	.cityVotingDate { display: inline-block; margin: 0; padding: 0; height: 25px; line-height: 25px; }
+	.cityChange { text-align: right; }
+	.color-red { color: #ff0021; }
+	.color-green { color: #09bf37; }
+	.color-grey { color: #c0c0c0; }
+
+	i[class^="icon-"]:hover { text-decoration: none; }
+
 }
-
-#navi-3 {
-	display: none;
-}
-
-header.subheader {
-	margin-bottom: 70px;
-}
-
-.user-image-small {
-	float: left;
-	margin-right: 15px;
-}
-
-table.eviTable {
-	border-collapse: collapse;
-	border: 0;
-	margin: 0 0 20px 0;
-	border-spacing: 0;
-	font-size: 12px;
-}
-
-.eviTable th, .eviTable td {
-	padding: 5px;
-}
-
-.tx-easyvote-importer h2 {
-	color: #ED0A71;
-	font-size: 20px;
-	text-transform: uppercase;
-	margin-bottom: 25px;
-}
-
-.tx-easyvote-importer h3 {
-	color: #112b4d;
-	font-size: 18px;
-	margin: 0 0 10px 0;
-}
-
-input[type=submit], input[type=button], button, a.button  {
-	border: 0 !important;
-	display: inline-block;
-	height: 30px;
-	line-height: 30px;
-	padding: 0 10px !important;
-	text-transform: uppercase;
-	background-color: #ED0A71;
-	color: #fff;
-	text-decoration: none;
-	-webkit-border-radius: 5px;
-	border-radius: 5px;
-	cursor: pointer;
-	margin-bottom: 5px;
-}
-
-.box-pink {
-	-webkit-border-radius: 15px;
-	border-radius: 15px;
-	margin: 0 0 20px 0;
-	background-color: #ED0A71;
-	padding: 30px;
-	text-align: left;
-	color: #fff !important;
-	text-decoration: none !important;
-}
-
-.box-pink h2 {
-	font-family: "Ubuntu", Arial, Helvetica, sans-serif;
-	text-transform: uppercase;
-	font-weight: 500;
-	font-size: 18px;
-	color: #fff;
-}
-
-.box-blue {
-	-webkit-border-radius: 15px;
-	border-radius: 15px;
-	margin: 0 0 20px 0;
-	background: #97E3F8;
-	padding: 30px;
-}
-
-.box-lightblue {
-	-webkit-border-radius: 15px;
-	border-radius: 15px;
-	margin: 0 0 20px 0;
-	background: #AEE9F9;
-	padding: 30px;
-}
-
-.box-steps {
-	position: relative;
-	height: 185px; /* 260 - 75 */
-	width: 260px;
-	padding-top: 75px;
-	background-color: #ED0A71;
-	margin: 0 0 20px 0;
-	text-align: center;
-	color: #fff;
-	font-family: "Ubuntu", Arial, Helvetica, sans-serif;
-	font-size: 110px;
-	line-height: 110px;
-	border-radius: 15px;
-}
-
-.typo3-messages { }
-.typo3-message { margin-bottom: 20px; padding: 30px; border-radius: 10px; -moz-border-radius: 10px; }
-.message-error { background: #ff0021; }
-.message-ok { background: #aaff7a; }
-.message-header { font-weight: bold; }
-
-div.sortingColumns { width: 220px; float: left; }
-#assignColumns .left { margin-right: 40px; }
-ul.connected { list-style-type: none; margin: 0; padding: 0;  }
-ul.target { border-bottom: 2px solid #112B4D; margin-bottom: 10px; }
-ul#source li { cursor: pointer; }
-ul li.static { cursor: not-allowed !important; }
-li.value {
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border: 2px solid #005476;
-	padding: 5px;
-	color: #112B4D;
-	background: #fff;
-	font-size: 12px;
-}
-li.ui-sortable-helper {
-	border-color: #ED0A71;
-}
-li.ui-state-default {
-	border-radius: 0px;
-	-webkit-border-radius: 0px;
-	border: 0;
-	padding: 0;
-	color: #112B4D;
-	font-weight: bold;
-	font-size: 12px;
-	background: none;
-}
-p.preview { padding: 10px; background: white; min-height: 90px; border: 1px solid #005476; color: #005476; }
-
-.tx-easyvote-importer form {
-	position: relative;
-}
-
-.tx-easyvote-importer .buttonBottomRight {
-	position: absolute;
-	bottom: 0;
-	right: 0;
-}
-
-#assignColumns h3 { height: 50px; }
-
-div.spacer { height: 50px; }
-
-.sortable-placeholder {
-	display: none;
-	border-radius: 5px;
-	-webkit-border-radius: 5px;
-	border: 0;
-	padding: 5px;
-	color: #112B4D;
-	background: #fff;
-	font-size: 12px;
-}
-
-ul.cityStatus { list-style-type: none; margin: 0; padding: 0; }
-ul.cityStatus li { margin: 0; padding: 0; }
-.cityVotingDate { display: inline-block; margin: 0; padding: 0; height: 25px; line-height: 25px; }
-.cityChange { text-align: right; }
-.color-red { color: #ff0021; }
-.color-green { color: #09bf37; }
-.color-grey { color: #c0c0c0; }
-
-i[class^="icon-"]:hover { text-decoration: none; }
