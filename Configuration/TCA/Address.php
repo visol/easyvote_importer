@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_easyvoteimporter_domain_model_address'] = array(
 	'ctrl' => $TCA['tx_easyvoteimporter_domain_model_address']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'customer_number, blacklisted, salutation, name, street, city, import_file_name, crdate',
+		'showRecordFieldList' => 'customer_number, blacklisted, salutation, name, street, city, import_file_name, crdate, voting_day',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'customer_number, blacklisted, salutation, name, street, city, import_file_name, crdate'),
+		'1' => array('showitem' => 'customer_number, blacklisted, salutation, name, street, city, import_file_name, crdate, voting_day'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
