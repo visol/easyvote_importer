@@ -98,7 +98,7 @@ class ExcelUtility {
 			$highestRow = $sheet->getHighestRow();
 		}
 
-		$requiredNumberOfNotEmptyCells = 1;
+		$requiredNumberOfNotEmptyCells = 3;
 		$assignedData = array();
 		for ($i = $firstRowNumber; $i <= $highestRow; $i++) {
 			$notEmptyCells = 0;
