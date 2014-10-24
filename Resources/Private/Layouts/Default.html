@@ -1,4 +1,4 @@
-<header class="subheader ym-clearfix">
+<header class="subheader clearfix">
 	<nav class="navi-2">
 		<ul class="navi">
 			<f:render section="subnavigation" />
@@ -12,19 +12,19 @@
 		<a title="Mail schreiben" class="mail" href="mailto:info@easyvote.ch"><span></span></a>
 	</div>
 </header>
-<div class="tx-easyvote-importer">
+<div class="row tx-easyvote-importer">
 	<f:security.ifAuthenticated>
 		<f:then>
 			<f:security.ifHasRole role="{settings.cityFeUserGroup}">
 				<f:then>
-					<section class="col-floatLeft col-marginRight col-left col-25">
+					<section class="col-md-3">
 						<f:render section="left" />
 					</section>
-					<section class="col-floatLeft col-marginRight col-50 col-middle">
+					<section class="col-md-6">
 						<f:flashMessages renderMode="div" />
 						<f:render section="main" />
 					</section>
-					<section class="col-floatLeft col-25 col-right">
+					<section class="col-md-3">
 						<f:render section="right" />
 					</section>
 				</f:then>
@@ -34,15 +34,15 @@
 			</f:security.ifHasRole>
 		</f:then>
 		<f:else>
-			<section class="col-floatLeft col-marginRight col-left col-25">
+			<section class="col-md-3">
 			</section>
-			<section class="col-floatLeft col-marginRight col-50 col-middle">
+			<section class="col-md-6">
 				<div class="csc-default box-blue">
 					<p>Sie sind nicht angemeldet.</p>
 					<f:link.page class="button" pageUid="{settings.loginPid}">Anmelden</f:link.page>
 				</div>
 			</section>
-			<section class="col-floatLeft col-25 col-right">
+			<section class="col-md-3">
 			</section>
 		</f:else>
 	</f:security.ifAuthenticated>
