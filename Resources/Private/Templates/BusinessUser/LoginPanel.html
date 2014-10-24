@@ -1,4 +1,4 @@
-<div class="pull-left login-status">
+<div class="login-status">
 	<f:security.ifAuthenticated>
 		<f:then>
 			<f:link.page pageUid="{settings.communityHomePid}">
@@ -16,10 +16,10 @@
 		</f:then>
 	</f:security.ifAuthenticated>
 </div>
-<div class="pull-right">
+<div class="login-actions">
 	<f:security.ifAuthenticated>
 		<f:then>
-			<f:link.page class="ui-button muted" pageUid="{settings.siteHomePid}" additionalParams="{logintype:'logout'}">
+			<f:link.page class="link-box" pageUid="{settings.siteHomePid}" additionalParams="{logintype:'logout'}">
 				<f:translate key="businessUser.logout" />
 			</f:link.page>
 		</f:then>
