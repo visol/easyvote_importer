@@ -44,7 +44,7 @@
 				</div>
 			</div>
 			<div class="spacer"></div>
-			<f:form noCacheHash="true" id="columnAssignment" action="approve" onsubmit="return validateForm();" >
+			<f:form noCacheHash="true" id="columnAssignment" action="approve" onsubmit="return validateForm();">
 				<f:form.hidden name="dataset" value="{dataset}" />
 				<f:if condition="{businessUser.uid}">
 					<f:then>
@@ -54,10 +54,17 @@
 						<f:form.hidden name="city" value="{businessUser}" />
 					</f:else>
 				</f:if>
+				<f:security.ifHasRole role="{settings.adminFeUserGroup}">
+					<div class="form-group">
+						<f:form.checkbox name="dataset[firstrowColumnnames]" id="firstLineContainsLabels" value="1" checked="{dataset.firstLineContainsLabels}"/>
+						<label for="firstLineContainsLabels"><f:translate key="uploadList.firstLineContainsLabels" /></label><br />
+					</div>
+				</f:security.ifHasRole>
 				<input type="hidden" data-label="Anrede" id="columns-salutation" name="tx_easyvoteimporter_datamanager[columns-salutation]" value="" />
 				<input class="validate" type="hidden" data-label="Vorname, Nachname" id="columns-name" name="tx_easyvoteimporter_datamanager[columns-name]" value="" />
 				<input class="validate" type="hidden" data-label="Strasse, Nr." id="columns-address" name="tx_easyvoteimporter_datamanager[columns-address]" value="" />
 				<input class="validate" type="hidden" data-label="PLZ, Ort" id="columns-city" name="tx_easyvoteimporter_datamanager[columns-city]" value="" />
+				<div class="spacer"></div>
 				<button type="submit" class="btn btn-primary buttonBottomRight"><i class="evicon-ok-circled"></i> <f:translate key="assign.confirmAssignment" /></button>
 			</f:form>
 
