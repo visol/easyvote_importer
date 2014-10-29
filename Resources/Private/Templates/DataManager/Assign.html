@@ -19,45 +19,30 @@
 <f:section name="main">
 	<div class="csc-default box-blue">
 		<div id="assignColumns">
-			<div class="sortingColumns left">
-				<h3><f:translate key="assign.customerColumns" /></h3>
-				<ul id="source" class="connected">
-					<f:for each="{tableData}" as="tableDataItem" iteration="iterator">
-						<li class="value" data-column="{iterator.index}" data-example="{tableDataItem.firstItem}" id="col-{iterator.index}">
-							{tableDataItem.name}<br />
-							<em><f:translate key="assign.example" /> {tableDataItem.firstItem}</em>
-						</li>
-					</f:for>
-				</ul>
+			<div class="sortingColumns">
+				<div class="left">
+					<h3><f:translate key="assign.customerColumns" /></h3>
+					<ul id="source" class="connected">
+						<f:for each="{tableData}" as="tableDataItem" iteration="iterator">
+							<li class="value" title="anklicken und nach rechts in Kästchen ziehen, dann loslassen" data-column="{iterator.index}" data-example="{tableDataItem.firstItem}" id="col-{iterator.index}">
+								{tableDataItem.name}<br />
+								<em><f:translate key="assign.example" /> {tableDataItem.firstItem}</em>
+							</li>
+						</f:for>
+					</ul>
+				</div>
+				<div class="right">
+					<h3><f:translate key="assign.easyvoteColumns" /></h3>
+					<div class="targetHeader"><f:translate key="assign.salutation" /></div>
+					<ul id="target-salutation" class="target connected"></ul>
+					<div class="targetHeader"><f:translate key="assign.firstNameLastName" /></div>
+					<ul id="target-name" class="target connected"></ul>
+					<div class="targetHeader"><f:translate key="assign.streetNumber" /></div>
+					<ul id="target-address" class="target connected"></ul>
+					<div class="targetHeader"><f:translate key="assign.zipCity" /></div>
+					<ul id="target-city" class="target connected"></ul>
+				</div>
 			</div>
-			<div class="sortingColumns right">
-				<h3><f:translate key="assign.easyvoteColumns" /></h3>
-				<ul id="target-salutation" class="target connected">
-					<li id="name" class="category static ui-state-default">
-						Anrede
-						<div class="sortable-placeholder"><f:translate key="assign.dropHere" /></div>
-					</li>
-				</ul>
-				<ul id="target-name" class="target connected">
-					<li id="name" class="category static ui-state-default">
-						Vorname, Nachname
-						<div class="sortable-placeholder"><f:translate key="assign.dropHere" /></div>
-					</li>
-				</ul>
-				<ul id="target-address" class="target connected">
-					<li id="address" class="category static ui-state-default">
-						Strasse, Nr.
-						<div class="sortable-placeholder"><f:translate key="assign.dropHere" /></div>
-					</li>
-				</ul>
-				<ul id="target-city" class="target connected">
-					<li id="city" class="category static ui-state-default">
-						PLZ, Ort
-						<div class="sortable-placeholder"><f:translate key="assign.dropHere" /></div>
-					</li>
-				</ul>
-			</div>
-			<div class="clear"></div>
 			<div class="spacer"></div>
 			<f:form noCacheHash="true" id="columnAssignment" action="approve" onsubmit="return validateForm();" >
 				<f:form.hidden name="dataset" value="{dataset}" />
@@ -86,12 +71,12 @@
 <f:section name="right">
 	<div class="csc-default box-pink">
 		<h2><f:translate key="assign.previewHeader" /></h2>
-		<p class="preview">
-			<span id="preview-salutation"></span><br />
-			<span id="preview-name"></span><br />
-			<span id="preview-address"></span><br />
-			<span id="preview-city"></span>
-		</p>
+		<div class="preview">
+			<div class="preview-value" id="preview-salutation"></div>
+			<div class="preview-value" id="preview-name"></div>
+			<div class="preview-value" id="preview-address"></div>
+			<div class="preview-value" id="preview-city"></div>
+		</div>
 	</div>
 	<div class="csc-default box-blue">
 		<h2><f:translate key="assign.assignmentHelpHeader" /></h2>

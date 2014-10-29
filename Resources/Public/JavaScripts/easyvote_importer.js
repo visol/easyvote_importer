@@ -52,14 +52,14 @@ function reflectChange(event) {
 		targetType = targetId.split('-')[1];
 
 		// the container for the preview
-		$('span#preview-' + targetType).empty();
+		$('div#preview-' + targetType).empty();
 		// empty the input field containing the column IDs
 		$('input#columns-' + targetType).val('');
 		$('li.value', this).each(function() {
 			// write example data to the corresponding container
 			exampleData = $(this).attr('data-example');
 			column = $(this).attr('data-column');
-			$('span#preview-' + targetType).append(exampleData + '&nbsp;');
+			$('div#preview-' + targetType).append(exampleData + '&nbsp;');
 			$('input#columns-' + targetType).val($('input#columns-' + targetType).val() + column + ',');
 		});
 

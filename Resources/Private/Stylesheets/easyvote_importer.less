@@ -1,19 +1,16 @@
 body.datamanager {
-
-	.content {
-		margin-top: 0;
-	}
+	overflow-y: inherit;
 
 	#default-subheader {
 		display: none;
 	}
 
-	#navi-3 {
-		display: none;
+	header.subheader {
+		margin: -50px 0 70px 0;
 	}
 
-	header.subheader {
-		margin-bottom: 70px;
+	#navi-3 {
+		display: none;
 	}
 
 	.user-image-small {
@@ -22,16 +19,19 @@ body.datamanager {
 	}
 
 	table.eviTable {
+		.clearfix();
 		border-collapse: collapse;
 		border: 0;
 		margin: 0 0 20px 0;
 		border-spacing: 0;
 		font-size: 12px;
+
+		th, td {
+			padding: 5px;
+		}
+
 	}
 
-	.eviTable th, .eviTable td {
-		padding: 5px;
-	}
 
 	.tx-easyvote-importer h3 {
 		color: @text-blue;
@@ -98,72 +98,116 @@ body.datamanager {
 	}
 	.typo3-message {
 		margin-bottom: 20px;
-		padding: 30px;
+		padding: @box-padding;
 		.rounded-corners();
 	}
 	.message-error { background: #ff0021; }
 	.message-ok { background: #aaff7a; }
 	.message-header { font-weight: bold; }
 
-	div.sortingColumns {
-		width: 50%;
-		float: left;
-		&.left {
-			padding-right: 10px;
+	#assignColumns {
+		.clearfix();
+		h3 {
+			height: 50px;
 		}
-		&.right {
-			padding-left: 10px;
+
+		div.sortingColumns {
+			.clearfix();
+			div {
+				&.left {
+					width: 50%;
+					float: left;
+					padding-right: 15px;
+				}
+				&.right {
+					width: 50%;
+					float: left;
+					padding-left: 15px;
+				}
+				ul.connected {
+					list-style-type: none;
+					margin: 0;
+					padding: 0;
+					box-sizing: content-box;
+					&.target {
+						position: relative;
+						z-index: 2014;
+						box-sizing: content-box;
+						min-height: 60px;
+						padding: 10px;
+						border: 2px dashed @pink;
+						margin-bottom: 20px;
+
+					}
+					&#source {
+						min-height: 300px;
+					}
+					li {
+						&.value {
+							cursor: pointer;
+							z-index: 2020;
+							border: 2px solid #005476;
+							padding: 5px;
+							color: @text-blue;
+							background: @white;
+							font-size: 12px;
+							margin-bottom: 10px;
+							&:last-child {
+								margin-bottom: 0;
+							}
+						}
+						&.ui-sortable-helper {
+							border-color: @pink;
+						}
+						&.ui-state-default {
+							border: 0;
+							padding: 0;
+							color: @text-blue;
+							font-weight: bold;
+							font-size: 12px;
+							background: none;
+							margin-bottom: 10px;
+						}
+					}
+				}
+			}
+
+		}
+
+		#columnAssignment {
+			.clearfix();
 		}
 	}
-	ul.connected { list-style-type: none; margin: 0; padding: 0; box-sizing: content-box; }
-	ul.target { border-bottom: 2px solid @text-blue; margin-bottom: 10px; box-sizing: content-box; }
-	ul#source li { cursor: pointer; }
-	ul li.static { cursor: not-allowed !important; }
-	li.value {
-		border: 2px solid #005476;
-		padding: 5px;
-		color: @text-blue;
-		background: #fff;
-		font-size: 12px;
-		margin-bottom: 10px;
+
+	div.preview {
+		.clearfix();
+		position: relative;
+		padding: 10px;
+		background: white;
+		min-height: 100px + 2px;
+		border: 1px solid #005476;
+		color: #005476;
+		.preview-value {
+			position: relative;
+			background: @white;
+			z-index: 2014;
+		}
 	}
-	li.ui-sortable-helper {
-		border-color: @pink;
+
+	div.spacer {
+		.clearfix();
+		height: 50px;
 	}
-	li.ui-state-default {
-		.rounded-corners();
-		border: 0;
-		padding: 0;
-		color: @text-blue;
-		font-weight: bold;
-		font-size: 12px;
-		background: none;
-	}
-	p.preview { padding: 10px; background: white; min-height: 90px; border: 1px solid #005476; color: #005476; }
 
 	.tx-easyvote-importer form {
 		position: relative;
 	}
 
 	.buttonBottomRight {
+		.clearfix();
 		position: absolute;
 		bottom: 0;
 		right: 0;
-	}
-
-	#assignColumns h3 { height: 50px; }
-
-	div.spacer { height: 50px; }
-
-	.sortable-placeholder {
-		display: none;
-		border-radius: 5px;
-		-webkit-border-radius: 5px;
-		border: 0;
-		padding: 5px;
-		color: @text-blue;
-		background: @white;
-		font-size: 12px;
 	}
 
 	ul.cityStatus { list-style-type: none; margin: 0; padding: 0; }
