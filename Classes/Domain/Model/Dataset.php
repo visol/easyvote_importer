@@ -79,6 +79,13 @@ class Dataset extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $processed;
 
 	/**
+	 * Anzahl importierter Adressen
+	 *
+	 * @var \integer
+	 */
+	protected $importedAddresses;
+
+	/**
 	 * Abstimmungstag
 	 *
 	 * @var int
@@ -224,6 +231,20 @@ class Dataset extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setBusinessuser(\Visol\Easyvote\Domain\Model\BusinessUser $businessuser) {
 		$this->businessuser = $businessuser;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getImportedAddresses() {
+		return $this->importedAddresses;
+	}
+
+	/**
+	 * @param int $importedAddresses
+	 */
+	public function setImportedAddresses($importedAddresses) {
+		$this->importedAddresses = $importedAddresses;
 	}
 
 }

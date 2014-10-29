@@ -1,0 +1,41 @@
+{namespace v=Tx_Vhs_ViewHelpers}
+<f:layout name="Default" />
+<f:section name="subnavigation">
+	<f:render partial="DataManager/AdminFunctions" />
+</f:section>
+<f:section name="left">
+	<div class="csc-default box-pink">
+		<h2>Statistiken</h2>
+	</div>
+</f:section>
+<f:section name="main">
+
+	<div class="csc-default box-blue">
+		<h2>Statistiken</h2>
+		<table class="eviTable">
+			<thead>
+				<tr>
+					<th>Gemeinde</th>
+					<th>Kundennummer</th>
+					<f:for each="{votingDays}" as="votingDay">
+						<th><f:format.date format="d.m.Y">{votingDay.votingDate}</f:format.date></th>
+					</f:for>
+				</tr>
+			</thead>
+			<tbody>
+				<f:for each="{statsData}" as="city">
+					<tr>
+						<td>{city.businessuser.company}</td>
+						<td>{city.businessuser.customerNumber}</td>
+						<f:for each="{city.datasets}" as="dataset">
+							<td>{dataset.importedAddresses}</td>
+						</f:for>
+					</tr>
+				</f:for>
+			</tbody>
+		</table>
+	</div>
+
+</f:section>
+<f:section name="right">
+</f:section>

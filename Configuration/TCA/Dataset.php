@@ -9,7 +9,7 @@ $TCA['tx_easyvoteimporter_domain_model_dataset'] = array(
 		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, file, voting_day',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, crdate, file, processed, firstrow_columnnames, column_configuration, voting_day, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, crdate, file, processed, firstrow_columnnames, column_configuration, imported_addresses, voting_day, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -139,6 +139,14 @@ $TCA['tx_easyvoteimporter_domain_model_dataset'] = array(
 				'type' => 'text',
 				'cols' => 40,
 				'rows' => 5,
+				'readOnly' => 1
+			),
+		),
+		'imported_addresses' => array(
+			'exclude' => 1,
+			'label' => 'Anzahl importierter Adressen',
+			'config' => array(
+				'type' => 'input',
 				'readOnly' => 1
 			),
 		),

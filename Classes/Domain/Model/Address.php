@@ -92,6 +92,14 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $votingDay;
 
 	/**
+	 * Benutzer
+	 *
+	 * @var \Visol\EasyvoteImporter\Domain\Model\BusinessUser
+	 * @lazy
+	 */
+	protected $businessuser;
+
+	/**
 	 * Name der Datei
 	 *
 	 * @var \string
@@ -267,6 +275,20 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setVotingDay($votingDay) {
 		$this->votingDay = $votingDay;
+	}
+
+	/**
+	 * @return \Visol\EasyvoteImporter\Domain\Model\BusinessUser
+	 */
+	public function getBusinessuser() {
+		return $this->businessuser;
+	}
+
+	/**
+	 * @param \Visol\EasyvoteImporter\Domain\Model\BusinessUser $businessuser
+	 */
+	public function setBusinessuser($businessuser) {
+		$this->businessuser = $businessuser;
 	}
 
 }

@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_easyvoteimporter_domain_model_address'] = array(
 	'ctrl' => $TCA['tx_easyvoteimporter_domain_model_address']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'customer_number, blacklisted, salutation, name, street, city, import_file_name, crdate, voting_day',
+		'showRecordFieldList' => 'customer_number, businessuser, blacklisted, salutation, name, street, city, import_file_name, crdate, voting_day',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'customer_number, blacklisted, salutation, name, street, city, import_file_name, crdate, voting_day'),
+		'1' => array('showitem' => 'customer_number, businessuser, blacklisted, salutation, name, street, city, import_file_name, crdate, voting_day'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -125,6 +125,20 @@ $TCA['tx_easyvoteimporter_domain_model_address'] = array(
 				'size' => 30,
 				'eval' => 'trim',
 				'readOnly' => 1,
+			),
+		),
+		'businessuser' => array(
+			'exclude' => 1,
+			'label' => 'Gemeinde',
+			'config' => array(
+				'type' => 'select',
+				'foreign_table' => 'fe_users',
+				'minitems' => 1,
+				'maxitems' => 1,
+				'readOnly' => 1,
+				'items' => array(
+					array('', ''),
+				),
 			),
 		),
 		'salutation' => array(

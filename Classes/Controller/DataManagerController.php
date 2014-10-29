@@ -47,20 +47,18 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 	protected $persistenceManager;
 
 	/**
-	 * frontendUser repository
-	 *
-	 * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserRepository
-	 * @inject
-	 */
-	protected $frontendUserRepository;
-
-	/**
 	 * businessUser repository
 	 *
 	 * @var \Visol\EasyvoteImporter\Domain\Repository\BusinessUserRepository
 	 * @inject
 	 */
 	protected $businessUserRepository;
+
+	/**
+	 * @var \TYPO3\CMS\Extbase\Domain\Repository\FrontendUserGroupRepository
+	 * @inject
+	 */
+	protected $frontendUserGroupRepository;
 
 	/**
 	 * votingDayRepository
@@ -519,8 +517,11 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 			}
 			$i++;
 		}
-
 		$this->persistenceManager->persistAll();
+
+		// set the number of imported addresses
+		$dataset->setImportedAddresses(count($importData));
+
 		$success = 'Die Adressen wurden erfolgreich importiert.';
 		$this->flashMessageContainer->add($success, 'Aktion erfolgreich abgeschlossen', \TYPO3\CMS\Core\Messaging\FlashMessage::OK);
 
@@ -529,8 +530,6 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 			// remove file reference from dataset
 			$dataset->setFile('');
 			$dataset->setProcessed(time());
-			$this->datasetRepository->update($dataset);
-			$this->persistenceManager->persistAll();
 			// report success and go back to index
 			$error = 'Originaldatei wurde erfolgreich gelöscht.';
 			$this->flashMessageContainer->add($error, 'Datenschutz-Info', \TYPO3\CMS\Core\Messaging\FlashMessage::OK);
@@ -539,6 +538,9 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 			$this->flashMessageContainer->add($error, LocalizationUtility::translate('flashMessage.errorHeader', $this->request->getControllerExtensionName()), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
 
 		}
+
+		$this->datasetRepository->update($dataset);
+		$this->persistenceManager->persistAll();
 
 		$this->redirect('adminIndex');
 
@@ -801,6 +803,42 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 		} else {
 			$this->redirect('cityIndex');
 		}
+
+	}
+
+	/**
+	 * List statistics
+	 */
+	public function listStatsAction() {
+		$statsData = array();
+
+		$votingDays = $this->votingDayRepository->findAll()->toArray();
+		foreach ($votingDays as $key => $votingDay) {
+			if ($this->datasetRepository->countByVotingDay($votingDay) === 0) {
+				unset($votingDays[$key]);
+			}
+		}
+
+		$cityFrontendUserGroup = $this->frontendUserGroupRepository->findByUid((int)$this->settings['cityFeUserGroup']);
+		$businessUsers = $this->businessUserRepository->findByUsergroup($cityFrontendUserGroup);
+		foreach ($businessUsers as $businessUser) {
+			/** @var $businessUser \Visol\EasyvoteImporter\Domain\Model\BusinessUser */
+			$statsData[$businessUser->getUid()]['businessuser']['customerNumber'] = $businessUser->getCustomerNumber();
+			$statsData[$businessUser->getUid()]['businessuser']['company'] = $businessUser->getCompany();
+			foreach ($votingDays as $votingDay) {
+				/** @var $votingDay \Visol\Easyvote\Domain\Model\VotingDay */
+				/** @var $dataset \Visol\EasyvoteImporter\Domain\Model\Dataset */
+				$dataset = $this->datasetRepository->findDatasetByBusinessUserAndVotingDate($businessUser, $votingDay);
+				if ($dataset instanceof \Visol\EasyvoteImporter\Domain\Model\Dataset) {
+					$statsData[$businessUser->getUid()]['datasets'][$votingDay->getUid()]['importedAddresses'] = $dataset->getImportedAddresses();
+				} else {
+					$statsData[$businessUser->getUid()]['datasets'][$votingDay->getUid()]['importedAddresses'] = 0;
+				}
+			}
+		}
+
+		$this->view->assign('statsData', $statsData);
+		$this->view->assign('votingDays', $votingDays);
 
 	}
 
