@@ -32,7 +32,7 @@
 								<f:else>
 									<p><strong><f:translate key="cityIndex.assignmentMissing" /></strong></p>
 									<f:form noCacheHash="true" name="assign" arguments="{city: businessUser.uid, dataset: '{v:var.get(name: \'datasets.{iterator.index}\')}'}" action="assign">
-										<f:form.submit value="{f:translate(key:'cityIndex.assignColumns')}" />
+										<f:form.submit class="btn btn-primary" value="{f:translate(key:'cityIndex.assignColumns')}" />
 									</f:form>
 								</f:else>
 							</f:if>
@@ -46,7 +46,7 @@
 					<p><f:translate key="cityIndex.uploadRequest" /></p>
 					<f:form noCacheHash="true" action="uploadList">
 						<f:form.hidden name="city" value="{businessUser.uid}" />
-						<f:form.submit value="{f:translate(key:'cityIndex.uploadButton')}" name="votingDay[{votingDay.uid}]" />
+						<f:form.submit class="btn btn-primary" value="{f:translate(key:'cityIndex.uploadButton')}" name="votingDay[{votingDay.uid}]" />
 					</f:form>
 				</f:else>
 			</f:if>

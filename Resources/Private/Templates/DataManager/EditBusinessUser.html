@@ -4,10 +4,10 @@
 	<li>
 		<f:if condition="{businessUser.uid}">
 			<f:then>
-				<f:link.action action="cityIndex" arguments="{city:businessUser.uid}"><f:translate key="subnavigation.start" /></f:link.action>
+				<li><f:link.action action="cityIndex" arguments="{city:businessUser.uid}"><f:translate key="subnavigation.start" /></f:link.action></li>
 			</f:then>
 			<f:else>
-				<f:link.action action="cityIndex" arguments="{city:businessUser}"><f:translate key="subnavigation.start" /></f:link.action>
+				<li><f:link.action action="cityIndex" arguments="{city:businessUser}"><f:translate key="subnavigation.start" /></f:link.action></li>
 			</f:else>
 		</f:if>
 	</li>

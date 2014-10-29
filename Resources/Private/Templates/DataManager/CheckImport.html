@@ -35,7 +35,7 @@
 
 		<f:form noCacheHash="true" id="columnAssignment" action="performImport" onsubmit="return confirm('Adressen importieren?');" >
 			<f:form.hidden name="dataset" value="{dataset}" />
-			<f:form.submit class="buttonBottomRight" value="Adressen importieren" />
+			<f:form.submit class="btn btn-primary buttonBottomRight" value="Adressen importieren" />
 		</f:form>
 
 	</div>
@@ -45,7 +45,7 @@
 		<h2>Fehler gefunden?</h2>
 		<f:form noCacheHash="true" name="assign" arguments="{city:businessUser.uid, dataset:dataset}" action="assign">
 			<f:form.hidden name="businessUser" value="{businessUser}" />
-			<f:form.submit value="Spalten neu zuordnen" />
+			<f:form.submit class="btn btn-primary" value="Spalten neu zuordnen" />
 		</f:form>
 	</div>
 </f:section>

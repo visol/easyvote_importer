@@ -52,7 +52,7 @@
 			<trans-unit id="cityIndex.dataUploadedBegin">
 				<source>Vielen Dank. Wir haben Ihre Adressliste zu dieser Abstimmung am</source>
 			</trans-unit>
-			<trans-unit id="cityIndex.dataUploadedBeginEnd">
+			<trans-unit id="cityIndex.dataUploadedEnd">
 				<source>erhalten.</source>
 			</trans-unit>
 			<trans-unit id="cityIndex.fileName">

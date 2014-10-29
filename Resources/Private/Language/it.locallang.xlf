@@ -68,7 +68,7 @@
 				<source>Vielen Dank. Wir haben Ihre Adressliste zu dieser Abstimmung am</source>
 				<target>Molte grazie. Abbiamo ricevuto la lista indirizzi per la votazione del</target>
 			</trans-unit>
-			<trans-unit id="cityIndex.dataUploadedBeginEnd">
+			<trans-unit id="cityIndex.dataUploadedEnd">
 				<source>erhalten.</source>
 				<target>.</target>
 			</trans-unit>

@@ -2,16 +2,18 @@
 <f:section name="subnavigation">
 	<f:if condition="{businessUser.uid}">
 		<f:then>
-			<f:link.action action="cityIndex" arguments="{city:businessUser.uid}"><f:translate key="subnavigation.start" /></f:link.action>
+			<li><f:link.action action="cityIndex" arguments="{city:businessUser.uid}"><f:translate key="subnavigation.start" /></f:link.action></li>
 		</f:then>
 		<f:else>
-			<f:link.action action="cityIndex" arguments="{city:businessUser}"><f:translate key="subnavigation.start" /></f:link.action>
+			<li><f:link.action action="cityIndex" arguments="{city:businessUser}"><f:translate key="subnavigation.start" /></f:link.action></li>
 		</f:else>
 	</f:if>
 </f:section>
 <f:section name="left">
 	<div class="box-steps">
-		2/2
+		<div class="inner">
+			<div class="center"></div>2/2
+		</div>
 	</div>
 </f:section>
 <f:section name="main">
@@ -28,7 +30,7 @@
 					</f:for>
 				</ul>
 			</div>
-			<div class="sortingColumns">
+			<div class="sortingColumns right">
 				<h3><f:translate key="assign.easyvoteColumns" /></h3>
 				<ul id="target-salutation" class="target connected">
 					<li id="name" class="category static ui-state-default">
@@ -71,7 +73,7 @@
 				<input class="validate" type="hidden" data-label="Vorname, Nachname" id="columns-name" name="tx_easyvoteimporter_datamanager[columns-name]" value="" />
 				<input class="validate" type="hidden" data-label="Strasse, Nr." id="columns-address" name="tx_easyvoteimporter_datamanager[columns-address]" value="" />
 				<input class="validate" type="hidden" data-label="PLZ, Ort" id="columns-city" name="tx_easyvoteimporter_datamanager[columns-city]" value="" />
-				<button type="submit" class="buttonBottomRight"><i class="evicon-ok-circled"></i> <f:translate key="assign.confirmAssignment" /></button>
+				<button type="submit" class="btn btn-primary buttonBottomRight"><i class="evicon-ok-circled"></i> <f:translate key="assign.confirmAssignment" /></button>
 			</f:form>
 
 		</div>
@@ -91,12 +93,12 @@
 			<span id="preview-city"></span>
 		</p>
 	</div>
-	<div class="csc-default box-lightblue">
+	<div class="csc-default box-blue">
 		<h2><f:translate key="assign.assignmentHelpHeader" /></h2>
 		<f:translate key="assign.assignmentHelpContent" />
 		<f:form noCacheHash="true" id="deleteDocument" action="remove">
 			<f:form.hidden name="dataset" value="{dataset}" />
-			<button type="submit"><i class="evicon-upload"></i> <f:translate key="assign.newAddressList" /></button>
+			<button class="btn btn-primary" type="submit"><i class="evicon-upload"></i> <f:translate key="assign.newAddressList" /></button>
 		</f:form>
 	</div>
 </f:section>

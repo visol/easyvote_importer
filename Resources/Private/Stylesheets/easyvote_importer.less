@@ -1,6 +1,9 @@
 body.datamanager {
 
-	/* subheader of page layout */
+	.content {
+		margin-top: 0;
+	}
+
 	#default-subheader {
 		display: none;
 	}
@@ -30,115 +33,108 @@ body.datamanager {
 		padding: 5px;
 	}
 
-	.tx-easyvote-importer h2 {
-		color: #ED0A71;
-		font-size: 20px;
-		text-transform: uppercase;
-		margin-bottom: 25px;
-	}
-
 	.tx-easyvote-importer h3 {
-		color: #112b4d;
-		font-size: 18px;
+		color: @text-blue;
+		font-size: 19px;
 		margin: 0 0 10px 0;
 	}
 
-	input[type=submit], input[type=button], button, a.button  {
-		border: 0 !important;
-		display: inline-block;
-		height: 30px;
-		line-height: 30px;
-		padding: 0 10px !important;
-		text-transform: uppercase;
-		background-color: #ED0A71;
-		color: #fff;
-		text-decoration: none;
-		-webkit-border-radius: 5px;
-		border-radius: 5px;
-		cursor: pointer;
-		margin-bottom: 5px;
-	}
 
 	.box-pink {
-		-webkit-border-radius: 15px;
-		border-radius: 15px;
+		.rounded-corners();
 		margin: 0 0 20px 0;
-		background-color: #ED0A71;
+		background-color: @pink;
 		padding: 30px;
 		text-align: left;
-		color: #fff !important;
+		color: @white !important;
 		text-decoration: none !important;
 	}
 
 	.box-pink h2 {
-		font-family: "Ubuntu", Arial, Helvetica, sans-serif;
+		.font-ubuntu();
 		text-transform: uppercase;
 		font-weight: 500;
-		font-size: 18px;
-		color: #fff;
+		font-size: 19px;
+		color: @white;
 	}
 
 	.box-blue {
-		-webkit-border-radius: 15px;
-		border-radius: 15px;
+		.rounded-corners();
 		margin: 0 0 20px 0;
-		background: #97E3F8;
-		padding: 30px;
-	}
-
-	.box-lightblue {
-		-webkit-border-radius: 15px;
-		border-radius: 15px;
-		margin: 0 0 20px 0;
-		background: #AEE9F9;
-		padding: 30px;
+		background: @box-background;
+		padding: @box-padding;
 	}
 
 	.box-steps {
 		position: relative;
-		height: 185px; /* 260 - 75 */
-		width: 260px;
-		padding-top: 75px;
-		background-color: #ED0A71;
+		height: 0;
+		width: 100%;
+		padding-bottom: 100%;
+		background-color: @pink;
 		margin: 0 0 20px 0;
-		text-align: center;
 		color: #fff;
-		font-family: "Ubuntu", Arial, Helvetica, sans-serif;
+		.font-ubuntu();
 		font-size: 110px;
-		line-height: 110px;
-		border-radius: 15px;
+		.rounded-corners();
+		.inner {
+			position: absolute;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			left: 0;
+			text-align: center;
+			.center {
+				display: inline-block;
+				vertical-align: middle;
+				height: 100%;
+			}
+		}
 	}
 
-	.typo3-messages { }
-	.typo3-message { margin-bottom: 20px; padding: 30px; border-radius: 10px; -moz-border-radius: 10px; }
+	.typo3-messages {
+		background: none;
+		padding: 0;
+		margin-bottom: 0;
+	}
+	.typo3-message {
+		margin-bottom: 20px;
+		padding: 30px;
+		.rounded-corners();
+	}
 	.message-error { background: #ff0021; }
 	.message-ok { background: #aaff7a; }
 	.message-header { font-weight: bold; }
 
-	div.sortingColumns { width: 220px; float: left; }
-	#assignColumns .left { margin-right: 40px; }
-	ul.connected { list-style-type: none; margin: 0; padding: 0;  }
-	ul.target { border-bottom: 2px solid #112B4D; margin-bottom: 10px; }
+	div.sortingColumns {
+		width: 50%;
+		float: left;
+		&.left {
+			padding-right: 10px;
+		}
+		&.right {
+			padding-left: 10px;
+		}
+	}
+	ul.connected { list-style-type: none; margin: 0; padding: 0; box-sizing: content-box; }
+	ul.target { border-bottom: 2px solid @text-blue; margin-bottom: 10px; box-sizing: content-box; }
 	ul#source li { cursor: pointer; }
 	ul li.static { cursor: not-allowed !important; }
 	li.value {
-		border-radius: 5px;
-		-webkit-border-radius: 5px;
 		border: 2px solid #005476;
 		padding: 5px;
-		color: #112B4D;
+		color: @text-blue;
 		background: #fff;
 		font-size: 12px;
+		margin-bottom: 10px;
 	}
 	li.ui-sortable-helper {
-		border-color: #ED0A71;
+		border-color: @pink;
 	}
 	li.ui-state-default {
-		border-radius: 0px;
-		-webkit-border-radius: 0px;
+		.rounded-corners();
 		border: 0;
 		padding: 0;
-		color: #112B4D;
+		color: @text-blue;
 		font-weight: bold;
 		font-size: 12px;
 		background: none;
@@ -149,7 +145,7 @@ body.datamanager {
 		position: relative;
 	}
 
-	.tx-easyvote-importer .buttonBottomRight {
+	.buttonBottomRight {
 		position: absolute;
 		bottom: 0;
 		right: 0;
@@ -165,8 +161,8 @@ body.datamanager {
 		-webkit-border-radius: 5px;
 		border: 0;
 		padding: 5px;
-		color: #112B4D;
-		background: #fff;
+		color: @text-blue;
+		background: @white;
 		font-size: 12px;
 	}
 

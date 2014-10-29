@@ -70,11 +70,12 @@ function validateForm() {
 	var errorMessages = '';
 	$('input.validate', 'form#columnAssignment').each(function() {
 		if (!$(this).val()) {
-			errorMessages += errorTextBegin + ' "'+ $(this).attr('data-label') + '" ' + errorTextEnd + '\n';
+			errorMessages += errorTextBegin + ' "'+ $(this).attr('data-label') + '" ' + errorTextEnd + '<br />';
 		}
 	});
 	if (errorMessages) {
-		alert(errorMessages);
+		errorMessages += '<br /><button class="button-cancel btn btn-primary">OK</button>';
+		Easyvote.displayModal(errorMessages);
 		return false;
 	}
 };
