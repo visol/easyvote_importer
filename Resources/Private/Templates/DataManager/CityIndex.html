@@ -56,7 +56,7 @@
 <f:section name="right">
 	<div class="csc-default box-blue">
 		<h2><f:translate key="cityIndex.deadlineHeader" /></h2>
-		<p><f:translate key="cityIndex.deadlineContent" arguments="{1: '21.7.2014'}" /></p>
+		<p><f:translate key="cityIndex.deadlineContent" arguments="{1: '{f:format.date(date: \'@{settings.uploadDueDate}\', format: \'d.m.Y\')}'}" /></p>
 	</div>
 	<div class="csc-default box-blue">
 		<h2><f:translate key="cityIndex.manualHeader" /></h2>

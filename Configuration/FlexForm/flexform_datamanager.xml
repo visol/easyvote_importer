@@ -1,0 +1,28 @@
+<T3DataStructure>
+    <meta>
+        <langDisable>1</langDisable>
+    </meta>
+    <sheets>
+        <sDEF>
+            <ROOT>
+				<TCEforms>
+					<sheetTitle>Konfiguration</sheetTitle>
+				</TCEforms>
+                <type>array</type>
+                <el>
+					<settings.uploadDueDate>
+						<TCEforms>
+							<label>Upload-Frist</label>
+							<config>
+								<type>input</type>
+								<size>8</size>
+								<eval>date</eval>
+								<checkbox>1</checkbox>
+							</config>
+						</TCEforms>
+					</settings.uploadDueDate>
+                </el>
+            </ROOT>
+        </sDEF>
+    </sheets>
+</T3DataStructure>

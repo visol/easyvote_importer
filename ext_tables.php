@@ -9,6 +9,10 @@ if (!defined('TYPO3_MODE')) {
 	'easyvote Data Manager'
 );
 
+$pluginSignature = str_replace('_','',$_EXTKEY) . '_datamanager';
+$TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_flexform';
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPiFlexFormValue($pluginSignature, 'FILE:EXT:' . $_EXTKEY . '/Configuration/FlexForm/flexform_datamanager.xml');
+
 /* Login-Panel */
 \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
 	$_EXTKEY,
