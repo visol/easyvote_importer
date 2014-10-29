@@ -397,7 +397,8 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 		$columns['address'] = $arguments['columns-address'];
 		$columns['city'] = $arguments['columns-city'];
 
-		if (!empty($columns['salutation']) && !empty($columns['name']) && !empty($columns['address']) && !empty($columns['name'])) {
+		// salutation is not a mandatory value
+		if (!empty($columns['name']) && !empty($columns['address']) && !empty($columns['city'])) {
 			foreach ($columns as $key => $column) {
 				// transform comma-separated value to array, remove empty items
 				$columns[$key] = GeneralUtility::trimExplode(',', $column, TRUE);
