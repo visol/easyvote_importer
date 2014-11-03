@@ -27,6 +27,7 @@ namespace Visol\EasyvoteImporter\Controller;
 use TYPO3\CMS\Core\Utility\DebugUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use Visol\EasyvoteImporter\Domain\Model\Dataset;
 use Visol\EasyvoteImporter\Utility\ExcelUtility;
 
 
@@ -145,10 +146,13 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 			}
 		}
 
+		$latestProcessedDataset = $this->datasetRepository->findOneProcessedByBusinessUser($businessUser);
+
 		$this->view->assignMultiple(array(
 			'businessUser' => $businessUser,
 			'votingDays' => $votingDays,
-			'datasets' => $datasets
+			'datasets' => $datasets,
+			'latestProcessedDataset' => $latestProcessedDataset
 		));
 	}
 
@@ -370,7 +374,6 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 
 	/**
 	 * @param \Visol\EasyvoteImporter\Domain\Model\Dataset $dataset
-	 * @dontverifyrequesthash
 	 */
 	public function approveAction(\Visol\EasyvoteImporter\Domain\Model\Dataset $dataset) {
 
@@ -504,6 +507,7 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 			/** @var \Visol\EasyvoteImporter\Domain\Model\Address $address */
 			$address = $this->objectManager->get('Visol\EasyvoteImporter\Domain\Model\Address');
 			$address->setVotingDay($dataset->getVotingDay()->getUid());
+			$address->setDataset($dataset);
 			$address->setImportFileName($dataset->getFile());
 			$address->setSalutation($record['salutation']);
 			$address->setName($record['name']);
@@ -839,6 +843,77 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 
 		$this->view->assign('statsData', $statsData);
 		$this->view->assign('votingDays', $votingDays);
+
+	}
+
+	/**
+	 * @param \Visol\EasyvoteImporter\Domain\Model\BusinessUser $businessUser
+	 * @param int $votingDay
+	 * @param \Visol\EasyvoteImporter\Domain\Model\Dataset $sourceDataset
+	 * @
+	 */
+	public function copyAddressesFromOtherVotingDayAction(\Visol\EasyvoteImporter\Domain\Model\BusinessUser $businessUser, $votingDay, \Visol\EasyvoteImporter\Domain\Model\Dataset $sourceDataset) {
+
+		$targetVotingDay = $this->votingDayRepository->findVisibleAndHiddenByUid($votingDay);
+
+		$this->checkUserIsAdmin();
+		if (!$this->userIsAdmin) {
+			if (!$this->isRequestedUserLoggedInUser($businessUser)) {
+				$message = LocalizationUtility::translate('flashMessage.accessDenied', $this->request->getControllerExtensionName());
+				$this->flashMessageContainer->add($message, LocalizationUtility::translate('flashMessage.errorHeader', $this->request->getControllerExtensionName()), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+				$this->redirect('cityIndex');
+			}
+		}
+
+		/* @var $dataset \Visol\EasyvoteImporter\Domain\Model\Dataset */
+		$dataset = $this->objectManager->get('Visol\EasyvoteImporter\Domain\Model\Dataset');
+		$dataset->setBusinessuser($businessUser);
+		$dataset->setVotingDay($targetVotingDay);
+		$dataset->setSourceDataset($sourceDataset);
+		$this->datasetRepository->add($dataset);
+		$businessUser->addDataset($dataset);
+		$this->persistenceManager->persistAll();
+
+		$addresses = $this->addressRepository->findByDataset($sourceDataset);
+		$i = 1;
+		foreach ($addresses as $address) {
+			/** @var \Visol\EasyvoteImporter\Domain\Model\Address $address */
+			/** @var \Visol\EasyvoteImporter\Domain\Model\Address $newAddress */
+			$newAddress = $this->objectManager->get('Visol\EasyvoteImporter\Domain\Model\Address');
+			$newAddress->setVotingDay($targetVotingDay);
+			$newAddress->setDataset($dataset);
+			$newAddress->setBusinessuser($businessUser);
+			$newAddress->setImportFileName($address->getImportFileName());
+			$newAddress->setBlacklisted($address->getBlacklisted());
+			$newAddress->setSalutation($address->getSalutation());
+			$newAddress->setName($address->getName());
+			$newAddress->setStreet($address->getStreet());
+			$newAddress->setCity($address->getCity());
+			$this->addressRepository->add($newAddress);
+			// persist after each 50 items
+			if ($i % 50 == 0) {
+				$this->persistenceManager->persistAll();
+			}
+			$i++;
+		}
+
+		// update dataset
+		$dataset->setImportedAddresses($addresses->count());
+		$dataset->setProcessed(time());
+
+		// last persist
+		$this->datasetRepository->update($dataset);
+		$this->persistenceManager->persistAll();
+
+		// redirect to cityIndex
+		$message = $addresses->count() . ' ' . LocalizationUtility::translate('copyAddressesFromOtherVotingDayAction.addressesCopied', $this->request->getControllerExtensionName());
+		$this->flashMessageContainer->add($message);
+		$this->checkUserIsAdmin();
+		if ($this->userIsAdmin) {
+			$this->redirect('cityIndex', NULL, NULL, array('city' => $businessUser->getUid()));
+		} else {
+			$this->redirect('cityIndex');
+		}
 
 	}
 

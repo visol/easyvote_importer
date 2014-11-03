@@ -45,7 +45,6 @@ class Dataset extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * Datei
 	 *
 	 * @var \string
-	 * @validate NotEmpty
 	 */
 	protected $file;
 
@@ -88,7 +87,8 @@ class Dataset extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	/**
 	 * Abstimmungstag
 	 *
-	 * @var int
+	 * @var \Visol\Easyvote\Domain\Model\VotingDay
+	 * @lazy
 	 */
 	protected $votingDay;
 
@@ -99,6 +99,22 @@ class Dataset extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @lazy
 	 */
 	protected $businessuser;
+
+	/**
+	 * Dataset
+	 *
+	 * @var \Visol\EasyvoteImporter\Domain\Model\Dataset
+	 * @lazy
+	 */
+	protected $dataset;
+
+	/**
+	 * Quell-Dataset
+	 *
+	 * @var \Visol\EasyvoteImporter\Domain\Model\Dataset
+	 * @lazy
+	 */
+	protected $sourceDataset;
 
 	/**
 	 * Returns the file
@@ -229,7 +245,7 @@ class Dataset extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @param \Visol\EasyvoteImporter\Domain\Model\BusinessUser $businessuser
 	 * @return void
 	 */
-	public function setBusinessuser(\Visol\Easyvote\Domain\Model\BusinessUser $businessuser) {
+	public function setBusinessuser(\Visol\EasyvoteImporter\Domain\Model\BusinessUser $businessuser) {
 		$this->businessuser = $businessuser;
 	}
 
@@ -245,6 +261,34 @@ class Dataset extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setImportedAddresses($importedAddresses) {
 		$this->importedAddresses = $importedAddresses;
+	}
+
+	/**
+	 * @return \Visol\EasyvoteImporter\Domain\Model\Dataset
+	 */
+	public function getSourceDataset() {
+		return $this->sourceDataset;
+	}
+
+	/**
+	 * @param \Visol\EasyvoteImporter\Domain\Model\Dataset $sourceDataset
+	 */
+	public function setSourceDataset($sourceDataset) {
+		$this->sourceDataset = $sourceDataset;
+	}
+
+	/**
+	 * @return mixed
+	 */
+	public function getDataset() {
+		return $this->dataset;
+	}
+
+	/**
+	 * @param mixed $dataset
+	 */
+	public function setDataset($dataset) {
+		$this->dataset = $dataset;
 	}
 
 }

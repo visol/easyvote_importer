@@ -92,6 +92,14 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	protected $votingDay;
 
 	/**
+	 * Dataset
+	 *
+	 * @var \Visol\EasyvoteImporter\Domain\Model\Dataset
+	 * @lazy
+	 */
+	protected $dataset;
+
+	/**
 	 * Benutzer
 	 *
 	 * @var \Visol\EasyvoteImporter\Domain\Model\BusinessUser
@@ -289,6 +297,20 @@ class Address extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 */
 	public function setBusinessuser($businessuser) {
 		$this->businessuser = $businessuser;
+	}
+
+	/**
+	 * @return \Visol\EasyvoteImporter\Domain\Model\Dataset
+	 */
+	public function getDataset() {
+		return $this->dataset;
+	}
+
+	/**
+	 * @param \Visol\EasyvoteImporter\Domain\Model\Dataset $dataset
+	 */
+	public function setDataset($dataset) {
+		$this->dataset = $dataset;
 	}
 
 }

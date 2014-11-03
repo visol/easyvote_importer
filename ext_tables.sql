@@ -25,6 +25,7 @@ CREATE TABLE tx_easyvoteimporter_domain_model_dataset (
 	businessuser int(11) unsigned DEFAULT '0' NOT NULL,
 	file text NOT NULL,
 	voting_day int(11) unsigned DEFAULT '0',
+	source_dataset int(11) unsigned DEFAULT '0',
 	column_configuration text NOT NULL,
 	firstrow_columnnames tinyint(1) unsigned DEFAULT '0' NOT NULL,
 	imported_addresses int(11) unsigned DEFAULT '0',
@@ -60,6 +61,7 @@ CREATE TABLE tx_easyvoteimporter_domain_model_address (
 
 	import_file_name varchar(255) DEFAULT '' NOT NULL,
 	voting_day int(11) unsigned DEFAULT '0',
+	dataset int(11) unsigned DEFAULT '0',
 	businessuser int(11) unsigned DEFAULT '0' NOT NULL,
 	blacklisted tinyint(1) unsigned DEFAULT '0' NOT NULL,
 	salutation varchar(255) DEFAULT '' NOT NULL,

@@ -358,7 +358,7 @@
 				<target>Caricamento dati eseguito con successo</target>
 			</trans-unit>
 			<trans-unit id="approveAction.successMessage">
-				<source>Ihre Daten und die Spaltenzuweisung wurden gespeichert. Besten Dank. Wir werden Ihre Daten überprüfen und anschliessend ihre Adressliste vom Server entfernen.</source>
+				<source>Ihre Daten und die Spaltenzuweisung wurden gespeichert. Besten Dank. Wir werden Ihre Daten überprüfen und anschliessend Ihre Adressliste vom Server entfernen.</source>
 				<target>I vostri dati sono stati salvati. Mille grazie per la collaborazione. Verificheremo i vostri dati e in seguito elimineremo la vostra lista indirizzi dai server.</target>
 			</trans-unit>
 			<trans-unit id="approveAction.failHeader">

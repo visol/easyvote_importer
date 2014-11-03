@@ -6,10 +6,10 @@ if (!defined ('TYPO3_MODE')) {
 $TCA['tx_easyvoteimporter_domain_model_dataset'] = array(
 	'ctrl' => $TCA['tx_easyvoteimporter_domain_model_dataset']['ctrl'],
 	'interface' => array(
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, file, voting_day',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, file, source_dataset, voting_day',
 	),
 	'types' => array(
-		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, crdate, file, processed, firstrow_columnnames, column_configuration, imported_addresses, voting_day, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
+		'1' => array('showitem' => 'sys_language_uid;;;;1-1-1, l10n_parent, l10n_diffsource, hidden;;1, crdate, file, source_dataset, processed, firstrow_columnnames, column_configuration, imported_addresses, voting_day, --div--;LLL:EXT:cms/locallang_ttc.xlf:tabs.access,starttime, endtime'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -158,7 +158,24 @@ $TCA['tx_easyvoteimporter_domain_model_dataset'] = array(
 				'foreign_table' => 'tx_easyvote_domain_model_votingday',
 				'minitems' => 1,
 				'maxitems' => 1,
-				'readOnly' => 1
+				'readOnly' => 1,
+				'items' => array(
+					array('', ''),
+				),
+			),
+		),
+		'source_dataset' => array(
+			'exclude' => 0,
+			'label' => 'Daten importiert von Dataset',
+			'config' => array(
+				'type' => 'select',
+				'foreign_table' => 'tx_easyvoteimporter_domain_model_dataset',
+				'minitems' => 0,
+				'maxitems' => 1,
+				'readOnly' => 1,
+				'items' => array(
+					array('', ''),
+				),
 			),
 		),
 		'businessuser' => array(

@@ -55,6 +55,15 @@
 			<trans-unit id="cityIndex.dataUploadedEnd">
 				<source>erhalten.</source>
 			</trans-unit>
+			<trans-unit id="cityIndex.dataCopiedFromDatasetBegin">
+				<source>Vielen Dank. Wir haben Ihre Adressliste zu dieser Abstimmung am</source>
+			</trans-unit>
+			<trans-unit id="cityIndex.dataCopiedFromDatasetMiddle">
+				<source>erhalten. Dabei wurde die Adressliste vom</source>
+			</trans-unit>
+			<trans-unit id="cityIndex.dataCopiedFromDatasetEnd">
+				<source>verwendet.</source>
+			</trans-unit>
 			<trans-unit id="cityIndex.fileName">
 				<source>Dateiname:</source>
 			</trans-unit>
@@ -68,7 +77,7 @@
 				<source>Daten wurden am</source>
 			</trans-unit>
 			<trans-unit id="cityIndex.dataProcessedEnd">
-				<source>hochgeladen, verarbeitet und wieder vom System gelöscht.</source>
+				<source>hochgeladen und verarbeitet.</source>
 			</trans-unit>
 			<trans-unit id="cityIndex.uploadRequest">
 				<source>Wir benötigen von Ihnen eine Excel-Liste mit den Empfängern der easyvote-Broschüre.</source>
@@ -89,6 +98,28 @@
 				<source><![CDATA[
 					<a target="_blank" href="https://www.easyvote.ch/fileadmin/files/Data-Manager/Anleitung/Anleitung_V1.0.pdf">Hier</a> können Sie die Anleitung herunterladen. In dieser wird das Hochladen der Adressliste Schritt für Schritt erklärt.
 				]]></source>
+			</trans-unit>
+			<trans-unit id="cityIndex.useAddressesOfVotingDay">
+				<source>Adressen des folgenden Abstimmungstages verwenden</source>
+			</trans-unit>
+			<trans-unit id="cityIndex.useLatestImportedAddresses">
+				<source>Zuletzt importierte Adressen verwenden</source>
+			</trans-unit>
+			<trans-unit id="cityIndex.useLatestImportedAddressesTooltip">
+				<source>Falls Sie keine neuen Adressen zur Verfügung stellen können oder die Daten nicht geändert haben, können Sie die zuletzt importieren Adressen verwenden.</source>
+			</trans-unit>
+			<trans-unit id="cityIndex.cancel">
+				<source>abbrechen</source>
+			</trans-unit>
+			<trans-unit id="cityIndex.copyAddresses">
+				<source>Adressen übernehmen</source>
+			</trans-unit>
+			<trans-unit id="cityIndex.addresses">
+				<source>Adressen</source>
+			</trans-unit>
+
+			<trans-unit id="copyAddressesFromOtherVotingDayAction.addressesCopied">
+				<source>Adressen wurden erfolgreich kopiert.</source>
 			</trans-unit>
 
 			<trans-unit id="assign.customerColumns">
@@ -257,7 +288,7 @@
 				<source>Daten-Upload erfolgreich</source>
 			</trans-unit>
 			<trans-unit id="approveAction.successMessage">
-				<source>Ihre Daten und die Spaltenzuweisung wurden gespeichert. Besten Dank. Wir werden Ihre Daten überprüfen und anschliessend ihre Adressliste vom Server entfernen.</source>
+				<source>Ihre Daten und die Spaltenzuweisung wurden gespeichert. Besten Dank. Wir werden Ihre Daten überprüfen und anschliessend Ihre Adressliste vom Server entfernen.</source>
 			</trans-unit>
 			<trans-unit id="approveAction.failHeader">
 				<source>Daten-Upload fehlgeschlagen</source>

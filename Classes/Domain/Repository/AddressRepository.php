@@ -73,7 +73,7 @@ class AddressRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	}
 
 	/**
-	 * Find all addresses for a voting day that are *not* blacklisted
+	 * Find all addresses for a voting day that are blacklisted
 	 *
 	 * @param \Visol\Easyvote\Domain\Model\VotingDay $votingDay
 	 * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
@@ -82,8 +82,25 @@ class AddressRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		$query = $this->createQuery();
 		$query->matching(
 			$query->logicalAnd(
-				$query->like('votingDay', $votingDay),
+				$query->equals('votingDay', $votingDay),
 				$query->equals('blacklisted', TRUE)
+			)
+		);
+		return $query->execute();
+	}
+
+	/**
+	 * Find all not blacklisted addresses by businessUser and votingDay
+	 *
+	 * @param \Visol\EasyvoteImporter\Domain\Model\Dataset $dataset
+	 * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+	 */
+	public function findByDataset(\Visol\EasyvoteImporter\Domain\Model\Dataset $dataset) {
+		$query = $this->createQuery();
+		$query->matching(
+			$query->logicalAnd(
+				$query->equals('dataset', $dataset),
+				$query->equals('blacklisted', FALSE)
 			)
 		);
 		return $query->execute();

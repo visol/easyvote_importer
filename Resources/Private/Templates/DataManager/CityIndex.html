@@ -22,32 +22,67 @@
 	<f:for each="{votingDays}" as="votingDay" iteration="iterator">
 		<div class="csc-default box-blue">
 			<h3><f:translate key="cityIndex.votingDateOf" /> <f:format.date date="{votingDay.votingDate}" format="d.m.Y" /></h3>
-			<f:if condition="{v:var.get(name: 'datasets.{iterator.index}.uid')}">
+			<f:if condition="{v:var.get(name: 'datasets.{iterator.index}.sourceDataset')}">
 				<f:then>
-					<f:if condition="{v:var.get(name: 'datasets.{iterator.index}.file')}">
+					<p><f:translate key="cityIndex.dataCopiedFromDatasetBegin" /> <f:format.date date="@{v:var.get(name: 'datasets.{iterator.index}.crdate')}" format="d.m.Y" /> <f:translate key="cityIndex.dataCopiedFromDatasetMiddle" /> <f:format.date date="@{v:var.get(name: 'datasets.{iterator.index}.sourceDataset.crdate')}" format="d.m.Y" /> <f:translate key="cityIndex.dataCopiedFromDatasetEnd" /><br />
+				</f:then>
+				<f:else>
+					<f:if condition="{v:var.get(name: 'datasets.{iterator.index}.uid')}">
 						<f:then>
-							<p><f:translate key="cityIndex.dataUploadedBegin" /> <f:format.date date="@{v:var.get(name: 'datasets.{iterator.index}.crdate')}" format="d.m.Y" /> <f:translate key="cityIndex.dataUploadedEnd" /><br />
-							<em><f:translate key="cityIndex.fileName" /> {v:var.get(name: 'datasets.{iterator.index}.file')}</em></p>
-							<f:if condition="{v:var.get(name: 'datasets.{iterator.index}.columnConfiguration')}">
+							<f:if condition="{v:var.get(name: 'datasets.{iterator.index}.file')}">
+								<f:then>
+									<p><f:translate key="cityIndex.dataUploadedBegin" /> <f:format.date date="@{v:var.get(name: 'datasets.{iterator.index}.crdate')}" format="d.m.Y" /> <f:translate key="cityIndex.dataUploadedEnd" /><br />
+									<em><f:translate key="cityIndex.fileName" /> {v:var.get(name: 'datasets.{iterator.index}.file')}</em></p>
+									<f:if condition="{v:var.get(name: 'datasets.{iterator.index}.columnConfiguration')}">
+										<f:else>
+											<p><strong><f:translate key="cityIndex.assignmentMissing" /></strong></p>
+											<f:form noCacheHash="true" name="assign" arguments="{city: businessUser.uid, dataset: '{v:var.get(name: \'datasets.{iterator.index}\')}'}" action="assign">
+												<f:form.submit class="btn btn-primary" value="{f:translate(key:'cityIndex.assignColumns')}" />
+											</f:form>
+										</f:else>
+									</f:if>
+								</f:then>
 								<f:else>
-									<p><strong><f:translate key="cityIndex.assignmentMissing" /></strong></p>
-									<f:form noCacheHash="true" name="assign" arguments="{city: businessUser.uid, dataset: '{v:var.get(name: \'datasets.{iterator.index}\')}'}" action="assign">
-										<f:form.submit class="btn btn-primary" value="{f:translate(key:'cityIndex.assignColumns')}" />
-									</f:form>
+									<f:translate key="cityIndex.dataProcessedBegin" /> <f:format.date date="@{v:var.get(name: 'datasets.{iterator.index}.crdate')}" format="d.m.Y" /> <f:translate key="cityIndex.dataProcessedEnd" />
 								</f:else>
 							</f:if>
 						</f:then>
 						<f:else>
-							<f:translate key="cityIndex.dataProcessedBegin" /> <f:format.date date="@{v:var.get(name: 'datasets.{iterator.index}.crdate')}" format="d.m.Y" /> <f:translate key="cityIndex.dataProcessedEnd" />
+							<p><f:translate key="cityIndex.uploadRequest" /></p>
+							<f:form noCacheHash="true" action="uploadList">
+								<f:form.hidden name="city" value="{businessUser.uid}" />
+								<f:form.submit class="btn btn-primary" value="{f:translate(key:'cityIndex.uploadButton')}" name="votingDay[{votingDay.uid}]" />
+							</f:form>
+							<f:if condition="{latestProcessedDataset}">
+								<a href="#" class="copyPastAddressesTrigger hasModal" title="{f:translate(key:'cityIndex.useLatestImportedAddressesTooltip')}">
+									<f:translate key="cityIndex.useLatestImportedAddresses" />
+								</a>
+								<div class="hidden">
+									<h2><f:translate key="cityIndex.votingDateOf" /> <f:format.date date="{votingDay.votingDate}" format="d.m.Y" /></h2>
+									<f:form noCacheHash="true" action="copyAddressesFromOtherVotingDay" arguments="{votingDay:votingDay, businessUser:businessUser}">
+										<label for="votingDay"><f:translate key="cityIndex.useAddressesOfVotingDay" /></label>
+										<div class="form-group">
+											<f:form.hidden name="sourceDataset" value="{latestProcessedDataset}" />
+											<input id="votingDay" disabled="disabled" class="form-control" value="{latestProcessedDataset.votingDay.votingDate -> f:format.date(format:'d.m.Y')}: {latestProcessedDataset.importedAddresses} {f:translate(key:'cityIndex.addresses')}" />
+										</div>
+										<div class="buttons">
+											<div class="pull-left">
+												<div class="form-group">
+													<button type="button" class="btn btn-primary button-cancel"><f:translate key="cityIndex.cancel" /></button>
+												</div>
+											</div>
+											<div class="pull-right">
+												<div class="form-group">
+													<f:form.submit class="btn btn-primary" value="{f:translate(key:'cityIndex.copyAddresses')}" />
+												</div>
+											</div>
+										</div>
+
+									</f:form>
+								</div>
+							</f:if>
 						</f:else>
 					</f:if>
-				</f:then>
-				<f:else>
-					<p><f:translate key="cityIndex.uploadRequest" /></p>
-					<f:form noCacheHash="true" action="uploadList">
-						<f:form.hidden name="city" value="{businessUser.uid}" />
-						<f:form.submit class="btn btn-primary" value="{f:translate(key:'cityIndex.uploadButton')}" name="votingDay[{votingDay.uid}]" />
-					</f:form>
 				</f:else>
 			</f:if>
 		</div>

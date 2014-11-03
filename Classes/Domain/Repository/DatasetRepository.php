@@ -39,30 +39,48 @@ class DatasetRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	 * @return object
 	 */
 	public function findDatasetByBusinessUserAndVotingDate(\Visol\EasyvoteImporter\Domain\Model\BusinessUser $businessUser, \Visol\Easyvote\Domain\Model\VotingDay $votingDay) {
-			$query = $this->createQuery();
-			$query->matching(
-				$query->logicalAnd(
-					$query->equals('businessuser', $businessUser),
-					$query->equals('votingDay', $votingDay)
-				)
-			);
-			return $query->execute()->getFirst();
-		}
+		$query = $this->createQuery();
+		$query->matching(
+			$query->logicalAnd(
+				$query->equals('businessuser', $businessUser),
+				$query->equals('votingDay', $votingDay)
+			)
+		);
+		return $query->execute()->getFirst();
+	}
+
+	/**
+	 * @param \Visol\EasyvoteImporter\Domain\Model\BusinessUser $businessUser
+	 * @return object
+	 */
+	public function findOneProcessedByBusinessUser(\Visol\EasyvoteImporter\Domain\Model\BusinessUser $businessUser) {
+		$query = $this->createQuery();
+		$query->matching(
+			$query->logicalAnd(
+				$query->equals('businessuser', $businessUser),
+				$query->greaterThan('processed', 0)
+			)
+		);
+		$query->setOrderings(array(
+			'votingDay.votingDate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING
+		));
+		return $query->execute()->getFirst();
+	}
 
 	/**
 	 * @param \Visol\Easyvote\Domain\Model\VotingDay $votingDay
 	 * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
 	 */
 	public function findApprovedDatasetsByVotingDay(\Visol\Easyvote\Domain\Model\VotingDay $votingDay) {
-			$query = $this->createQuery();
-			$query->matching(
-				$query->logicalAnd(
-					$query->equals('votingDay', $votingDay),
-					$query->greaterThan('processed', 0)
-				)
-			);
-			return $query->execute();
-		}
+		$query = $this->createQuery();
+		$query->matching(
+			$query->logicalAnd(
+				$query->equals('votingDay', $votingDay),
+				$query->greaterThan('processed', 0)
+			)
+		);
+		return $query->execute();
+	}
 
 }
 ?>
