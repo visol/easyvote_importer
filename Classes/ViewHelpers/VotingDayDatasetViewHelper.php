@@ -60,6 +60,7 @@ class Tx_EasyvoteImporter_ViewHelpers_VotingDayDatasetViewHelper extends \TYPO3\
 		$output = '';
 		if (count($arguments['datasets'])) {
 			foreach ($arguments['datasets'] as $dataset) {
+				/** @var \Visol\EasyvoteImporter\Domain\Model\Dataset $dataset */
 				$votingDayTimestamp = $arguments['votingDay']->getVotingDate()->getTimestamp();
 				$datasetTimestamp = $dataset->getVotingDay()->getVotingDate()->getTimestamp();
 				if ($votingDayTimestamp === $datasetTimestamp) {
