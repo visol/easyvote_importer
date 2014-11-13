@@ -86,7 +86,7 @@
 			</trans-unit>
 			<trans-unit id="cityIndex.dataProcessedBegin">
 				<source>Daten wurden am</source>
-				<target>I dati sono stati caricati, modificati, e cancellati dal sistema il </target>
+				<target>I dati sono stati caricati e elaborati il</target>
 			</trans-unit>
 			<trans-unit id="cityIndex.dataProcessedEnd">
 				<source>hochgeladen, verarbeitet und wieder vom System gelöscht.</source>
@@ -359,8 +359,7 @@
 			</trans-unit>
 			<trans-unit id="approveAction.successMessage">
 				<source>Ihre Daten und die Spaltenzuweisung wurden gespeichert. Besten Dank. Wir werden Ihre Daten überprüfen und anschliessend Ihre Adressliste vom Server entfernen.</source>
-				<target>I vostri dati sono stati salvati. Mille grazie per la collaborazione. Verificheremo i vostri dati e in seguito elimineremo la vostra lista indirizzi dai server.</target>
-			</trans-unit>
+				<target>I vostri dati e la suddivisione in colonne sono stati salvati. Grazie mille. Controlleremo i vostri dati e rimuoveremo infine la vostra lista di indirizzi dal server.</target>			</trans-unit>
 			<trans-unit id="approveAction.failHeader">
 				<source>Daten-Upload fehlgeschlagen</source>
 				<target>Errore nel caricamento dati</target>
@@ -390,6 +389,49 @@
 			<trans-unit id="updateBusinessUserAction.successMessage">
 				<source>Ihre Kontaktdaten wurden aktualisiert.</source>
 				<target>I suoi dati di contatto sono stati attualizzati </target>
+			</trans-unit>
+
+			<trans-unit id="cityIndex.dataCopiedFromDatasetBegin">
+				<source>Vielen Dank. Wir haben Ihre Adressliste zu dieser Abstimmung am</source>
+				<target>Grazie mille. Abbiamo ricevuto la vostra lista di indirizzi per questa votazione il</target>
+			</trans-unit>
+			<trans-unit id="cityIndex.dataCopiedFromDatasetMiddle">
+				<source>erhalten. Dabei wurde die Adressliste vom</source>
+				<target>. A questo scopo è stata utilizzata la lista di indirizzi del</target>
+			</trans-unit>
+			<trans-unit id="cityIndex.dataCopiedFromDatasetEnd">
+				<source>verwendet.</source>
+				<target>.</target>
+			</trans-unit>
+
+			<trans-unit id="cityIndex.useAddressesOfVotingDay">
+				<source>Adressen des folgenden Abstimmungstages verwenden</source>
+				<target>Utilizzare gli indirizzi del giorno di votazione seguente</target>
+			</trans-unit>
+			<trans-unit id="cityIndex.useLatestImportedAddresses">
+				<source>Zuletzt importierte Adressen verwenden</source>
+				<target>Utilizzare gli ultimi indirizzi importati</target>
+			</trans-unit>
+			<trans-unit id="cityIndex.useLatestImportedAddressesTooltip">
+				<source>Falls Sie keine neuen Adressen zur Verfügung stellen können oder die Daten nicht geändert haben, können Sie die zuletzt importieren Adressen verwenden.</source>
+				<target>Qualora non possiate fornirci alcun nuovo indirizzo o i dati non siano cambiati, potete utilizzare gli ultimi indirizzi importati.</target>
+			</trans-unit>
+			<trans-unit id="cityIndex.cancel">
+				<source>abbrechen</source>
+				<target>annullare</target>
+			</trans-unit>
+			<trans-unit id="cityIndex.copyAddresses">
+				<source>Adressen übernehmen</source>
+				<target>Utilizzare gli indirizzi</target>
+			</trans-unit>
+			<trans-unit id="cityIndex.addresses">
+				<source>Adressen</source>
+				<target>Indirizzi</target>
+			</trans-unit>
+
+			<trans-unit id="copyAddressesFromOtherVotingDayAction.addressesCopied">
+				<source>Adressen wurden erfolgreich kopiert.</source>
+				<target>Gli indirizzi sono stati copiati con successo.</target>
 			</trans-unit>
 
 		</body>

@@ -86,7 +86,7 @@
 			</trans-unit>
 			<trans-unit id="cityIndex.dataProcessedBegin">
 				<source>Daten wurden am</source>
-				<target>Les données ont été chargées, traitées puis effacées du système le</target>
+				<target>Les données ont été chargées et traitées le</target>
 			</trans-unit>
 			<trans-unit id="cityIndex.dataProcessedEnd">
 				<source>hochgeladen, verarbeitet und wieder vom System gelöscht.</source>
@@ -389,6 +389,49 @@
 			<trans-unit id="updateBusinessUserAction.successMessage">
 				<source>Ihre Kontaktdaten wurden aktualisiert.</source>
 				<target>Vos données de contact ont été mises à jour.</target>
+			</trans-unit>
+
+			<trans-unit id="cityIndex.dataCopiedFromDatasetBegin">
+				<source>Vielen Dank. Wir haben Ihre Adressliste zu dieser Abstimmung am</source>
+				<target>Merci beaucoup. Nous avons bien reçu votre liste d’adresses pour la votation du </target>
+			</trans-unit>
+			<trans-unit id="cityIndex.dataCopiedFromDatasetMiddle">
+				<source>erhalten. Dabei wurde die Adressliste vom</source>
+				<target>. La liste d’adresses du</target>
+			</trans-unit>
+			<trans-unit id="cityIndex.dataCopiedFromDatasetEnd">
+				<source>verwendet.</source>
+				<target>a pour ce faire été utilisée.</target>
+			</trans-unit>
+
+			<trans-unit id="cityIndex.useAddressesOfVotingDay">
+				<source>Adressen des folgenden Abstimmungstages verwenden</source>
+				<target>Utiliser les adresses du scrutin suivant</target>
+			</trans-unit>
+			<trans-unit id="cityIndex.useLatestImportedAddresses">
+				<source>Zuletzt importierte Adressen verwenden</source>
+				<target>Utiliser les dernières adresses importées</target>
+			</trans-unit>
+			<trans-unit id="cityIndex.useLatestImportedAddressesTooltip">
+				<source>Falls Sie keine neuen Adressen zur Verfügung stellen können oder die Daten nicht geändert haben, können Sie die zuletzt importieren Adressen verwenden.</source>
+				<target>Si vous n’avez pas de nouvelles adresses à mettre à disposition ou si les données n’ont pas changé, vous pouvez utiliser les dernières adresses importées.</target>
+			</trans-unit>
+			<trans-unit id="cityIndex.cancel">
+				<source>abbrechen</source>
+				<target>annuler</target>
+			</trans-unit>
+			<trans-unit id="cityIndex.copyAddresses">
+				<source>Adressen übernehmen</source>
+				<target>Reprendre les adresses</target>
+			</trans-unit>
+			<trans-unit id="cityIndex.addresses">
+				<source>Adressen</source>
+				<target>Adresses</target>
+			</trans-unit>
+
+			<trans-unit id="copyAddressesFromOtherVotingDayAction.addressesCopied">
+				<source>Adressen wurden erfolgreich kopiert.</source>
+				<target>Les adresses ont été copiées avec succès.</target>
 			</trans-unit>
 
 		</body>
