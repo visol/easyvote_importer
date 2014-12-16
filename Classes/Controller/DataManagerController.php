@@ -190,7 +190,7 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 	public function logoutAction() {
 		// link to login page
 		$loginPage = (int)$this->settings['loginPid'];
-		$loginPageUri = $this->uriBuilder->setCreateAbsoluteUri(TRUE)->setTargetPageUid($loginPage)->setArguments(array('logintype' => 'logout'))->build();
+		$loginPageUri = $this->uriBuilder->setCreateAbsoluteUri(TRUE)->setUseCacheHash(FALSE)->setTargetPageUid($loginPage)->setArguments(array('logintype' => 'logout'))->build();
 		// redirect to login page
 		$this->redirectToUri($loginPageUri, 0, 301);
 	}
