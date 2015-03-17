@@ -1,0 +1,7 @@
+{
+	"name": "visol/easyvote-importer",
+	"type": "typo3-cms-extension",
+	"description": "Manage and perform competitions",
+	"homepage": "https://github.com/visol/ext-easyvote_competition",
+	"license": ["GPL-2.0+"]
+}
