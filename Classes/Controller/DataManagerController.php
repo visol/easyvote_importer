@@ -722,7 +722,7 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 	 */
 	public function performExportAction($votingDay) {
 		$votingDay = $this->votingDayRepository->findVisibleAndHiddenByUid($votingDay);
-		$addresses = $this->addressRepository->findAllNotBlacklistedByVotingDay($votingDay);
+		$addresses = $this->addressRepository->findAllNotBlacklistedByVotingDayArray($votingDay);
 
 		ExcelUtility::pushExcelExportFromAddresses($addresses, $votingDay);
 		die();

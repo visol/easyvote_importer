@@ -121,11 +121,11 @@ class ExcelUtility {
 	}
 
 	/**
-	 * @param \TYPO3\CMS\Extbase\Persistence\QueryResultInterface $addresses
+	 * @param array $addresses
 	 * @param \Visol\Easyvote\Domain\Model\VotingDay $votingDay
 	 * @return void
 	 */
-	public static function pushExcelExportFromAddresses(\TYPO3\CMS\Extbase\Persistence\QueryResultInterface $addresses, \Visol\Easyvote\Domain\Model\VotingDay $votingDay) {
+	public static function pushExcelExportFromAddresses(array $addresses, \Visol\Easyvote\Domain\Model\VotingDay $votingDay) {
 
 		// Create new PHPExcel object
 		$objPHPExcel = new \PHPExcel();
@@ -150,11 +150,11 @@ class ExcelUtility {
 		// Add content
 		foreach ($addresses as $address) {
 			$objPHPExcel->setActiveSheetIndex(0)
-				->setCellValue('A' . $rowIndex, $address->getCustomerNumber())
-				->setCellValue('B' . $rowIndex, $address->getSalutation())
-				->setCellValue('C' . $rowIndex, $address->getName())
-				->setCellValue('D' . $rowIndex, $address->getStreet())
-				->setCellValue('E' . $rowIndex, $address->getCity());
+				->setCellValue('A' . $rowIndex, $address['customer_number'])
+				->setCellValue('B' . $rowIndex, $address['salutation'])
+				->setCellValue('C' . $rowIndex, $address['name'])
+				->setCellValue('D' . $rowIndex, $address['street'])
+				->setCellValue('E' . $rowIndex, $address['city']);
 			$rowIndex++;
 		}
 

@@ -73,6 +73,19 @@ class AddressRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 	}
 
 	/**
+	 * Find all addresses for a voting day that are *not* blacklisted
+	 *
+	 * @param \Visol\Easyvote\Domain\Model\VotingDay $votingDay
+	 * @return array
+	 */
+	public function findAllNotBlacklistedByVotingDayArray(\Visol\Easyvote\Domain\Model\VotingDay $votingDay) {
+		/** @var \TYPO3\CMS\Core\Database\DatabaseConnection $databaseConnection */
+		$databaseConnection = $GLOBALS['TYPO3_DB'];
+		$whereClause = 'voting_day=' . $votingDay->getUid() . ' AND blacklisted=0';
+		return $databaseConnection->exec_SELECTgetRows('*', 'tx_easyvoteimporter_domain_model_address', $whereClause);
+	}
+
+	/**
 	 * Find all addresses for a voting day that are blacklisted
 	 *
 	 * @param \Visol\Easyvote\Domain\Model\VotingDay $votingDay
