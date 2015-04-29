@@ -4,8 +4,6 @@
 CREATE TABLE fe_users (
 
 	customer_number varchar(255) DEFAULT '' NOT NULL,
-	user_language int(11) unsigned DEFAULT '0' NOT NULL,
-	kanton int(11) unsigned DEFAULT '0' NOT NULL,
 	target_group_start varchar(255) DEFAULT '' NOT NULL,
 	target_group_end varchar(255) DEFAULT '' NOT NULL,
 	datasets int(11) unsigned DEFAULT '0' NOT NULL,
