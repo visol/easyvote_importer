@@ -587,7 +587,7 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 		}
 
 		$this->blacklistRepository->add($newBlacklist);
-		$this->flashMessageContainer->add('Die Person wurde zur Blacklist hinzugefügt.');
+		$this->flashMessageContainer->add('Die Person wurde zur Robinsonliste hinzugefügt.');
 		$this->redirect('listBlacklist');
 	}
 
@@ -643,7 +643,7 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 		}
 
 		$this->blacklistRepository->update($blacklist);
-		$this->flashMessageContainer->add('Der Blacklist-Eintrag wurde aktualisiert.');
+		$this->flashMessageContainer->add('Der Robinsonlisten-Eintrag wurde aktualisiert.');
 		$this->redirect('listBlacklist');
 	}
 
@@ -664,7 +664,7 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 
 		$this->flashMessageContainer->flush();
 		$this->blacklistRepository->remove($blacklist);
-		$this->flashMessageContainer->add('Person wurde aus der Blacklist entfernt.');
+		$this->flashMessageContainer->add('Person wurde aus der Robinsonliste entfernt.');
 		$this->redirect('listBlacklist');
 	}
 
@@ -709,7 +709,7 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 			}
 		}
 
-		$message = 'Total in der Blacklist: ' . $blacklistCount . ' Adressen.<br />' . $addToBlacklistCount . ' Adresse(n) wurden aufgrund der Blacklist vom Versand ausgeschlossen.';
+		$message = 'Total in der Robinsonliste: ' . $blacklistCount . ' Adressen.<br />' . $addToBlacklistCount . ' Adresse(n) wurden aufgrund der Robinsonliste vom Versand ausgeschlossen.';
 		$this->flashMessageContainer->add($message);
 		$this->redirect('listExport');
 

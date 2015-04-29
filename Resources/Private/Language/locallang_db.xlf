@@ -11,7 +11,7 @@
 				<source>Versandadresse</source>
 			</trans-unit>
 			<trans-unit id="tx_easyvoteimporter_domain_model_blacklist">
-				<source>Blacklist</source>
+				<source>Robinsonliste</source>
 			</trans-unit>
 			<trans-unit id="tx_easyvoteimporter_domain_model_businessuser.customer_number">
 				<source>Customer Number</source>

@@ -19,7 +19,7 @@
 					<th>Gemeinden bereit</th>
 					<th>Gemeinden total</th>
 					<th>Importierte Adressen</th>
-					<th>Auf Blacklist</th>
+					<th>Auf Robinsonliste</th>
 					<th></th>
 				</tr>
 			</thead>
@@ -32,7 +32,7 @@
 					<td>{item.importedAddresses}</td>
 					<td>{item.blacklistCount}</td>
 					<td style="text-align: right; width: 90px;">
-						<f:link.action action="applyBlacklist" title="Blacklist anwenden" arguments="{votingDay:item.votingDay}"><i class="evicon-male icon-2x"></i></f:link.action>
+						<f:link.action action="applyBlacklist" title="Robinsonliste anwenden" arguments="{votingDay:item.votingDay}"><i class="evicon-male icon-2x"></i></f:link.action>
 						<f:comment><f:if condition="{item.datasetCount} == {item.businessUserCount}"></f:if></f:comment>
 						<f:link.action target="_blank" action="performExport" title="Liste exportieren" arguments="{votingDay:item.votingDay}"><i class="evicon-download icon-2x"></i></f:link.action>
 						<f:link.action action="reportExport" title="Prognose" arguments="{votingDay:item.votingDay}"><i class="evicon-list-alt icon-2x"></i></f:link.action>
