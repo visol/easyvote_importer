@@ -1,10 +1,31 @@
 <?php
-if (!defined ('TYPO3_MODE')) {
+if (!defined('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-$TCA['tx_easyvoteimporter_domain_model_dataset'] = array(
-	'ctrl' => $TCA['tx_easyvoteimporter_domain_model_dataset']['ctrl'],
+$GLOBALS['TCA']['tx_easyvoteimporter_domain_model_dataset'] = array(
+	'ctrl' => array(
+		'title' => 'LLL:EXT:easyvote_importer/Resources/Private/Language/locallang_db.xlf:tx_easyvoteimporter_domain_model_dataset',
+		'label' => 'voting_day',
+		'tstamp' => 'tstamp',
+		'crdate' => 'crdate',
+		'cruser_id' => 'cruser_id',
+		'dividers2tabs' => TRUE,
+
+		'origUid' => 't3_origuid',
+		//'languageField' => 'sys_language_uid',
+		//'transOrigPointerField' => 'l10n_parent',
+		//'transOrigDiffSourceField' => 'l10n_diffsource',
+
+		'delete' => 'deleted',
+		'enablecolumns' => array(
+			'disabled' => 'hidden',
+			'starttime' => 'starttime',
+			'endtime' => 'endtime',
+		),
+		'searchFields' => 'file,voting_day,',
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('easyvote_importer') . 'Resources/Public/Icons/tx_easyvoteimporter_domain_model_dataset.gif'
+	),
 	'interface' => array(
 		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, file, source_dataset, voting_day',
 	),
@@ -185,5 +206,3 @@ $TCA['tx_easyvoteimporter_domain_model_dataset'] = array(
 		),
 	),
 );
-
-?>

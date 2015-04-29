@@ -1,10 +1,27 @@
 <?php
-if (!defined ('TYPO3_MODE')) {
+if (!defined('TYPO3_MODE')) {
 	die ('Access denied.');
 }
 
-$TCA['tx_easyvoteimporter_domain_model_blacklist'] = array(
-	'ctrl' => $TCA['tx_easyvoteimporter_domain_model_blacklist']['ctrl'],
+$GLOBALS['TCA']['tx_easyvoteimporter_domain_model_blacklist'] = array(
+	'ctrl' => array(
+		'title' => 'LLL:EXT:easyvote_importer/Resources/Private/Language/locallang_db.xlf:tx_easyvoteimporter_domain_model_blacklist',
+		'label' => 'last_name',
+		'label_alt' => 'first_name, street, zip',
+		'label_alt_force' => TRUE,
+		'tstamp' => 'tstamp',
+		'crdate' => 'crdate',
+		'cruser_id' => 'cruser_id',
+		'dividers2tabs' => TRUE,
+
+		'origUid' => 't3_origuid',
+		//'languageField' => 'sys_language_uid',
+		//'transOrigPointerField' => 'l10n_parent',
+		//'transOrigDiffSourceField' => 'l10n_diffsource',
+
+		'enablecolumns' => array(),
+		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('easyvote_importer') . 'Resources/Public/Icons/tx_easyvoteimporter_domain_model_blacklist.gif'
+	),
 	'interface' => array(
 		'showRecordFieldList' => 'first_name, last_name, street, zip_code, crdate',
 	),
@@ -15,7 +32,7 @@ $TCA['tx_easyvoteimporter_domain_model_blacklist'] = array(
 		'1' => array('showitem' => ''),
 	),
 	'columns' => array(
-	
+
 		'sys_language_uid' => array(
 			'exclude' => 1,
 			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.language',
@@ -137,5 +154,3 @@ $TCA['tx_easyvoteimporter_domain_model_blacklist'] = array(
 		),
 	),
 );
-
-?>
