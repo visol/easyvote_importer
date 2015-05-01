@@ -46,10 +46,10 @@ class AddressRepository extends \TYPO3\CMS\Extbase\Persistence\Repository {
 		$query->matching(
 			$query->logicalAnd(
 				$query->like('votingDay', $votingDay),
-				$query->like('name', '%' . $blacklistItem->getFirstName() . '%'),
-				$query->like('name', '%' . $blacklistItem->getLastName() . '%'),
-				$query->like('street', $blacklistItem->getStreet()),
-				$query->like('city', '%' . $blacklistItem->getZipCode() . '%')
+				$query->like('name', '%' . trim($blacklistItem->getFirstName()) . '%'),
+				$query->like('name', '%' . trim($blacklistItem->getLastName()) . '%'),
+				$query->like('street', trim($blacklistItem->getStreet())),
+				$query->like('city', '%' . trim($blacklistItem->getZipCode()) . '%')
 			)
 		);
 		return $query->execute()->getFirst();
