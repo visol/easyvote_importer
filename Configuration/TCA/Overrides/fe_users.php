@@ -77,3 +77,4 @@ $tmp_easyvote_importer_columns = array(
 $GLOBALS['TCA']['fe_users']['types']['Tx_EasyvoteImporter_BusinessUser']['showitem'] = $GLOBALS['TCA']['fe_users']['types']['Tx_Extbase_Domain_Model_FrontendUser']['showitem'];
 $GLOBALS['TCA']['fe_users']['types']['Tx_EasyvoteImporter_BusinessUser']['showitem'] .= ',--div--;LLL:EXT:easyvote_importer/Resources/Private/Language/locallang_db.xlf:tx_easyvoteimporter_domain_model_businessuser,';
 $GLOBALS['TCA']['fe_users']['types']['Tx_EasyvoteImporter_BusinessUser']['showitem'] .= 'customer_number, user_language, kanton, target_group_start, target_group_end, datasets';
+$GLOBALS['TCA']['fe_users']['ctrl']['searchFields'] .= ',company';
