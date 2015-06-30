@@ -1,19 +1,28 @@
-<div class="form-row form-row-radio">
-	<f:form.radio id="gender-1" name="businessUser[gender]" value="1" checked="{businessUser.gender} == 1" /> <label for="gender-1">{f:translate(key:'businessUser.gender.male')}</label>
-	<f:form.radio id="gender-2" name="businessUser[gender]" value="2" checked="{businessUser.gender} == 2" /> <label for="gender-2">{f:translate(key:'businessUser.gender.female')}</label>
+<div class="form-group form-row-radio">
+	<f:comment>
+		<label>{f:translate(key:'editProfile.placeholderLanguage')}</label>
+	</f:comment>
+	<div class="input-group">
+		<label class="radio-inline" for="gender-1"><f:form.radio id="gender-1" name="businessUser[gender]" value="1" checked="{businessUser.gender} == 1" /> {f:translate(key:'businessUser.gender.male')}</label>
+		<label class="radio-inline" for="gender-2"><f:form.radio id="gender-2" name="businessUser[gender]" value="2" checked="{businessUser.gender} == 2" /> {f:translate(key:'businessUser.gender.female')}</label>
+	</div>
 </div>
-<div class="form-row">
-	<f:form.textfield property="firstName" additionalAttributes="{required: required, placeholder:'{f:translate(key:\'businessUser.firstName\')}'}" />
+<div class="form-group">
+	<label for="firstName">{f:translate(key:'businessUser.firstName')}</label>
+	<f:form.textfield property="firstName" id="firstName" class="form-control" additionalAttributes="{required: required}" />
 </div>
-<div class="form-row">
-	<f:form.textfield property="lastName" additionalAttributes="{required: required, placeholder:'{f:translate(key:\'businessUser.lastName\')}'}" />
+<div class="form-group">
+	<label for="lastName">{f:translate(key:'businessUser.lastName')}</label>
+	<f:form.textfield property="lastName" id="lastName" class="form-control" additionalAttributes="{required: required}" />
 </div>
-<div class="form-row">
-	<f:form.textfield property="email" additionalAttributes="{required: required, placeholder:'{f:translate(key:\'businessUser.email\')}'}" />
+<div class="form-group">
+	<label for="email">{f:translate(key:'businessUser.email')}</label>
+	<f:form.textfield property="email" id="email" class="form-control" additionalAttributes="{required: required}" />
 </div>
-<div class="form-row">
-	<f:form.textfield property="telephone" additionalAttributes="{required: required, placeholder:'{f:translate(key:\'businessUser.telephone\')}'}" />
+<div class="form-group">
+	<label for="telephone">{f:translate(key:'businessUser.telephone')}</label>
+	<f:form.textfield property="telephone" id="telephone" class="form-control" additionalAttributes="{required: required}" />
 </div>
-<div class="form-row">
+<div class="form-group">
 	<f:form.submit class="btn btn-primary" value="{f:translate(key:'editBusinessUser.save')}" />
 </div>
