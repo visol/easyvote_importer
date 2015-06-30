@@ -7,12 +7,12 @@ if (!defined('TYPO3_MODE')) {
 	'Visol.' . $_EXTKEY,
 	'Datamanager',
 	array(
-		'DataManager' => 'index, logout, cityIndex, adminIndex, uploadList, remove, performUpload, assign, approve, remove, checkImport, performImport, newBlacklist, createBlacklist, listBlacklist, editBlacklist, updateBlacklist, deleteBlacklist, listExport, applyBlacklist, performExport, removeExport, reportExport, editBusinessUser, updateBusinessUser, listStats, copyAddressesFromOtherVotingDay',
+		'DataManager' => 'index, logout, cityIndex, adminIndex, uploadList, remove, performUpload, assign, removeDatasetAndAddresses, approve, remove, checkImport, performImport, newBlacklist, createBlacklist, listBlacklist, editBlacklist, updateBlacklist, deleteBlacklist, listExport, applyBlacklist, performExport, removeExport, reportExport, editBusinessUser, updateBusinessUser, listStats, copyAddressesFromOtherVotingDay',
 		
 	),
 	// non-cacheable actions
 	array(
-		'DataManager' => 'index, logout, cityIndex, adminIndex, uploadList, remove, performUpload, assign, approve, remove, checkImport, performImport, newBlacklist, createBlacklist, listBlacklist, editBlacklist, updateBlacklist, deleteBlacklist, listExport, applyBlacklist, performExport, removeExport, reportExport, editBusinessUser, updateBusinessUser, listStats, copyAddressesFromOtherVotingDay',
+		'DataManager' => 'index, logout, cityIndex, adminIndex, uploadList, remove, performUpload, assign, removeDatasetAndAddresses, approve, remove, checkImport, performImport, newBlacklist, createBlacklist, listBlacklist, editBlacklist, updateBlacklist, deleteBlacklist, listExport, applyBlacklist, performExport, removeExport, reportExport, editBusinessUser, updateBusinessUser, listStats, copyAddressesFromOtherVotingDay',
 	)
 );
 
@@ -28,5 +28,3 @@ if (!defined('TYPO3_MODE')) {
 		'BusinessUser' => 'loginPanel',
 	)
 );
-
-?>

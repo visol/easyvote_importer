@@ -44,6 +44,11 @@
 								</f:then>
 								<f:else>
 									<f:translate key="cityIndex.dataProcessedBegin" /> <f:format.date date="@{v:var.get(name: 'datasets.{iterator.index}.crdate')}" format="d.m.Y" /> <f:translate key="cityIndex.dataProcessedEnd" />
+									<f:security.ifHasRole role="{settings.adminFeUserGroup}">
+										<f:form noCacheHash="true" name="assign" arguments="{city: businessUser.uid, dataset: '{v:var.get(name: \'datasets.{iterator.index}\')}'}" action="removeDatasetAndAddresses" onsubmit="return confirm('Dataset und importierte Adressen unwiderbringlich löschen?');">
+											<f:form.submit class="btn btn-primary" value="Dataset und importierte Adressen löschen" />
+										</f:form>
+									</f:security.ifHasRole>
 								</f:else>
 							</f:if>
 						</f:then>

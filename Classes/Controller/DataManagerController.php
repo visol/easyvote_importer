@@ -374,6 +374,30 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 	}
 
 	/**
+	 * Removes a dataset and all adresses connected to this dataset
+	 *
+	 * @param \Visol\EasyvoteImporter\Domain\Model\Dataset $dataset
+	 */
+	public function removeDatasetAndAddressesAction(\Visol\EasyvoteImporter\Domain\Model\Dataset $dataset) {
+		// get business user
+		$this->checkUserIsAdmin();
+		if ($this->userIsAdmin) {
+			// Remove addresses
+			$affectedAddresses = $this->addressRepository->removeByDataset($dataset);
+			// Remove dataset
+			$this->datasetRepository->remove($dataset);
+			$this->persistenceManager->persistAll();
+			$this->addFlashMessage(sprintf('Dataset und %s Adressen wurden gelöscht.', $affectedAddresses), '', \TYPO3\CMS\Core\Messaging\FlashMessage::OK);
+			$this->redirect('cityIndex', NULL, NULL, array('city' => $this->request->getArgument('city')));
+		} else {
+			$message = LocalizationUtility::translate('flashMessage.accessDenied', $this->request->getControllerExtensionName());
+			$this->flashMessageContainer->add($message, LocalizationUtility::translate('flashMessage.errorHeader', $this->request->getControllerExtensionName()), \TYPO3\CMS\Core\Messaging\FlashMessage::ERROR);
+			$this->redirect('cityIndex');
+		}
+
+	}
+
+	/**
 	 * @param \Visol\EasyvoteImporter\Domain\Model\Dataset $dataset
 	 */
 	public function approveAction(\Visol\EasyvoteImporter\Domain\Model\Dataset $dataset) {
