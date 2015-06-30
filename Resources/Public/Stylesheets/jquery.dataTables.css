@@ -2,9 +2,22 @@
  * Table
  */
 
+table.dataTable {
+	border-collapse: collapse;
+	border: 0;
+	margin: 0 0 20px 0;
+	border-spacing: 0;
+	font-size: 12px;
+}
+
 table.dataTable thead th {
 	cursor: pointer;
 	border-bottom: 2px solid black;
+	padding: 5px;
+}
+
+table.dataTable tbody td {
+	padding: 5px;
 }
 
 table.dataTable tfoot th {

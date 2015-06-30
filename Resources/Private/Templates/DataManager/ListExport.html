@@ -10,44 +10,46 @@
 </f:section>
 <f:section name="main">
 
-	<div class="csc-default box-blue">
+	<div class="content-box">
 		<h2>Aktive Abstimmungstage</h2>
-		<table class="eviTable">
-			<thead>
-				<tr>
-					<th>Datum</th>
-					<th>Gemeinden bereit</th>
-					<th>Gemeinden total</th>
-					<th>Importierte Adressen</th>
-					<th>Auf Robinsonliste</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-			<f:for each="{exportInformation}" as="item">
-				<tr>
-					<td><f:format.date date="{item.votingDay.votingDate}" format="d.m.Y" /></td>
-					<td>{item.datasetCount}</td>
-					<td>{item.businessUserCount}</td>
-					<td>{item.importedAddresses}</td>
-					<td>{item.blacklistCount}</td>
-					<td style="text-align: right; width: 90px;">
-						<f:link.action action="applyBlacklist" title="Robinsonliste anwenden" arguments="{votingDay:item.votingDay}"><i class="evicon-male icon-2x"></i></f:link.action>
-						<f:comment><f:if condition="{item.datasetCount} == {item.businessUserCount}"></f:if></f:comment>
-						<f:link.action target="_blank" action="performExport" title="Liste exportieren" arguments="{votingDay:item.votingDay}"><i class="evicon-download icon-2x"></i></f:link.action>
-						<f:link.action action="reportExport" title="Prognose" arguments="{votingDay:item.votingDay}"><i class="evicon-list-alt icon-2x"></i></f:link.action>
-						<f:link.action action="removeExport" title="Alle Daten löschen" onclick="return confirm('Sicher?');" arguments="{votingDay:item.votingDay}"><i class="evicon-cancel-circled icon-2x"></i></f:link.action>
-						<f:comment>
-						<f:else>
+		<div class="table-responsive clearfix">
+			<table class="static-table">
+				<thead>
+					<tr>
+						<th>Datum</th>
+						<th>Gemeinden bereit</th>
+						<th>Gemeinden total</th>
+						<th>Importierte Adressen</th>
+						<th>Auf Robinsonliste</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+				<f:for each="{exportInformation}" as="item">
+					<tr>
+						<td><f:format.date date="{item.votingDay.votingDate}" format="d.m.Y" /></td>
+						<td>{item.datasetCount}</td>
+						<td>{item.businessUserCount}</td>
+						<td>{item.importedAddresses}</td>
+						<td>{item.blacklistCount}</td>
+						<td style="text-align: right; width: 90px;">
+							<f:link.action action="applyBlacklist" title="Robinsonliste anwenden" arguments="{votingDay:item.votingDay}"><i class="evicon-male icon-2x"></i></f:link.action>
+							<f:comment><f:if condition="{item.datasetCount} == {item.businessUserCount}"></f:if></f:comment>
+							<f:link.action target="_blank" action="performExport" title="Liste exportieren" arguments="{votingDay:item.votingDay}"><i class="evicon-download icon-2x"></i></f:link.action>
 							<f:link.action action="reportExport" title="Prognose" arguments="{votingDay:item.votingDay}"><i class="evicon-list-alt icon-2x"></i></f:link.action>
-							<i title="Download nicht möglich, da nicht alle Gemeinden bereit sein." class="evicon-download icon-2x color-grey"></i>
-						</f:else>
-						</f:comment>
-					</td>
-				</tr>
-			</f:for>
-			</tbody>
-		</table>
+							<f:link.action action="removeExport" title="Alle Daten löschen" onclick="return confirm('Sicher?');" arguments="{votingDay:item.votingDay}"><i class="evicon-cancel-circled icon-2x"></i></f:link.action>
+							<f:comment>
+							<f:else>
+								<f:link.action action="reportExport" title="Prognose" arguments="{votingDay:item.votingDay}"><i class="evicon-list-alt icon-2x"></i></f:link.action>
+								<i title="Download nicht möglich, da nicht alle Gemeinden bereit sein." class="evicon-download icon-2x color-grey"></i>
+							</f:else>
+							</f:comment>
+						</td>
+					</tr>
+				</f:for>
+				</tbody>
+			</table>
+		</div>
 	</div>
 </f:section>
 <f:section name="right">

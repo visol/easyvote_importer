@@ -1,68 +1,69 @@
 {namespace evi=Tx_EasyvoteImporter_ViewHelpers}
-<div class="csc-default box-blue">
+<div class="content-box">
 	<h2>Übersicht Gemeinden</h2>
-	<table class="eviTable useDatatables">
-		<thead>
-		<tr>
-			<th>Status</th>
-			<th>Gemeinde</th>
-			<th style="width: 100px;">Kontaktperson</th>
-			<th style="width: 60px;">Aktion</th>
-		</tr>
-		</thead>
-		<tbody>
-		<f:for each="{cities}" as="city">
+	<div class="table-responsive clearfix">
+		<table class="useDatatables">
+			<thead>
 			<tr>
-				<td>
-					<ul class="cityStatus">
-					<f:for each="{votingDays}" as="votingDay">
-						<li>
-							<div class="cityVotingDate"><f:format.date date="{votingDay.votingDate}" format="d.m.y" />:</div>
-							<evi:votingDayDataset votingDay="{votingDay}" datasets="{city.datasets}" returnDataset="returnDataset">
-								<f:if condition="{returnDataset}">
-									<f:then>
-										<f:if condition="{returnDataset.processed}">
-											<f:then>
-												<i title="Adressen importiert" class="evicon-thumbs-up icon-2x"></i>
-											</f:then>
-											<f:else>
-												<f:if condition="{returnDataset.file}">
-													<f:then>
-														<i title="Liste vorhanden" class="color-green evicon-check icon-2x"></i>
-														<f:if condition="{returnDataset.columnConfiguration}">
-															<f:then>
-																<i title="Spalten zugewiesen" class="color-green evicon-check icon-2x"></i>
-																<f:link.action action="checkImport" arguments="{dataset: returnDataset}">
-																	<i title="Zuweisung überprüfen und Daten importieren" class="evicon-plus-circled icon-2x"></i>
-																</f:link.action>
-															</f:then>
-															<f:else>
-																<i title="Spalten nicht zugewiesen!" class="color-red evicon-attention-circled icon-2x"></i>
-															</f:else>
-														</f:if>
-													</f:then>
-												</f:if>
-											</f:else>
-										</f:if>
-									</f:then>
-									<f:else>
-										<i title="Daten fehlen!" class="color-red evicon-attention-circled icon-2x"></i>
-									</f:else>
-								</f:if>
-							</evi:votingDayDataset>
-						</li>
-					</f:for>
-					</ul>
-				</td>
-				<td>
-					{city.company}<br />
-					{city.customerNumber}
-				</td>
-				<td><f:link.email email="{city.email}">{city.firstName} {city.lastName}</f:link.email></td>
-				<td class="cityChange"><f:link.action title="Zu Gemeinde wechseln..." action="cityIndex" arguments="{city:city.uid}"><i class="evicon-angle-circled-right icon-2x"></i></f:link.action></td>
+				<th>Status</th>
+				<th>Gemeinde</th>
+				<th style="width: 100px;">Kontaktperson</th>
+				<th style="width: 60px;">Aktion</th>
 			</tr>
-		</f:for>
-		</tbody>
-	</table>
-	<div class="clearfix"></div>
+			</thead>
+			<tbody>
+			<f:for each="{cities}" as="city">
+				<tr>
+					<td>
+						<ul class="cityStatus">
+						<f:for each="{votingDays}" as="votingDay">
+							<li>
+								<div class="cityVotingDate"><f:format.date date="{votingDay.votingDate}" format="d.m.y" />:</div>
+								<evi:votingDayDataset votingDay="{votingDay}" datasets="{city.datasets}" returnDataset="returnDataset">
+									<f:if condition="{returnDataset}">
+										<f:then>
+											<f:if condition="{returnDataset.processed}">
+												<f:then>
+													<i title="Adressen importiert" class="evicon-thumbs-up icon-2x"></i>
+												</f:then>
+												<f:else>
+													<f:if condition="{returnDataset.file}">
+														<f:then>
+															<i title="Liste vorhanden" class="color-green evicon-check icon-2x"></i>
+															<f:if condition="{returnDataset.columnConfiguration}">
+																<f:then>
+																	<i title="Spalten zugewiesen" class="color-green evicon-check icon-2x"></i>
+																	<f:link.action action="checkImport" arguments="{dataset: returnDataset}">
+																		<i title="Zuweisung überprüfen und Daten importieren" class="evicon-plus-circled icon-2x"></i>
+																	</f:link.action>
+																</f:then>
+																<f:else>
+																	<i title="Spalten nicht zugewiesen!" class="color-red evicon-attention-circled icon-2x"></i>
+																</f:else>
+															</f:if>
+														</f:then>
+													</f:if>
+												</f:else>
+											</f:if>
+										</f:then>
+										<f:else>
+											<i title="Daten fehlen!" class="color-red evicon-attention-circled icon-2x"></i>
+										</f:else>
+									</f:if>
+								</evi:votingDayDataset>
+							</li>
+						</f:for>
+						</ul>
+					</td>
+					<td>
+						{city.company}<br />
+						{city.customerNumber}
+					</td>
+					<td><f:link.email email="{city.email}">{city.firstName} {city.lastName}</f:link.email></td>
+					<td class="cityChange"><f:link.action title="Zu Gemeinde wechseln..." action="cityIndex" arguments="{city:city.uid}"><i class="evicon-angle-circled-right icon-2x"></i></f:link.action></td>
+				</tr>
+			</f:for>
+			</tbody>
+		</table>
+	</div>
 </div>

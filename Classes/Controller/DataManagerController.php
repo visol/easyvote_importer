@@ -7,6 +7,7 @@ namespace Visol\EasyvoteImporter\Controller;
  *  (c) 2013 Lorenz Ulrich <lorenz.ulrich@visol.ch>, visol digitale Dienstleistungen GmbH
  *  
  *  All rights reserved
+ *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
  *  free software; you can redistribute it and/or modify

@@ -12,7 +12,7 @@
 	</div>
 </f:section>
 <f:section name="main">
-	<div class="csc-default box-blue">
+	<div class="content-box">
 		<h2><f:translate key="uploadList.header" arguments="{1: '{businessUser.name}'}" /> <f:format.date date="{votingDay.votingDate}" format="d.m.Y" /></h2>
 		<f:translate key="uploadList.introduction" />
 		<f:form noCacheHash="true" action="performUpload" enctype="multipart/form-data">
@@ -33,11 +33,11 @@
 
 </f:section>
 <f:section name="right">
-	<div class="csc-default box-blue">
+	<div class="content-box">
 		<h2><f:translate key="uploadList.helpHeader" /></h2>
 		<f:translate key="uploadList.helpContent" arguments="{1: '{f:uri.resource(path: \'Documents/Gemeinde_XX_YY_20ZZ.xls\')}'}" />
 	</div>
-	<div class="csc-default box-blue">
+	<div class="content-box">
 		<h2><f:translate key="uploadList.ageRangeHeader" /></h2>
 		<f:if condition="{businessUser.targetGroupStart}">
 			<f:then>

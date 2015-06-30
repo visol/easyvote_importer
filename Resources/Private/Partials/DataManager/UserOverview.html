@@ -1,10 +1,13 @@
 <f:if condition="{businessUser.image}">
 	<p>
-		<f:image alt="{businessUser.name}" src="uploads/pics/{businessUser.image}" maxWidth="260" maxHeight="260" />
+		<f:image alt="{businessUser.name}" src="uploads/pics/{businessUser.image}" maxWidth="260" maxHeight="260"/>
 	</p>
 </f:if>
 
-<div class="csc-default box-blue">
-<h2>{businessUser.company}</h2>
-<p><f:translate key="businessUser.customerNumber" /> {businessUser.customerNumber}</p>
+<div class="content-box">
+	<h2>{businessUser.company}</h2>
+	<p>
+		<f:translate key="businessUser.customerNumber"/>
+		{businessUser.customerNumber}
+	</p>
 </div>

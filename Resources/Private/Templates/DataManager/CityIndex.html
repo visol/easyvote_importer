@@ -15,12 +15,12 @@
 	<f:render partial="DataManager/UserOverview" arguments="{businessUser:businessUser}" />
 </f:section>
 <f:section name="main">
-	<div class="csc-default box-blue">
+	<div class="content-box">
 		<h2><f:translate key="cityIndex.header" /></h2>
 		<p><f:translate key="cityIndex.introduction" /></p>
 	</div>
 	<f:for each="{votingDays}" as="votingDay" iteration="iterator">
-		<div class="csc-default box-blue">
+		<div class="content-box">
 			<h3><f:translate key="cityIndex.votingDateOf" /> <f:format.date date="{votingDay.votingDate}" format="d.m.Y" /></h3>
 			<f:if condition="{v:var.get(name: 'datasets.{iterator.index}.sourceDataset')}">
 				<f:then>
@@ -89,11 +89,11 @@
 	</f:for>
 </f:section>
 <f:section name="right">
-	<div class="csc-default box-blue">
+	<div class="content-box">
 		<h2><f:translate key="cityIndex.deadlineHeader" /></h2>
 		<p><f:translate key="cityIndex.deadlineContent" arguments="{1: '{f:format.date(date: \'@{settings.uploadDueDate}\', format: \'d.m.Y\')}'}" /></p>
 	</div>
-	<div class="csc-default box-blue">
+	<div class="content-box">
 		<h2><f:translate key="cityIndex.manualHeader" /></h2>
 		<p><f:translate key="cityIndex.manualContent" /></p>
 	</div>

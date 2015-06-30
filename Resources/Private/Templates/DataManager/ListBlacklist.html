@@ -10,34 +10,35 @@
 </f:section>
 <f:section name="main">
 
-	<div class="csc-default box-blue">
+	<div class="content-box">
 		<h2>Alle Einträge der Robinsonliste</h2>
-		<table class="eviTable useDatatables">
-			<thead>
-				<tr>
-					<th>Vorname</th>
-					<th>Name</th>
-					<th>Adresse</th>
-					<th>PLZ</th>
-					<th></th>
-				</tr>
-			</thead>
-			<tbody>
-			<f:for each="{blacklist}" as="item">
-				<tr>
-					<td>{item.firstName}</td>
-					<td>{item.lastName}</td>
-					<td>{item.street}</td>
-					<td>{item.zipCode}</td>
-					<td style="text-align: right">
-						<f:link.action action="editBlacklist" arguments="{blacklist:item}"><i class="evicon-pencil-squared icon-2x"></i></f:link.action>
-						<f:link.action action="deleteBlacklist" arguments="{blacklist:item}"><i class="evicon-cancel-circled icon-2x"></i></f:link.action>
-					</td>
-				</tr>
-			</f:for>
-			</tbody>
-		</table>
-		<div class="clearfix"></div>
+		<div class="table-responsive clearfix">
+			<table class="useDatatables">
+				<thead>
+					<tr>
+						<th>Vorname</th>
+						<th>Name</th>
+						<th>Adresse</th>
+						<th>PLZ</th>
+						<th></th>
+					</tr>
+				</thead>
+				<tbody>
+				<f:for each="{blacklist}" as="item">
+					<tr>
+						<td>{item.firstName}</td>
+						<td>{item.lastName}</td>
+						<td>{item.street}</td>
+						<td>{item.zipCode}</td>
+						<td style="text-align: right">
+							<f:link.action action="editBlacklist" arguments="{blacklist:item}"><i class="evicon-pencil-squared icon-2x"></i></f:link.action>
+							<f:link.action action="deleteBlacklist" arguments="{blacklist:item}"><i class="evicon-cancel-circled icon-2x"></i></f:link.action>
+						</td>
+					</tr>
+				</f:for>
+				</tbody>
+			</table>
+		</div>
 		<f:form noCacheHash="true" action="newBlacklist">
 			<button class="btn btn-primary" type="submit"><i class="evicon-plus-circled"></i> Neuer Eintrag</button>
 		</f:form>

@@ -11,8 +11,8 @@
 					</f:else>
 				</f:if>
 			</f:link.page>
-			<f:translate key="businessUser.loggedInAs" />
-				<div class="user-name">{user.company}</div>
+			<span class="loggedin-as"><f:translate key="businessUser.loggedInAs" /></span>
+			<div class="user-name">{user.company}</div>
 		</f:then>
 	</f:security.ifAuthenticated>
 </div>
