@@ -218,17 +218,29 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 				$businessUser = $this->businessUserRepository->findByUid($GLOBALS['TSFE']->fe_user->user['uid']);
 			}
 
-			$votingDateAgeEnd = clone $votingDay->getVotingDate();
-			$firstAllowedBirthdate = $votingDateAgeEnd->modify('-' . $businessUser->getTargetGroupEnd() . ' years -1 year -1 day');
+			// Whether or not the age range box is displayed in the frontend
+			$displayAgeRange = TRUE;
 
-			$votingDateAgeStart = clone $votingDay->getVotingDate();
-			$lastAllowedBirthdate = $votingDateAgeStart->modify('-' . $businessUser->getTargetGroupStart() . ' years');
+			if (!empty($businessUser->getTargetGroupEnd())) {
+				$votingDateAgeEnd = clone $votingDay->getVotingDate();
+				$firstAllowedBirthdate = $votingDateAgeEnd->modify('-' . $businessUser->getTargetGroupEnd() . ' years -1 year -1 day');
+				$this->view->assign('firstAllowedBirthdate', $firstAllowedBirthdate);
+			} else {
+				$displayAgeRange = FALSE;
+			}
+
+			if (!empty($businessUser->getTargetGroupStart())) {
+				$votingDateAgeStart = clone $votingDay->getVotingDate();
+				$lastAllowedBirthdate = $votingDateAgeStart->modify('-' . $businessUser->getTargetGroupStart() . ' years');
+				$this->view->assign('lastAllowedBirthdate', $lastAllowedBirthdate);
+			} else {
+				$displayAgeRange = FALSE;
+			}
 
 			$this->view->assignMultiple(array(
 				'businessUser' => $businessUser,
 				'votingDay' => $votingDay,
-				'lastAllowedBirthdate' => $lastAllowedBirthdate,
-				'firstAllowedBirthdate' => $firstAllowedBirthdate
+				'displayAgeRange' => $displayAgeRange
 			));
 
 		}

@@ -37,23 +37,21 @@
 		<h2><f:translate key="uploadList.helpHeader" /></h2>
 		<f:translate key="uploadList.helpContent" arguments="{1: '{f:uri.resource(path: \'Documents/Gemeinde_XX_YY_20ZZ.xls\')}'}" />
 	</div>
-	<f:if condition="{businessUser.targetGroupStart}">
-		<div class="content-box">
-			<h2><f:translate key="uploadList.ageRangeHeader" /></h2>
-			<f:if condition="{businessUser.targetGroupStart}">
-				<f:then>
-					<f:translate key="uploadList.ageRange1" arguments="{1: '{businessUser.targetGroupStart}', 2: '{businessUser.targetGroupEnd}'}"/>
-					<strong><f:format.date date="{votingDay.votingDate}" format="d.m.Y" /></strong>
-					<f:translate key="uploadList.ageRange2" />
-					<strong><f:format.date date="{firstAllowedBirthdate}" format="d.m.Y" /></strong>
-					<f:translate key="uploadList.ageRange3" />
-					<strong><f:format.date date="{lastAllowedBirthdate}" format="d.m.Y" /></strong>
-					<f:translate key="uploadList.ageRange4" />
-				</f:then>
-				<f:else>
-					<f:translate key="uploadList.ageRangeNotSet" />
-				</f:else>
-			</f:if>
-		</div>
-	</f:if>
+	<div class="content-box">
+		<h2><f:translate key="uploadList.ageRangeHeader" /></h2>
+		<f:if condition="{displayAgeRange}">
+			<f:then>
+				<f:translate key="uploadList.ageRange1" arguments="{1: '{businessUser.targetGroupStart}', 2: '{businessUser.targetGroupEnd}'}"/>
+				<strong><f:format.date date="{votingDay.votingDate}" format="d.m.Y" /></strong>
+				<f:translate key="uploadList.ageRange2" />
+				<strong><f:format.date date="{firstAllowedBirthdate}" format="d.m.Y" /></strong>
+				<f:translate key="uploadList.ageRange3" />
+				<strong><f:format.date date="{lastAllowedBirthdate}" format="d.m.Y" /></strong>
+				<f:translate key="uploadList.ageRange4" />
+			</f:then>
+			<f:else>
+				<f:translate key="uploadList.ageRangeNotSet" />
+			</f:else>
+		</f:if>
+	</div>
 </f:section>
