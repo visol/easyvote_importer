@@ -25,6 +25,11 @@
 			<f:if condition="{v:var.get(name: 'datasets.{iterator.index}.sourceDataset')}">
 				<f:then>
 					<p><f:translate key="cityIndex.dataCopiedFromDatasetBegin" /> <f:format.date date="@{v:var.get(name: 'datasets.{iterator.index}.crdate')}" format="d.m.Y" /> <f:translate key="cityIndex.dataCopiedFromDatasetMiddle" /> <f:format.date date="@{v:var.get(name: 'datasets.{iterator.index}.sourceDataset.crdate')}" format="d.m.Y" /> <f:translate key="cityIndex.dataCopiedFromDatasetEnd" /><br />
+					<f:security.ifHasRole role="{settings.adminFeUserGroup}">
+						<f:form noCacheHash="true" name="assign" arguments="{city: businessUser.uid, dataset: '{v:var.get(name: \'datasets.{iterator.index}\')}'}" action="removeDatasetAndAddresses" onsubmit="return confirm('Dataset und importierte Adressen unwiderbringlich löschen?');">
+							<f:form.submit class="btn btn-primary" value="Dataset und importierte Adressen löschen" />
+						</f:form>
+					</f:security.ifHasRole>
 				</f:then>
 				<f:else>
 					<f:if condition="{v:var.get(name: 'datasets.{iterator.index}.uid')}">
