@@ -1,16 +1,11 @@
 <?php
 namespace Visol\EasyvoteImporter\Utility;
 
-/**
- * Created by JetBrains PhpStorm.
- * User: palulrich
- * Date: 01.11.13
- * Time: 12:59
- * To change this template use File | Settings | File Templates.
- */
 
-use TYPO3\CMS\Core\Utility\DebugUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use Box\Spout\Writer\WriterFactory;
+use Box\Spout\Common\Type;
+
 
 class ExcelUtility {
 
@@ -125,7 +120,7 @@ class ExcelUtility {
 	 * @param \Visol\Easyvote\Domain\Model\VotingDay $votingDay
 	 * @return void
 	 */
-	public static function pushExcelExportFromAddresses(array $addresses, \Visol\Easyvote\Domain\Model\VotingDay $votingDay) {
+	public static function pushExcelExportFromAddressesOld(array $addresses, \Visol\Easyvote\Domain\Model\VotingDay $votingDay) {
 
 		// Create new PHPExcel object
 		$objPHPExcel = new \PHPExcel();
@@ -172,6 +167,29 @@ class ExcelUtility {
 
 		$objWriter = \PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
 		$objWriter->save('php://output');
+
+	}
+
+	/**
+	 * @param array $addresses
+	 * @param \Visol\Easyvote\Domain\Model\VotingDay $votingDay
+	 * @return void
+	 */
+	public static function pushExcelExportFromAddresses(array $addresses, \Visol\Easyvote\Domain\Model\VotingDay $votingDay) {
+		$rows = array();
+
+		// Add headers
+		$rows[] = array('Kundennummer', 'Anrede', 'Name', 'Adresse', 'Ort');
+
+		// Add content
+		foreach ($addresses as $address) {
+			$rows[] = array($address['customer_number'], $address['salutation'], $address['name'], $address['street'], $address['city']);
+		}
+
+		$writer = WriterFactory::create(Type::XLSX);
+		$writer->openToBrowser('easyvote' . $votingDay->getVotingDate()->getTimestamp() . '.xlsx');
+		$writer->addRows($rows);
+		$writer->close();
 
 	}
 
