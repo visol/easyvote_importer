@@ -5,7 +5,6 @@
 	"homepage": "https://github.com/visol/ext-easyvote_competition",
 	"license": ["GPL-2.0+"],
 	"require": {
-		"visol/easyvote": "dev-master",
-        "box/spout": "2.2.0"
+		"visol/easyvote": "dev-master"
 	}
 }
