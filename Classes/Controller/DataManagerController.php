@@ -646,6 +646,19 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
      */
     public function createBlacklistPublicAction(\Visol\EasyvoteImporter\Domain\Model\Blacklist $newBlacklist) {
         $this->blacklistRepository->add($newBlacklist);
+        if (!empty($newBlacklist->getComment())) {
+            // We have a comment, therefore easyvote needs to be informed
+            /** @var $message \TYPO3\CMS\Core\Mail\MailMessage */
+            $message = GeneralUtility::makeInstance('TYPO3\CMS\Core\Mail\MailMessage');
+            $message->setTo(array('info@easyvote.ch' => 'easyvote'));
+            $message->setFrom(array('info@easyvote.ch' => 'easyvote'));
+            $message->setSubject('Data Manager: Neuer Eintrag in der Robinsonliste mit Kommentar');
+            $content = '<html><body><p><strong>Person:</strong> %s %s, %s, %s<br /><strong>Grund:</strong> %s<br /><strong>Kommentar:</strong> %s</p></body></html>';
+            $reasonText = !empty($newBlacklist->getReason()) ? LocalizationUtility::translate('blacklist.reason.' . $newBlacklist->getReason(), $this->request->getControllerExtensionName()) : '';
+            $parsedContent = sprintf($content, $newBlacklist->getFirstName(), $newBlacklist->getLastName(), $newBlacklist->getStreet(), $newBlacklist->getZipCode(), $reasonText, $newBlacklist->getComment());
+            $message->setBody($parsedContent, 'text/html');
+            $message->send();
+        }
         $this->redirect('createdBlacklistPublic');
     }
 
