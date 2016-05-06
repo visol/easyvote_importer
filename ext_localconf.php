@@ -32,3 +32,16 @@ require_once($composerAutoloadFile);
 		'BusinessUser' => 'loginPanel',
 	)
 );
+
+/* Blacklist für anonyme Benutzer */
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+	'Visol.' . $_EXTKEY,
+	'Blacklistpublic',
+	array(
+		'DataManager' => 'newBlacklistPublic, createBlacklistPublic, createdBlacklistPublic',
+	),
+	// non-cacheable actions
+	array(
+		'DataManager' => 'newBlacklistPublic, createBlacklistPublic, createdBlacklistPublic',
+	)
+);

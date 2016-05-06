@@ -349,6 +349,18 @@
 			<trans-unit id="blacklist.comment">
 				<source>Bemerkungen</source>
 			</trans-unit>
+			<trans-unit id="blacklist.save">
+				<source>Abmelden</source>
+			</trans-unit>
+			<trans-unit id="blacklist.title">
+				<source>Abmeldung easyvote-Broschüre</source>
+			</trans-unit>
+			<trans-unit id="blacklist.explanation">
+				<source>Damit wir sicherstellen können, dass dir keine easyvote-Broschüre mehr zugestellt wird, bitten wir dich, deine Adresse identisch zum erhaltenen Couvert einzutragen. Bei Adressänderungen (z.B. Umzug, Namensänderung, etc.) musst du dich erneut eintragen.</source>
+			</trans-unit>
+			<trans-unit id="blacklist.success">
+				<source>Du hast dich erfolgreich abgemeldet.</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

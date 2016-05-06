@@ -628,6 +628,33 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
 		$this->redirect('listBlacklist');
 	}
 
+    /**
+     * An anonymous user adds a new blacklist item
+     *
+     * @param \Visol\EasyvoteImporter\Domain\Model\Blacklist
+     * @return void
+     */
+    public function newBlacklistPublicAction(\Visol\EasyvoteImporter\Domain\Model\Blacklist $newBlacklist = NULL) {
+        $this->view->assign('newBlacklist', $newBlacklist);
+    }
+
+    /**
+     * Creates a new blacklist item
+     *
+     * @param \Visol\EasyvoteImporter\Domain\Model\Blacklist $newBlacklist
+     * @return void
+     */
+    public function createBlacklistPublicAction(\Visol\EasyvoteImporter\Domain\Model\Blacklist $newBlacklist) {
+        $this->blacklistRepository->add($newBlacklist);
+        $this->redirect('createdBlacklistPublic');
+    }
+
+    /**
+     * Success message when a new blacklist item was created
+     */
+    public function createdBlacklistPublicAction() {
+    }
+
 	/**
 	 * action list blacklist
 	 *

@@ -24,6 +24,14 @@ $TCA['tt_content']['types']['list']['subtypes_addlist'][$pluginSignature] = 'pi_
 	'EXT:easyvote_importer/ext_icon.gif'
 );
 
+/* Blacklist für anonyme Benutzer */
+\TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
+	$_EXTKEY,
+	'Blacklistpublic',
+	'easyvote Data Manager: Eintragung Robinsonliste (öffentlich)',
+	'EXT:easyvote_importer/ext_icon.gif'
+);
+
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile($_EXTKEY, 'Configuration/TypoScript', 'easyvote Importer');
 
 \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::allowTableOnStandardPages('tx_easyvoteimporter_domain_model_dataset');
