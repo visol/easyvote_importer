@@ -22,11 +22,8 @@ $GLOBALS['TCA']['tx_easyvoteimporter_domain_model_blacklist'] = array(
 		'enablecolumns' => array(),
 		'iconfile' => \TYPO3\CMS\Core\Utility\ExtensionManagementUtility::extRelPath('easyvote_importer') . 'Resources/Public/Icons/tx_easyvoteimporter_domain_model_blacklist.gif'
 	),
-	'interface' => array(
-		'showRecordFieldList' => 'first_name, last_name, street, zip_code, crdate',
-	),
 	'types' => array(
-		'1' => array('showitem' => 'first_name, last_name, street, zip_code, crdate'),
+		'1' => array('showitem' => 'first_name, last_name, street, zip_code, reason, comment, crdate'),
 	),
 	'palettes' => array(
 		'1' => array('showitem' => ''),
@@ -152,5 +149,29 @@ $GLOBALS['TCA']['tx_easyvoteimporter_domain_model_blacklist'] = array(
 				'eval' => 'trim, required',
 			),
 		),
+        'reason' => array(
+            'exclude' => 1,
+            'label' => 'Grund',
+            'config' => array(
+                'type' => 'select',
+                'minitems' => 0,
+                'maxitems' => 1,
+                'items' => array(
+                    array('', 0),
+                    array('Kein Interesse an Politik', 1),
+                    array('Ich benötige keine einfachen und neutralen Abstimmungsinformationen', 2),
+                    array('Anderer (Grund bitte unter Bemerkung angeben)', 3),
+                ),
+            ),
+        ),
+        'comment' => array(
+            'exclude' => 1,
+            'label' => 'Bemerkung',
+            'config' => array(
+                'type' => 'text',
+                'cols' => 40,
+                'rows' => 5,
+            ),
+        ),
 	),
 );

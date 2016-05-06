@@ -100,6 +100,8 @@ CREATE TABLE tx_easyvoteimporter_domain_model_blacklist (
 	last_name varchar(255) DEFAULT '' NOT NULL,
 	street varchar(255) DEFAULT '' NOT NULL,
 	zip_code varchar(255) DEFAULT '' NOT NULL,
+	reason int(11) unsigned DEFAULT '0' NOT NULL,
+	comment text NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
 	crdate int(11) unsigned DEFAULT '0' NOT NULL,

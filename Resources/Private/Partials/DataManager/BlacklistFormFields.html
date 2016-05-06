@@ -1,15 +1,43 @@
-<div class="form-row">
-	<f:form.textfield property="firstName" additionalAttributes="{required: required, placeholder:'Vorname'}" />
-</div>
-<div class="form-row">
-	<f:form.textfield property="lastName" additionalAttributes="{required: required, placeholder:'Name'}" />
-</div>
-<div class="form-row">
-	<f:form.textfield property="street" additionalAttributes="{required: required, placeholder:'Strasse (genau!)'}" />
-</div>
-<div class="form-row">
-	<f:form.textfield property="zipCode" additionalAttributes="{required: required, placeholder:'PLZ'}" />
-</div>
-<div class="form-row">
-	<f:form.submit class="btn btn-primary" value="speichern" />
-</div>
+<fieldset>
+    <div class="form-group">
+        <label for="firstName">{f:translate(key:'blacklist.firstName')}</label>
+        <f:form.textfield class="form-control"property="firstName" additionalAttributes="{required: required}" />
+    </div>
+    <div class="form-group">
+        <label for="lastName">{f:translate(key:'blacklist.lastName')}</label>
+        <f:form.textfield class="form-control"property="lastName" additionalAttributes="{required: required}" />
+    </div>
+    <div class="form-group">
+        <label for="street">{f:translate(key:'blacklist.street')}</label>
+        <f:form.textfield class="form-control"property="street" additionalAttributes="{required: required}" />
+    </div>
+    <div class="form-group">
+        <label for="zipCode">{f:translate(key:'blacklist.zipCode')}</label>
+        <f:form.textfield class="form-control"property="zipCode" additionalAttributes="{required: required}" />
+    </div>
+    <div class="form-group form-row-radio">
+        <label>{f:translate(key:'blacklist.reason')}</label>
+        <div class="radio">
+            <label class="radio" for="reason-1">
+                <f:form.radio id="reason-1" name="{objectName}[reason]" value="1" checked="{blacklist.reason} == 1"/>
+                {f:translate(key:'blacklist.reason.1')}</label>
+        </div>
+        <div class="radio">
+            <label class="radio" for="reason-2">
+                <f:form.radio id="reason-2" name="{objectName}[reason]" value="2" checked="{blacklist.reason} == 2"/>
+                {f:translate(key:'blacklist.reason.2')}</label>
+        </div>
+        <div class="radio">
+            <label class="radio" for="reason-3">
+                <f:form.radio id="reason-3" name="{objectName}[reason]" value="3" checked="{blacklist.reason} == 3"/>
+                {f:translate(key:'blacklist.reason.3')}</label>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="comment">{f:translate(key:'blacklist.comment')}</label>
+        <f:form.textarea class="form-control"class="form-control" id="comment" property="comment" />
+    </div>
+    <div class="form-group">
+        <f:form.submit class="form-control"class="btn btn-primary" value="speichern" />
+    </div>
+</fieldset>

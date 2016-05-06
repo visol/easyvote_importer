@@ -313,6 +313,33 @@
 				<source>Ihre Kontaktdaten wurden aktualisiert.</source>
 			</trans-unit>
 
+			<trans-unit id="blacklist.firstName">
+				<source>Vorname</source>
+			</trans-unit>
+			<trans-unit id="blacklist.lastName">
+				<source>Name</source>
+			</trans-unit>
+			<trans-unit id="blacklist.street">
+				<source>Strasse (exakt wie auf Couvert!)</source>
+			</trans-unit>
+			<trans-unit id="blacklist.zipCode">
+				<source>PLZ (ohne Ort!)</source>
+			</trans-unit>
+			<trans-unit id="blacklist.reason">
+				<source>Grund</source>
+			</trans-unit>
+			<trans-unit id="blacklist.reason.1">
+				<source>Kein Interesse an Politik</source>
+			</trans-unit>
+			<trans-unit id="blacklist.reason.2">
+				<source>Ich benötige keine einfachen und neutralen Abstimmungsinformationen</source>
+			</trans-unit>
+			<trans-unit id="blacklist.reason.3">
+				<source>Anderer (Grund bitte unter Bemerkung angeben)</source>
+			</trans-unit>
+			<trans-unit id="blacklist.comment">
+				<source>Bemerkungen</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

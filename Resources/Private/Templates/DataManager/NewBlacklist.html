@@ -11,8 +11,8 @@
 <f:section name="main">
 	<div class="content-box">
 		<h2>Adresse zur Robinsonliste hinzufügen</h2>
-		<f:form noCacheHash="true" class="inputForm" action="createBlacklist" name="newBlacklist" object="{newBlacklist}">
-			<f:render partial="DataManager/BlacklistFormFields" />
+		<f:form noCacheHash="true" action="createBlacklist" name="newBlacklist" object="{newBlacklist}">
+			<f:render partial="DataManager/BlacklistFormFields" arguments="{blacklist:newBlacklist, objectName:'newBlacklist'}" />
 		</f:form>
 	</div>
 </f:section>

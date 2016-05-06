@@ -5,7 +5,7 @@ namespace Visol\EasyvoteImporter\Domain\Model;
  *  Copyright notice
  *
  *  (c) 2013 Lorenz Ulrich <lorenz.ulrich@visol.ch>, visol digitale Dienstleistungen GmbH
- *  
+ *
  *  All rights reserved
  *
  *  This script is part of the TYPO3 project. The TYPO3 project is
@@ -64,6 +64,16 @@ class Blacklist extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	 * @var \string
 	 */
 	protected $zipCode;
+
+    /**
+     * @var integer
+     */
+    protected $reason;
+
+    /**
+     * @var string
+     */
+    protected $comment;
 
 	/**
 	 * Erfasst am
@@ -148,6 +158,38 @@ class Blacklist extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 		$this->zipCode = $zipCode;
 	}
 
+    /**
+     * @return int
+     */
+    public function getReason()
+    {
+        return $this->reason;
+    }
+
+    /**
+     * @param int $reason
+     */
+    public function setReason($reason)
+    {
+        $this->reason = $reason;
+    }
+
+    /**
+     * @return string
+     */
+    public function getComment()
+    {
+        return $this->comment;
+    }
+
+    /**
+     * @param string $comment
+     */
+    public function setComment($comment)
+    {
+        $this->comment = $comment;
+    }
+
 	/**
 	 * Returns the crdate
 	 *
@@ -168,4 +210,3 @@ class Blacklist extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity {
 	}
 
 }
-?>
