@@ -337,6 +337,15 @@
 			<trans-unit id="blacklist.reason.3">
 				<source>Anderer (Grund bitte unter Bemerkung angeben)</source>
 			</trans-unit>
+			<trans-unit id="blacklist.reasonShort.1">
+				<source>Kein Interesse</source>
+			</trans-unit>
+			<trans-unit id="blacklist.reasonShort.2">
+				<source>Nicht benötigt</source>
+			</trans-unit>
+			<trans-unit id="blacklist.reasonShort.3">
+				<source>Anderer</source>
+			</trans-unit>
 			<trans-unit id="blacklist.comment">
 				<source>Bemerkungen</source>
 			</trans-unit>
