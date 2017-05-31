@@ -1,6 +1,9 @@
 <?php
 namespace Visol\EasyvoteImporter\Controller;
 
+// Composer Autoloader
+require_once(PATH_site . 'Packages/Libraries/autoload.php');
+
 /***************************************************************
  *  Copyright notice
  *
@@ -25,9 +28,11 @@ namespace Visol\EasyvoteImporter\Controller;
  *
  *  This copyright notice MUST APPEAR in all copies of the script!
  ***************************************************************/
+use GuzzleHttp\Psr7\Response;
 use TYPO3\CMS\Core\Utility\DebugUtility;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
+use Visol\EasyvoteImporter\Domain\Model\Blacklist;
 use Visol\EasyvoteImporter\Domain\Model\Dataset;
 use Visol\EasyvoteImporter\Utility\ExcelUtility;
 
@@ -646,6 +651,7 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
      */
     public function createBlacklistPublicAction(\Visol\EasyvoteImporter\Domain\Model\Blacklist $newBlacklist) {
         $this->blacklistRepository->add($newBlacklist);
+		$this->submitBlacklistEntryToCrm($newBlacklist);
         if (!empty($newBlacklist->getComment())) {
             // We have a comment, therefore easyvote needs to be informed
             /** @var $message \TYPO3\CMS\Core\Mail\MailMessage */
@@ -662,10 +668,51 @@ class DataManagerController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionCont
         $this->redirect('createdBlacklistPublic');
     }
 
+	/**
+	 * Submits a Blacklist entry to the CRM using the CRM's Web API
+	 *
+	 * @param Blacklist $blacklist
+	 * @throws \TYPO3\CMS\Extbase\Mvc\Exception\UnsupportedRequestTypeException
+	 */
+	protected function submitBlacklistEntryToCrm(Blacklist $blacklist) {
+		$url = vsprintf('%s/data-manager/robinson-list', [
+			$this->settings['crmWebApiBaseUri']
+		]);
+
+		$robinsonListEntry = [
+			'firstName' => $blacklist->getFirstName(),
+			'lastName' => $blacklist->getLastName(),
+			'street' => $blacklist->getStreet(),
+			'zipCode' => $blacklist->getZipCode(),
+			'reason' => $blacklist->getReason(),
+			'comment' => $blacklist->getComment()
+		];
+
+		$client = new \GuzzleHttp\Client();
+		/** @var Response $response */
+		$response = $client->post($url, [
+			'json' => [
+				'robinsonList' => $robinsonListEntry
+			],
+			'http_errors' => false
+		]);
+		if ($response->getStatusCode() === 201) {
+			return;
+		} else {
+			$this->redirect('errorBlacklistPublic');
+		}
+	}
+
     /**
      * Success message when a new blacklist item was created
      */
     public function createdBlacklistPublicAction() {
+    }
+
+    /**
+     * Error message when a new blacklist item was created
+     */
+    public function errorBlacklistPublicAction() {
     }
 
 	/**

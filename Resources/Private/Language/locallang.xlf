@@ -361,6 +361,11 @@
 			<trans-unit id="blacklist.success">
 				<source>Du hast dich erfolgreich abgemeldet.</source>
 			</trans-unit>
+			<trans-unit id="blacklist.error">
+				<source><![CDATA[
+				    Es ist ein Fehler aufgetreten. Bitte wende dich an das <a href="mailto:info@easyvote.ch">easyvote-Team</a>.
+                ]]></source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

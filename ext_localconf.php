@@ -38,10 +38,10 @@ require_once($composerAutoloadFile);
 	'Visol.' . $_EXTKEY,
 	'Blacklistpublic',
 	array(
-		'DataManager' => 'newBlacklistPublic, createBlacklistPublic, createdBlacklistPublic',
+		'DataManager' => 'newBlacklistPublic, createBlacklistPublic, createdBlacklistPublic, errorBlacklistPublic',
 	),
 	// non-cacheable actions
 	array(
-		'DataManager' => 'newBlacklistPublic, createBlacklistPublic, createdBlacklistPublic',
+		'DataManager' => 'newBlacklistPublic, createBlacklistPublic, createdBlacklistPublic, errorBlacklistPublic',
 	)
 );
